@@ -9,16 +9,17 @@ function createWindow() {
     height: 800,
     webPreferences: {
       nodeIntegration: true,
+      contextIsolation: false,
       // enableRemoteModule: true,
     }
   })
 
   if (process.env.NODE_ENV === 'development') {
-    win.loadURL(`http://localhost:3000`);
+    win.loadURL(`http://localhost:4000`);
   } else {
     win.loadURL(
       url.format({
-        pathname: path.join(__dirname, '../dist/index.html'),
+        pathname: path.join(__dirname, '../index.html'),
         protocol: 'file:',
         slashes: true
       })

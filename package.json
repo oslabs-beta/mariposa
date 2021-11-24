@@ -2,12 +2,13 @@
   "name": "mariposa",
   "version": "1.0.0",
   "description": "a graphql migration and visualization tool",
-  "main": "./src/main.ts",
+  "main": "./dist/main.js",
   "scripts": {
     "test": "jest",
+    "dev:electron": "NODE_ENV=development webpack --config webpack.electron.config.js --mode development && electron .",
+    "dev:react": "NODE_ENV=development webpack-dev-server --config webpack.react.config.js --mode development",
     "build": "NODE_ENV=production webpack --config ./webpack.config.js",
-    "start": "NODE_ENV=production npm run build && electron ./dist/electron.js",
-    "dev": "NODE_ENV=development webpack --watch"
+    "start": "NODE_ENV=production npm run build && electron ./dist/main.js"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,11 @@
     "webpack-electron-reload": "^1.0.1"
   },
   "dependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-react": "^7.16.0",
+    "@babel/preset-typescript": "^7.16.0",
+    "babel-loader": "^8.2.3",
     "electron-reload": "^2.0.0-alpha.1",
     "express": "^4.17.1"
   }

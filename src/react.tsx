@@ -1,8 +1,15 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-const Index = () => {
-    return <div>Goodbye React!</div>;
-};
+const mainElement = document.createElement('div');
+document.body.appendChild(mainElement);
 
-ReactDOM.render(<Index />, document.getElementById('app'));
+const App = () => {
+  return (
+    <h1>
+      Nice from a react app
+    </h1>
+  )
+}
+
+ReactDOM.render(<App />, mainElement);
