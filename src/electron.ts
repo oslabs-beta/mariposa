@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from 'electron';
 const path = require('path')
 const url = require('url');
-// const electronReload = require('electron-reload');
+// require('electron-reload')(__dirname);
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -13,8 +13,17 @@ function createWindow() {
     }
   })
 
-  win.loadFile('../dist/index.html')
-  // win.loadURL('localhost')
+  if (process.env.NODE_ENV === 'development') {
+    win.loadURL(`http://localhost:3000`);
+  } else {
+    win.loadURL(
+      url.format({
+        pathname: path.join(__dirname, '../dist/index.html'),
+        protocol: 'file:',
+        slashes: true
+      })
+    );
+  }
 }
 
 // Will be called when Electron has finished initialization

@@ -5,8 +5,9 @@
   "main": "./src/main.ts",
   "scripts": {
     "test": "jest",
-    "build": "webpack --config ./webpack.config.js",
-    "start": "npm run build && electron ./dist//electron.js"
+    "build": "NODE_ENV=production webpack --config ./webpack.config.js",
+    "start": "NODE_ENV=production npm run build && electron ./dist/electron.js",
+    "dev": "NODE_ENV=development webpack --watch"
   },
   "repository": {
     "type": "git",
@@ -29,9 +30,12 @@
     "ts-loader": "^9.2.6",
     "typescript": "^4.5.2",
     "webpack": "^5.64.2",
-    "webpack-cli": "^4.9.1"
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.5.0",
+    "webpack-electron-reload": "^1.0.1"
   },
   "dependencies": {
+    "electron-reload": "^2.0.0-alpha.1",
     "express": "^4.17.1"
   }
 }

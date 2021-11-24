@@ -29843,7 +29843,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 var React = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var ReactDOM = __importStar(__webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js"));
 var Index = function () {
-    return React.createElement("div", null, "Hello React!");
+    return React.createElement("div", null, "Goodbye React!");
 };
 ReactDOM.render(React.createElement(Index, null), document.getElementById('app'));
 

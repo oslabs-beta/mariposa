@@ -7,7 +7,7 @@ export const PORT = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(path.resolve(__dirname, './'))); 
+app.use(express.static(path.resolve(__dirname, '../dist'))); 
 
 app.use("*", (req: Request, res: Response) => {
   return res.status(404).send("Error, path not found");
