@@ -7,9 +7,11 @@ const pool: Pool = new Pool({
 });
 
 // for Response, may need to use the express version not the Fetch version
-module.exports = {
+const db = {
   query: (text: string, params: string[], callback: (err: Error, result: QueryResult<any>) => void): void => {
     console.log('executed query', text);
     return pool.query(text, params, callback);
   }
-}
+};
+
+export default db;
