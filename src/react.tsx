@@ -13,3 +13,5 @@ const App = () => {
 }
 
 ReactDOM.render(<App />, mainElement);
+
+export default App;
