@@ -30,9 +30,9 @@ module.exports = {
     hot: true,
     port: 4000,
     // publicPath: '/',
-    // proxy: {
-    //   '/': 'http://localhost:3000'
-    // },
+    proxy: {
+      '/': 'http://localhost:3000'
+    },
   },
   plugins: [
     new HtmlWebpackPlugin(),
