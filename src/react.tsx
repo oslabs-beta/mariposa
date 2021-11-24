@@ -7,7 +7,7 @@ document.body.appendChild(mainElement);
 const App = () => {
   return (
     <h1>
-      Nice from a react app
+      Yeet from a react app
     </h1>
   )
 }

@@ -7,11 +7,13 @@ export const PORT = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/dist', express.static(path.resolve(__dirname, '../dist'))); 
-
-app.get('/', (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, '../src/index.html'));
-});
+console.log('ENV VARIABLE', process.env.NODE_ENV);
+if(process.env.NODE_ENV === 'production') {
+  app.get('/', (req, res) => {
+    return res.status(200).sendFile(path.resolve(__dirname, '../dist/index.html'));
+  });
+  app.use('/js', express.static(path.resolve(__dirname, '../dist/js'))); 
+}
 
 app.use("*", (req: Request, res: Response) => {
   return res.status(404).send("Error, path not found");
