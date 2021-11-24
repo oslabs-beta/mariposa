@@ -1,43 +1,32 @@
 const path = require('path');
-const webpack = require('webpack');
+const ElectronReloadPlugin = require('webpack-electron-reload')({
+  path: path.resolve(__dirname, 'dist/main.js'),
+});
 
 module.exports = {
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-  },
-  devtool: 'source-map',
+  // mode: process.env.NODE_ENV,//'development',
   entry: './electron/main.ts',
+  devtool: 'source-map',
   target: 'electron-main',
   module: {
     rules: [
       {
         test: /\.(js|ts|tsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
-      },
-      {
-        test: /\.(png|jpg|gif)$/i,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: false,
-            },
-          },
-        ],
+        use: { loader: 'babel-loader' }
       },
     ],
   },
-  plugins: [
-    new webpack.IgnorePlugin({ resourceRegExp: /^pg-native$/ }),
-  ],
-  node: {
-    __dirname: false,
+  resolve: {
+    // Add `.ts` and `.tsx` as a resolvable extension.
+    extensions: [".ts", ".tsx", ".js"]
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js', // where does this come from
+    path: path.resolve(__dirname, './dist'),
+    filename: '[name].js',
   },
+  plugins: [
+    // ...
+    ElectronReloadPlugin()
+  ],
 };

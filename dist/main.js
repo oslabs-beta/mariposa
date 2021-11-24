@@ -1,4 +1,5 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "electron":
@@ -7,7 +8,6 @@
   \***************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = require("electron");
 
 /***/ }),
@@ -18,8 +18,17 @@ module.exports = require("electron");
   \***********************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = require("path");
+
+/***/ }),
+
+/***/ "url":
+/*!**********************!*\
+  !*** external "url" ***!
+  \**********************/
+/***/ ((module) => {
+
+module.exports = require("url");
 
 /***/ })
 
@@ -50,42 +59,94 @@ module.exports = require("path");
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 /*!**************************!*\
   !*** ./electron/main.ts ***!
   \**************************/
-const {
-  app,
-  BrowserWindow
-} = __webpack_require__(/*! electron */ "electron");
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! electron */ "electron");
+/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_0__);
 
-const path = __webpack_require__(/*! path */ "path");
+
+var path = __webpack_require__(/*! path */ "path");
+
+var url = __webpack_require__(/*! url */ "url"); // require('electron-reload')(__dirname);
+
 
 function createWindow() {
-  const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+  var win = new electron__WEBPACK_IMPORTED_MODULE_0__.BrowserWindow({
+    width: 1000,
+    height: 800,
     webPreferences: {
       nodeIntegration: true,
-      webSecurity: true
-    }
-  });
-  win.loadFile('index.html');
-}
+      contextIsolation: false // enableRemoteModule: true,
 
-app.whenReady().then(() => {
-  createWindow();
-  app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow();
     }
   });
-});
-app.on('window-all-closed', () => {
+
+  if (true) {
+    win.loadURL("http://localhost:4000");
+  } else {}
+} // Will be called when Electron has finished initialization
+
+
+electron__WEBPACK_IMPORTED_MODULE_0__.app.whenReady().then(function () {
+  return createWindow();
+}); // Quit when all windows are closed, except for MacOS (darwin)
+
+electron__WEBPACK_IMPORTED_MODULE_0__.app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
-    app.quit();
+    electron__WEBPACK_IMPORTED_MODULE_0__.app.quit();
+  }
+}); // On macOS it's common to re-create a window in the app when the
+// dock icon is clicked and there are no other windows open.
+
+electron__WEBPACK_IMPORTED_MODULE_0__.app.on('activate', function () {
+  if (electron__WEBPACK_IMPORTED_MODULE_0__.BrowserWindow.getAllWindows().length === 0) {
+    createWindow();
   }
 });
 })();
