@@ -1,22 +1,26 @@
 import express, {Request, Response, NextFunction} from 'express';
-const router = express.Router();
+import { unstable_renderSubtreeIntoContainer } from 'react-dom';
+import dbController from '../controllers/dbController';
+const userRouter = express.Router();
 
 // gets a user with a given username
-router.get('/', (req: Request, res: Response, next: NextFunction) => {
-  return res.json({});
+userRouter.get('/', (req: Request, res: Response, next: NextFunction) => {
+  return res.json(res.locals.user);
 })
 
 // posts a user of given name and password
-router.post('/', (req: Request, res: Response, next: NextFunction) => {
+userRouter.post('/', dbController.createUser, (req: Request, res: Response, next: NextFunction) => {
   return res.json({});
 })
 
 // updates user of a given id 
-router.put('/:id', (req: Request, res: Response, next: NextFunction) => {
+userRouter.put('/:id', (req: Request, res: Response, next: NextFunction) => {
   return res.json({});
 })
 
 // deletes a user of given id
-router.delete('/:id', (req: Request, res: Response, next: NextFunction) => {
+userRouter.delete('/:id', (req: Request, res: Response, next: NextFunction) => {
   return res.json({});
 })
+
+export default userRouter;

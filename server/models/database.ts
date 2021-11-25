@@ -3,7 +3,7 @@ import { Pool, QueryResult } from 'pg';
 const PG_URI: string = `URI`;
 
 const pool: Pool = new Pool({
-  connectionString: PG_URI,
+  connectionString: `postgres://osvbvnuc:Z2tsRaYf1dkGkjRySrOZRbq9cw-3uaVx@castor.db.elephantsql.com/osvbvnuc`,
 });
 
 // for Response, may need to use the express version not the Fetch version
