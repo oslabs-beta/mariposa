@@ -23,3 +23,5 @@ const graphReducer = (state = initialState, action) => {
       };
   }
 }
+
+export default graphReducer;
