@@ -2,9 +2,9 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Graph from './components/graph.tsx';
+import Graph from './components/graph';
 import './scss/styles.scss';
-import ResponsiveAppBar from './components/navbar.tsx';
+import ResponsiveAppBar from './components/navbar';
 
 export default function App() {
   return (
