@@ -1,10 +1,9 @@
 import express, {Request, Response, NextFunction} from 'express';
-import { unstable_renderSubtreeIntoContainer } from 'react-dom';
 import dbController from '../controllers/dbController';
 const userRouter = express.Router();
 
 // gets a user with a given username
-userRouter.get('/', (req: Request, res: Response, next: NextFunction) => {
+userRouter.get('/:id', dbController.getPerson, (req: Request, res: Response, next: NextFunction) => {
   return res.json(res.locals.user);
 })
 

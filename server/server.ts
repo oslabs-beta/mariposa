@@ -1,21 +1,30 @@
-import express, {Request, Response, NextFunction} from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import path from 'path';
-import userRouter from './routes/users';
 const app = express();
 export const PORT = 3000;
-
+//require in routers
+import userRouter from './routes/users';
+import planetRouter from './routes/planets';
+// gql shit
+import { graphqlHTTP } from 'express-graphql';
+import schema from './schema/schema';
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // routes
 app.use('/users', userRouter);
+app.use('/planets', planetRouter);
+app.use('/graphql', graphqlHTTP({ // include graphiql here for sandbox
+  schema,
+  graphiql: true,
+}));
 
-if(process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   app.get('/', (req, res) => {
     return res.status(200).sendFile(path.resolve(__dirname, '../dist/index.html'));
   });
-  app.use('/js', express.static(path.resolve(__dirname, '../dist/js'))); 
+  app.use('/js', express.static(path.resolve(__dirname, '../dist/js')));
 }
 
 app.use("*", (req: Request, res: Response) => {

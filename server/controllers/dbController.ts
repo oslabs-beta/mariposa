@@ -12,29 +12,46 @@ const dbController = {
       const { username, email, password }: { username: string, email: string, password: string } = req.body;
       const encrypted = await bcrypt.hash(password, 10);
       const query = `INSERT INTO users(username, email, password)
-        VALUES($1, $2, $3) RETURNING user_id, username, email`
+        VALUES($1, $2, $3) RETURNING user_id, username, email`;
       const values = [username, email, encrypted];
-      db.query(query, values, (err, result) => {
-        if (err) {
-          // TODO
-          const newError = new Error('line 19 yo');
-          console.error(newError);
-          return next(newError);
-        }
-        else {
-          const { user_id, username, email }: { user_id: number, username: string, email: string } = result.rows[0];
-          const newUser = new User(user_id, username, email);
-          res.locals.user = newUser;
-          return next();
-        }
-      });
+      const result = await db.query(query, values)
+      const user = result.rows[0];
+      const newUser = new User(user.user_id, user.username, user.email);
+      res.locals.user = newUser;
+      return next();
     }
     catch (err) {
       return next(err);
     }
-  }
+  },
 
-// end of dbController class
+  async getPerson(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params;
+      const query = `SELECT * FROM people where _id = $1`
+      const values = [id];
+      const result = await db.query(query, values);
+      res.locals.user = result.rows[0];
+      return next();
+    }
+    catch (err) {
+      return next(err)
+    }
+  },
+  async getPlanet(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params;
+      const query = `SELECT * FROM planets where _id = $1`
+      const values = [id];
+      const result = await db.query(query, values);
+      res.locals.planet = result.rows[0];
+      return next();
+    }
+    catch (err) {
+      return next(err)
+    }
+  },
+  // end of dbController class
 }
 
 
