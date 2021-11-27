@@ -1,33 +1,28 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import Grid from '@mui/material/Grid';
-import Item from '@mui/material/MenuItem';
-import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
-import ButtonBase from '@mui/material/ButtonBase';
-import { Resizable, ResizableBox } from 'react-resizable';
+import Graph from './components/graph.tsx';
 
 export default function App() {
   return (
-    <Grid container spacing={2}>
+    <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
   <Grid item xs={6} md={6}>
-    <Item>xs=6 md=8</Item>
+  <Paper variant="outlined" square />
   </Grid>
   <Grid item xs={6} md={6}>
-    <Item>xs=6 md=4</Item>
+  <Paper variant="outlined" square />
+
   </Grid>
   <Grid item xs={6} md={6}>
-    <Item>xs=6 md=4</Item>
+  <Paper variant="outlined" square />
+
   </Grid>
   <Grid item xs={6} md={6}>
-  <ResizableBox width={200} height={200} draggableOpts={{x}}
-        minConstraints={[100, 100]} maxConstraints={[300, 300]}>
-      <span>Contents</span>
-    </ResizableBox>
+    <Graph></Graph>
   </Grid>
 </Grid>
-  )
+ )
 }
 
 const mainElement = document.createElement('div');
