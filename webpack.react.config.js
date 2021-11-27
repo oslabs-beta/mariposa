@@ -35,6 +35,10 @@ module.exports = {
     //   '/': 'http://localhost:3000'
     // },
   },
+  resolve: {
+    // Add `.ts` and `.tsx` as a resolvable extension.
+    extensions: [".ts", ".tsx", ".js"]
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/[name].js',
