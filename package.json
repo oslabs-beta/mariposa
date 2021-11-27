@@ -26,6 +26,7 @@
     "@types/react-dom": "^17.0.11",
     "@types/react-resizable": "^1.7.4",
     "electron": "^16.0.1",
+    "css-loader": "^6.5.0",
     "html-webpack-plugin": "^5.5.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -34,7 +35,8 @@
     "webpack": "^5.64.2",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.5.0",
-    "webpack-electron-reload": "^1.0.1"
+    "webpack-electron-reload": "^1.0.1",
+    "style-loader": "^3.3.1"
   },
   "dependencies": {
     "@babel/core": "^7.16.0",
@@ -43,12 +45,15 @@
     "@babel/preset-typescript": "^7.16.0",
     "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.2.0",
     "@mui/material": "^5.2.1",
     "@mui/styled-engine-sc": "^5.1.0",
     "babel-loader": "^8.2.3",
     "electron-reload": "^2.0.0-alpha.1",
     "express": "^4.17.1",
     "react-resizable": "^3.0.4",
+    "sass": "^1.43.4",
+    "sass-loader": "^12.3.0",
     "styled-components": "^5.3.3"
   }
 }
