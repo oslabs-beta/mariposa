@@ -1,30 +1,48 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Graph from './components/graph';
 import './scss/styles.scss';
-import ResponsiveAppBar from './components/navbar';
+import LandingPage from './components/landingPage.tsx';
+import LoginForm from './components/LoginForm.tsx';
+
+const adminUser = {  
+  email: "m@c",
+  password: "c"
+}
 
 export default function App() {
+  // state for the user 
+const [user, setUser] = useState({ name: "", email: "", isLoggedIn: false });
+// error message
+const [error, setError] = useState("");
+
+
+const Login = (details: { email: string; password: string; name: any; }) => {
+  console.log(details);
+  if (details.email == adminUser.email && details.password == adminUser.password) {
+  console.log("Logged In");
+  setUser({
+      name: details.name,
+      email: details.email,
+      isLoggedIn: true
+  });
+} else {
+  console.log("wrong details")
+  setError("wrong details")
+}
+}  
+
+// reset the state on logout
+const Logout = () => {
+  //console.log("logout");
+  setUser({name: "", email: "", isLoggedIn: false});
+}
+
+
   return (
-    <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-  <ResponsiveAppBar></ResponsiveAppBar>
-  <Grid item xs={6} md={6}>
-  <Graph></Graph>
-  </Grid>
-  <Grid item xs={6} md={6}>
-  <Graph></Graph>
+    <div> 
+    {(user.isLoggedIn === false) ? <LandingPage /> :<LoginForm Login={Login} error={error}/>}
+    </div>
 
-  </Grid>
-  <Grid item xs={6} md={6}>
-  <Graph></Graph>
-
-  </Grid>
-  <Grid item xs={6} md={6}>
-    <Graph></Graph>
-  </Grid>
-</Grid>
  )
 }
 

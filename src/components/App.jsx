@@ -40,7 +40,7 @@ function App() {
 
 
     return (
-        <div className="App">
+        <div className="loginApp">
             {/* needs conditonal rendering logic here */}
             {(user.isLoggedIn === true) ? (
                 <div className="welcome">
