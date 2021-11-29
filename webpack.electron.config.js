@@ -4,7 +4,7 @@ const ElectronReloadPlugin = require('webpack-electron-reload')({
 });
 
 module.exports = {
-  // mode: process.env.NODE_ENV,//'development',
+  mode: process.env.NODE_ENV,//'development',
   entry: './electron/main.ts',
   devtool: 'source-map',
   target: 'electron-main',
