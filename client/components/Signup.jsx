@@ -34,8 +34,7 @@ function Signup( {Login} ) {
                 </p>
             </div>
             <div>
-            </div>
-
+            </div
         </form>
     )
 }
