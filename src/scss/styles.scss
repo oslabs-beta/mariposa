@@ -1,5 +1,5 @@
 body {
-  background-color:aliceblue ;
+  background-color: rgb(248, 218, 223) ;
 }
 
 .graphD3 {
@@ -113,4 +113,18 @@ form .form-inner input[type="submit"]:hover {
 
 button {
   background-color: white;
+}
+
+.node__root > circle {
+  fill: red;
+}
+
+.node__branch > circle {
+  fill: yellow;
+}
+
+.node__leaf > circle {
+  fill: green;
+  /* Let's also make the radius of leaf nodes larger */
+  r: 40;
 }
