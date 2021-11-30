@@ -3,8 +3,8 @@ import path from 'path';
 const app = express();
 export const PORT = 3000;
 //require in routers
-import userRouter from './routes/users';
-import planetRouter from './routes/planets';
+import mariposaRouter from './routes/mariposa';
+import projectRouter from './routes/project';
 // gql shit
 import { graphqlHTTP } from 'express-graphql';
 import schema from './schema/schema';
@@ -13,8 +13,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // routes
-app.use('/users', userRouter);
-app.use('/planets', planetRouter);
+app.use('/mariposa', mariposaRouter);
+app.use('/project', projectRouter);
 app.use('/graphql', graphqlHTTP({ // include graphiql here for sandbox
   schema,
   graphiql: true,

@@ -1,9 +1,9 @@
 import { Pool, QueryResult } from 'pg';
 
-const PG_URI: string = `postgres://vozivmzl:6vudzc_5vjGcmGFKOClHXhcJfXLW-QXB@fanny.db.elephantsql.com/vozivmzl`;
+const PG_URI: string = `postgres://osvbvnuc:Z2tsRaYf1dkGkjRySrOZRbq9cw-3uaVx@castor.db.elephantsql.com/osvbvnuc`;
 
 const pool: Pool = new Pool({
-  connectionString: PG_URI, //`postgres://osvbvnuc:Z2tsRaYf1dkGkjRySrOZRbq9cw-3uaVx@castor.db.elephantsql.com/osvbvnuc`,
+  connectionString: PG_URI,
 });
 
 // for Response, may need to use the express version not the Fetch version
