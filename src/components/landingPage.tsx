@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Graph from './graph.tsx';
 import ResponsiveAppBar from './navbar.tsx';
+import Tree from './Tree.jsx'
 
 
 
