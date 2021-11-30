@@ -1,6 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import { QueryResult } from 'pg';
 import db from '../models/projectDB'
+import { gqlHelperFunctions } from '../GQLConversion/GQLtypes';
+const {gqlTypeCreator} = gqlHelperFunctions;
+
 import { Table } from '../types/Table';
 
 export const projectDBController = {
@@ -25,6 +28,15 @@ export const projectDBController = {
       });
     }
   },
+  convertTablestoSchemas(req: Request, res: Response, next: NextFunction){
+    const arrayOfTableObjects = res.locals.userDbResponse;
+    const arrayOfSchemas = [];
+    //iterate through array and extract each table object, feed tablename and columns into helper function  
+    arrayOfTableObjects.forEach((tableObject: { [key: number]: Table }) => {
+      gqlTypeCreator(tableObject);
+    });
+    return next();
+  }
 }
 
 //helper function to shape response array of Table objects
