@@ -3,7 +3,7 @@ import { QueryResult } from 'pg';
 import db from '../models/projectDB'
 import { Table } from '../types/Table';
 
-const projectDBController = {
+export const projectDBController = {
   async getAllTables(req: Request, res: Response, next: NextFunction) {
     try {
       const query = `
@@ -14,45 +14,43 @@ const projectDBController = {
       AND pg_.schemaname != 'information_schema'
       ORDER BY pg_.tablename
       `;
-      const result = await db.query(query);
-      res.locals.userDbResponse = rowsToTable(result);
+      const queryResult = await db.query(query);
+      res.locals.userDbResponse = rowsToTable(queryResult.rows);
       return next();
     }
     catch (err) {
-      console.log(err);
       return next({
-        log: "error in line 23 of projectDBController.ts",
-        message: { err: "error in getAllTables function" }
-      }
-      );
+        log: `Express error handler caught error in the getAllTables controller, ${err}`,
+        message: { err: 'An error occurred in the getAllTables controller'}
+      });
     }
   },
-
-  //end of project dbController module
 }
 
-function rowsToTable(queryResult: QueryResult<any>): Table[] {
-  const array = queryResult.rows;
-  console.log(array);
-  const ret = array.reduce((acc: { [key: string]: Table }, curr: { [key: string]: string }) => {
+//helper function to shape response array of Table objects
+/***modified queryResult to type any[]***/
+function rowsToTable(queryResult: any[]): Table[] {
+  const tablesObject = queryResult.reduce((tablesObject: { [key: string]: Table }, curr: { [key: string]: string }) => {
     const { tablename, column_name, data_type, is_nullable, is_updatable, column_default } = curr;
-    if (!acc.hasOwnProperty(tablename)) {
-      acc[tablename] = {
+    //check to see if tablesObject has a tablename property
+    if (!tablesObject.hasOwnProperty(tablename)) {
+      //if falsy, create a tablename property and assign it to an object with tablename and columns properties
+      tablesObject[tablename] = {
         tablename: tablename,
         columns: [],
       }
     }
-    acc[tablename].columns.push({
+      /*if tablename is a property of tablesObject, then bundle the associated columns in an object 
+      and push them into a columns array*/
+    tablesObject[tablename].columns.push({
       column_name,
       data_type,
       is_nullable,
       is_updatable,
       column_default
     });
-    return acc;
+    return tablesObject;
   }, {});
-  return Object.values(ret);
+
+  return Object.values(tablesObject);
 }
-
-
-export default projectDBController;

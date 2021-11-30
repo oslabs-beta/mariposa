@@ -1,13 +1,13 @@
 import express, { Request, Response, NextFunction } from 'express';
 import path from 'path';
-const app = express();
-export const PORT = 3000;
-//require in routers
 import mariposaRouter from './routes/mariposa';
 import projectRouter from './routes/project';
-// gql shit
 import { graphqlHTTP } from 'express-graphql';
 import schema from './schema/schema';
+/*require in routers: mariposaRouter for app requests / projectRouter 
+for user db/graphql migration*/
+const app = express();
+const PORT = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -27,10 +27,12 @@ if (process.env.NODE_ENV === 'production') {
   app.use('/js', express.static(path.resolve(__dirname, '../dist/js')));
 }
 
+//*****is this needed? We're creating a desktop app
 app.use("*", (req: Request, res: Response) => {
   return res.status(404).send("Error, path not found");
 });
 
+//global error handler
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   const errorObj = {
     log: "global error handler in express app",
@@ -40,8 +42,6 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   console.log(errorObject);
   return res.status(500).json(errorObject);
 });
-
-//////////
 
 if (process.env.NODE_ENV !== 'test') {
   app.listen(PORT, () => {
