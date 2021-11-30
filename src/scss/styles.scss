@@ -5,7 +5,7 @@ body {
 .graphD3 {
   height: 400px;
   width: 200px;
-  padding-left: 200px;
+  padding-left: 20px;
 }
 
 * {
@@ -109,4 +109,8 @@ form .form-inner input[type="submit"] {
 
 form .form-inner input[type="submit"]:hover {
   background-position: 100% 0%;
+}
+
+button {
+  background-color: white;
 }
