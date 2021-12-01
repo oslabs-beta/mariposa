@@ -34,6 +34,7 @@
     "bcrypt": "^5.0.1",
     "css-loader": "^6.5.0",
     "electron": "^16.0.1",
+    "graphql-tools": "^8.2.0",
     "html-webpack-plugin": "^5.5.0",
     "pg": "^8.7.1",
     "react": "^17.0.2",

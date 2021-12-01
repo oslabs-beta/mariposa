@@ -1,6 +1,6 @@
 import { GraphQLID, GraphQLInt, GraphQLList, GraphQLObjectType, GraphQLSchema, GraphQLString } from "graphql";
-import _ from 'lodash';
 import { QueryResult } from "pg";
+import { makeExecutableSchema } from 'graphql-tools';
 import db from '../models/projectDB';
 
 const PersonType: GraphQLObjectType = new GraphQLObjectType({
@@ -156,9 +156,50 @@ const Mutation: GraphQLObjectType = new GraphQLObjectType({
   }
 });
 
-const schema = new GraphQLSchema({
-  query: RootQuery,
-  mutation: Mutation,
-});
+// const schema = new GraphQLSchema({
+//   query: RootQuery,
+//   mutation: Mutation,
+// });
+
+const typeDefs = `
+  type People {
+    _id: Int!
+    name: String!
+    mass: String
+    hair_color: String
+    skin_color: String
+    eye_color: String
+    birth_year: String
+    gender: String
+    species_id: Int
+    homeworld_id: Int
+    height: Int
+  }
+
+  type Query {
+    people: [People]
+  }
+`
+const resolvers = {
+  Query: {
+    people: async () => {
+      try {
+        const result = await Queries.people();
+        // console.log(result.rows);
+        return result.rows;
+      }
+      catch(err) {
+        console.log(err);
+      }
+    }
+  }
+}
+
+const schema = makeExecutableSchema({
+  typeDefs,
+  resolvers,
+})
 
 export default schema;
+
+
