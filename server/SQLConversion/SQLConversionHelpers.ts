@@ -6,9 +6,18 @@ function checkIsNullable(isNullable: any){
 
 export const SQLConversionHelpers = {
   //given a column object, returns a supported GrapqhQL datatype with field nullability
+  checkIsTableJoin(columnsArr: String[]){
+    let foreignKeyCount = 0;
+    columnsArr.forEach((columnsObj: { [key: string]: any} ) =>{
+      const{constraint_type} = columnsObj;
+      if(constraint_type === 'FOREIGN KEY') foreignKeyCount++;
+    })
+    return foreignKeyCount === columnsArr.length - 1 ? true : false;
+  },
+  
   fieldValueCreator(columnObject: any){
-    const{data_type, is_nullable} = columnObject;
-    
+    const{column_name, data_type, is_nullable} = columnObject;
+    if(column_name === '_id') return 'ID!';
     const dataTypeConversion: any = {
       'bigint': 'Int',
       'boolean': 'Boolean',
