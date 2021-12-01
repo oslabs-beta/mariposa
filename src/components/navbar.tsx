@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
-const pages = ['URI', 'Metrics', 'Team'];
+const pages = ['URI', 'Metrics', 'Expand Schema View', 'Team'];
 const settings = [ 'Logout'];
 
 const ResponsiveAppBar = () => {
@@ -35,8 +35,8 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
+    <AppBar position="static" style = {{backgroundColor: 'pink', color: 'blue'}}>
+      <Container maxWidth="false">
         <Toolbar disableGutters>
           <Typography
             variant="h6"
