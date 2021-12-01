@@ -19,7 +19,6 @@ export default function Resolvers() {
   function renderText() {
     (resolver) ? text.slice(0,100) : text.slice(0,1000);
   }
-  const input = renderText();
 
   return (
     <ThemeProvider theme={theme} >

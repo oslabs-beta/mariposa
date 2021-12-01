@@ -1,14 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import Tree from 'react-d3-tree';
 
-// function usePrevious(value) {
-//   const ref = useRef();
-//   useEffect(() => {
-//     ref.current = value;
-//   });
-//   return ref.current;
-// }
-
 function TreeChart() {
   const data = {
     name: 'CEO',
