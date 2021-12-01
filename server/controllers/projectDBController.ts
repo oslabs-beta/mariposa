@@ -2,6 +2,9 @@ import { Request, Response, NextFunction } from 'express';
 import { QueryResult } from 'pg';
 import db from '../models/projectDB'
 import { D3Column, D3Schema, D3Table, DBQueryResponse, Table } from '../types/Table';
+import {GQLTypeCreator} from '../SQLConversion/GQLTypeCreator'; 
+import rowsToTable from '../SQLConversion/SQLQueryHelpers';
+
 
 export const projectDBController = {
   async getAllTables(req: Request, res: Response, next: NextFunction) {
@@ -50,11 +53,12 @@ export const projectDBController = {
     }
   },
   convertTablestoSchemas(req: Request, res: Response, next: NextFunction){
-    const arrayOfTableObjects = res.locals.userDbResponse;
+    const arrayOfTableObjects = rowsToTable(res.locals.userDbResponse);
     const arrayOfSchemas = [];
     //iterate through array and extract each table object, feed tablename and columns into helper function  
-    arrayOfTableObjects.forEach((tableObject: { [key: number]: Table }) => {
-      //gqlTypeCreator(tableObject);
+    arrayOfTableObjects.forEach((tableObject: any) => {
+      // console.log(tableObject)
+      GQLTypeCreator(tableObject);
     });
     return next();
   }
