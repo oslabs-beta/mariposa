@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
-const pages = ['URI', 'Metrics', 'Team'];
+const pages = ['URI', 'Metrics', 'Team', 'Expand Schema View'];
 const settings = [ 'Logout'];
 
 const ResponsiveAppBar = () => {

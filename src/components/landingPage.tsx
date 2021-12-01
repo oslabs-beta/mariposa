@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 import Graph from './graph.tsx';
 import ResponsiveAppBar from './navbar.tsx';
-import Tree from './Tree.jsx'
+import Resolvers from './Resolvers.tsx';
 
 // style={{
 //   border: "solid",
@@ -17,20 +15,22 @@ export default function LandingPage() {
 
   <>
   <ResponsiveAppBar></ResponsiveAppBar>
-  <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} style={{
+  <Grid container rowSpacing={1.5} columnSpacing={{ xs: 1, sm: 2, md: 1.5}} style={{
   minWidth: "100%",
-  height: "90vh",
+  height: "94vh",
+  paddingTop: '.8%',
+  paddingLeft: '.5%',
+  paddingRight: '.5%',
+  paddingBottom: '.5%'
 }}>
-  <Grid item xs={6} md={6}>
+  <Grid item xs={6} md={6} >
   <Graph></Graph>
   </Grid>
   <Grid item xs={6} md={6}>
-  <Graph></Graph>
-
+  <Resolvers />
   </Grid>
   <Grid  item xs={6} md={6}>
   <Graph></Graph>
-
   </Grid>
   <Grid item xs={6} md={6}>
     <Graph></Graph>
