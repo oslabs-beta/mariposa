@@ -1,7 +1,11 @@
 import { GraphQLID, GraphQLInt, GraphQLList, GraphQLObjectType, GraphQLSchema, GraphQLString } from "graphql";
 import { QueryResult } from "pg";
-import { makeExecutableSchema } from 'graphql-tools';
+import { makeExecutableSchema } from '@graphql-tools/schema';
+import { gql } from 'apollo-server-express';
+import { IResolvers } from '@graphql-tools/utils';
 import db from '../models/projectDB';
+import resolverMaker from "../SQLConversion/resolverMaker";
+import { tables } from "../types/dummyTables";
 
 const PersonType: GraphQLObjectType = new GraphQLObjectType({
   name: "Person",
@@ -122,12 +126,12 @@ const Queries = {
     const query = `SELECT * FROM people`;
     return db.query(query);
   },
-  
+
   planet: (id: number | string): Promise<QueryResult> => {
     const query = `SELECT * FROM planets WHERE _id = $1`;
     return db.query(query, [id.toString()]);
   },
-  
+
   planets: (): Promise<QueryResult> => {
     const query = `SELECT * FROM planets`;
     return db.query(query);
@@ -161,7 +165,7 @@ const Mutation: GraphQLObjectType = new GraphQLObjectType({
 //   mutation: Mutation,
 // });
 
-const typeDefs = `
+const typeDefs = gql`
   type People {
     _id: Int!
     name: String!
@@ -178,28 +182,25 @@ const typeDefs = `
 
   type Query {
     people: [People]
+    people_by_id(_id: ID!): People
   }
-`
-const resolvers = {
-  Query: {
-    people: async () => {
-      try {
-        const result = await Queries.people();
-        // console.log(result.rows);
-        return result.rows;
-      }
-      catch(err) {
-        console.log(err);
-      }
-    }
-  }
-}
 
-const schema = makeExecutableSchema({
+  type Mutation {
+    add_people(name: String!, mass: String, hair_color: String, skin_color: String, eye_color: String, birth_year: String, gender: String, species_id: Int, homeworld_id: Int, height: Int): People
+  }
+  `;
+  // update_people_by_id(_id: ID!, name: String, mass: String, hair_color: String, skin_color: String, eye_color: String, birth_year: String, gender: String, species_id: Int, homeworld_id: Int, height: Int): People
+
+// TODO IMPORTANT: ensure that column names and type parameters are always the same.
+
+const resolvers: IResolvers = resolverMaker.generateResolvers(tables, db);
+
+// console.log('type defs:', typeDefs);
+console.log('resolvers', resolvers);
+
+const schema: GraphQLSchema = makeExecutableSchema({
   typeDefs,
   resolvers,
 })
 
 export default schema;
-
-
