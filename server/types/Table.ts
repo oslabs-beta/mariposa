@@ -13,7 +13,7 @@ export class D3Schema implements D3Data {
   constructor(name: string, children: D3Table[], attributes?: {[key: string]: string}) {
     this.name = name,
     this.attributes = attributes,
-    this.children = children
+    this.children = children 
   }
 }
 
@@ -49,7 +49,6 @@ export class D3Column implements D3Data {
 Used in rowsToTable helper function in getAllTables method found in projectDBController.
 Used to return an array of Table objects.    
 */
-
 export interface Table {
   tablename: string 
   columns: Column[] // contains columns associated with a given SQL table
