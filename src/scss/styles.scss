@@ -8,6 +8,16 @@ body {
   padding-left: 20px;
 }
 
+.resolverText {
+  margin-top: 4%;
+}
+
+.resolvers {
+  height: 93%;
+  border-radius: 5px;
+  box-shadow: pink;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -128,3 +138,6 @@ button {
   /* Let's also make the radius of leaf nodes larger */
   r: 40;
 }
+
+
+

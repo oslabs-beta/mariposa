@@ -14,14 +14,11 @@ export default function LandingPage() {
   return (
 
   <>
-  <ResponsiveAppBar></ResponsiveAppBar>
+  <ResponsiveAppBar style={{minWidth: "100%"}}></ResponsiveAppBar>
   <Grid container rowSpacing={1.5} columnSpacing={{ xs: 1, sm: 2, md: 1.5}} style={{
   minWidth: "100%",
   height: "94vh",
-  paddingTop: '.8%',
-  paddingLeft: '.5%',
-  paddingRight: '.5%',
-  paddingBottom: '.5%'
+  padding: '.8% .5% .5% .5%'
 }}>
   <Grid item xs={6} md={6} >
   <Graph></Graph>
