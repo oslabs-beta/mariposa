@@ -1,8 +1,16 @@
+const pluralize = require('pluralize');
+const {singular} = pluralize;
 import { Table, Column } from '../types/Table';
+
 
 function checkIsNullable(isNullable: any){
   return isNullable === "NO" ? '!' : ''; 
 }
+
+function inPascalCase(tablename : any){
+  const regex = /(^|_)./g;
+  return tablename.replace(regex, (str: String) => str.slice(-1).toUpperCase());
+ }
 
 export const SQLConversionHelpers = {
   //given a column object, returns a supported GrapqhQL datatype with field nullability
@@ -39,7 +47,8 @@ export const SQLConversionHelpers = {
     return `${gqlDataType}${nullable}`;
   },
   //given a table name, converts to Pascal case as per Type names naming convention  
-  inPascalCase(tablename : any){
-    return tablename[0].toUpperCase() + tablename.substring(1).toLowerCase(); 
-   }
+  inObjectTypeCase(tablename : any){
+    let pascalizedName = inPascalCase(tablename);
+    return singular(pascalizedName);
+  }
 }

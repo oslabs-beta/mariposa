@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { QueryResult } from 'pg';
 import db from '../models/projectDB'
 import { D3Column, D3Schema, D3Table, DBQueryResponse, Table } from '../types/Table';
-import {GQLTypeCreator} from '../SQLConversion/GQLTypeCreator'; 
+import {GQLObjectTypeCreator} from '../SQLConversion/GQLObjectTypeCreator'; 
 import rowsToTable from '../SQLConversion/SQLQueryHelpers';
 
 
@@ -52,14 +52,30 @@ export const projectDBController = {
       });
     }
   },
-  convertTablestoSchemas(req: Request, res: Response, next: NextFunction){
+  convertTablestoObjectTypes(req: Request, res: Response, next: NextFunction){
     const arrayOfTableObjects = rowsToTable(res.locals.userDbResponse);
-    const arrayOfSchemas = [];
+    res.locals.tablesArray = arrayOfTableObjects;
+
+    let objectTypes = "";
     //iterate through array and extract each table object, feed tablename and columns into helper function  
     arrayOfTableObjects.forEach((tableObject: any) => {
       // console.log(tableObject)
-      GQLTypeCreator(tableObject);
+      objectTypes += GQLObjectTypeCreator(tableObject);
     });
+    res.locals.typeDefs = objectTypes;
     return next();
-  }
+  },
+  convertTablestoSchemas(req: Request, res: Response, next: NextFunction){
+    const arrayOfTableObjects = res.locals.tablesArray;
+    let objectTypes = "";
+    //iterate through array and extract each table object, feed tablename and columns into helper function  
+    arrayOfTableObjects.forEach((tableObject: any) => {
+      // console.log(tableObject)
+      objectTypes += GQLObjectTypeCreator(tableObject);
+    });
+    res.locals.typeDefs = objectTypes;
+    return next();
+  },
+
+
 }

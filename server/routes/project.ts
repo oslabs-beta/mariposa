@@ -2,10 +2,10 @@ import express, { Request, Response, NextFunction } from 'express';
 import { projectDBController } from '../controllers/projectDBController';
 import { D3Column, D3Schema, D3Table, DBQueryResponse, Table } from '../types/Table';
 const projectRouter = express.Router();
-const { getAllTables, convertTablestoSchemas } = projectDBController;
+const { getAllTables, convertTablestoObjectTypes } = projectDBController;
 
 //returns all tables and relevant SQL schema from user's provided db 
-projectRouter.get('/tables', getAllTables, convertTablestoSchemas, (req: Request, res: Response, next: NextFunction) => {
+projectRouter.get('/tables', getAllTables, convertTablestoObjectTypes, (req: Request, res: Response, next: NextFunction) => {
   return res.json(rowsToTable(res.locals.userDbResponse));
 });
 

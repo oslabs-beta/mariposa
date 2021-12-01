@@ -1,20 +1,20 @@
 const { buildSchema } = require('graphql');
 import { SQLConversionHelpers } from './SQLConversionHelpers'
 import { Table, Column } from '../types/Table';
-const {checkIsTableJoin, fieldValueCreator, inPascalCase} = SQLConversionHelpers;
+const {checkIsTableJoin, fieldValueCreator, inObjectTypeCase} = SQLConversionHelpers;
 
 
-export const GQLTypeCreator = (tableObject: any) => {
+export const GQLObjectTypeCreator = (tableObject: any) => {
     const {tablename, columns} = tableObject;
     let type = "";
     if(checkIsTableJoin(columns)){
       return;
     } else { 
-      type += `type ${inPascalCase(tablename)} {\n`;
+      type += `type ${inObjectTypeCase(tablename)} {\n`;
       columns.forEach((columnObj: any) => {
       const{column_name, constraint_type, primary_table} = columnObj;
       if(constraint_type === 'FOREIGN KEY') {
-        type += ` ${primary_table}: [${inPascalCase(primary_table)}]\n`
+        type += ` ${primary_table}: [${inObjectTypeCase(primary_table)}]\n`
       } else{
         type += ` ${column_name}: ${fieldValueCreator(columnObj)}\n`
       }
