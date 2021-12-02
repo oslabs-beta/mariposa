@@ -1,32 +1,32 @@
 const pluralize = require('pluralize');
-const {singular} = pluralize;
+const { singular } = pluralize;
 import { Table, Column } from '../types/Table';
 
 
-function checkIsNullable(isNullable: any){
-  return isNullable === "NO" ? '!' : ''; 
+function checkIsNullable(isNullable: string): string {
+  return isNullable === "NO" ? '!' : '';
 }
 
-function inPascalCase(tablename : any){
+function inPascalCase(tablename: string): string {
   const regex = /(^|_)./g;
-  return tablename.replace(regex, (str: String) => str.slice(-1).toUpperCase());
- }
+  return tablename.replace(regex, (str: string) => str.slice(-1).toUpperCase());
+}
 
 export const SQLConversionHelpers = {
   //given a column object, returns a supported GrapqhQL datatype with field nullability
-  checkIsTableJoin(columnsArr: String[]){
+  checkIsTableJoin(columnsArr: Column[]): boolean {
     let foreignKeyCount = 0;
-    columnsArr.forEach((columnsObj: { [key: string]: any} ) =>{
-      const{constraint_type} = columnsObj;
-      if(constraint_type === 'FOREIGN KEY') foreignKeyCount++;
+    columnsArr.forEach((columnsObj: Column) => {
+      const { constraint_type } = columnsObj;
+      if (constraint_type === 'FOREIGN KEY') foreignKeyCount++;
     })
     return foreignKeyCount === columnsArr.length - 1 ? true : false;
   },
-  
-  fieldValueCreator(columnObject: any){
-    const{column_name, data_type, is_nullable} = columnObject;
-    if(column_name === '_id') return 'ID!';
-    const dataTypeConversion: any = {
+
+  fieldValueCreator(columnObject: Column): string {
+    const { data_type, is_nullable, constraint_type } = columnObject;
+    if (constraint_type === 'PRIMARY KEY' || constraint_type === 'FOREIGN KEY') return 'ID' + checkIsNullable(is_nullable); // CHECK IF IT's KEY OR NOT
+    const dataTypeConversion: { [key: string]: string } = {
       'bigint': 'Int',
       'boolean': 'Boolean',
       'character': 'String',
@@ -42,20 +42,20 @@ export const SQLConversionHelpers = {
     //if SQL datatype not included in dataTypeConversion object, return undefined
     const gqlDataType = dataTypeConversion[data_type];
     //check for nullability only if gqlDataType is defined
-    const nullable = gqlDataType ? checkIsNullable(is_nullable) : '';
-    return `${gqlDataType}${nullable}`;
+    return  gqlDataType + checkIsNullable(is_nullable);
   },
   //given a table name, converts to Pascal case as per Type names naming convention  
-  inObjectTypeCase(tablename : any){
-    let pascalizedName = inPascalCase(tablename);
+  inObjectTypeCase(tablename: string): string {
+    const pascalizedName = inPascalCase(tablename);
     return singular(pascalizedName);
   },
-  queryPluralCase(tablename : any){
+  queryPluralCase(tablename: string): string {
     let pascalizedName = inPascalCase(tablename);
     return pascalizedName[0].toLowerCase() + pascalizedName.substring(1);
   },
-  querySingularCase(tablename : any){
+  querySingularCase(tablename: string): string {
     let pascalizedName = inPascalCase(tablename);
-    return singular(pascalizedName[0].toLowerCase() + pascalizedName.substring(1));
+    let sing: string = singular(pascalizedName[0].toLowerCase() + pascalizedName.substring(1));
+    return sing.endsWith('s') ? sing.substring(0, sing.length - 1) : sing;
   }
 }

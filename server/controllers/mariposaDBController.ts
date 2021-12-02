@@ -38,19 +38,7 @@ const dbController = {
       return next(err)
     }
   },
-  async getPlanet(req: Request, res: Response, next: NextFunction) {
-    try {
-      const { id } = req.params;
-      const query = `SELECT * FROM planets where _id = $1`
-      const values = [id];
-      const result = await db.query(query, values);
-      res.locals.planet = result.rows[0];
-      return next();
-    }
-    catch (err) {
-      return next(err)
-    }
-  },
+  
   // end of dbController class
 }
 
