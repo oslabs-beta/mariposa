@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import db from '../models/projectDB'
+// import db from '../models/projectDB'
 import { Table } from '../types/Table';
 import { GQLObjectTypeCreator } from '../SQLConversion/GQLObjectTypeCreator';
 import { GQLQueryTypeCreator } from '../SQLConversion/GQLQueryTypeCreator';
@@ -8,10 +8,14 @@ import rowsToTable from '../SQLConversion/SQLQueryHelpers';
 import { IResolvers } from '@graphql-tools/utils';
 import resolverMaker from '../SQLConversion/resolverMaker';
 import { PoolWrapper } from '../types/PoolWrapper';
+import { globalRouterVars, schema } from '../routes/graphql';
 
 
 export const projectDBController = {
   async getAllTables(req: Request, res: Response, next: NextFunction) {
+    const { uri } = req.body;
+    const db = new PoolWrapper(uri);
+    res.locals.database = db;
     try {
       const query = `
         SELECT col.table_schema AS schema, 
@@ -76,20 +80,7 @@ export const projectDBController = {
       queryTypes += GQLQueryTypeCreator(tableObject);
     });
     queryTypes += '\n}';
-    console.log(queryTypes);
     res.locals.typeDefs += queryTypes;
-    return next();
-  },
-  buildResolvers(req: Request, res: Response, next: NextFunction) {
-    const arrayOfTableObjects: Table[] = res.locals.tablesArray;
-    const { url } = req.body;
-    const db = new PoolWrapper(url);
-    const resolvers: IResolvers = resolverMaker.generateResolvers(arrayOfTableObjects, db);
-    res.locals.resolvers = resolvers;
-  },
-  buildSchema(req: Request, res: Response, next: NextFunction) {
-    
-    
     return next();
   },
   createMutationsTypes(req: Request, res: Response, next: NextFunction){
@@ -99,8 +90,22 @@ export const projectDBController = {
       mutationTypes += GQLMutationTypeCreator(tableObject);
     });
     mutationTypes = mutationTypes.substring(0, mutationTypes.length - 1) + '\n}';
-    console.log(mutationTypes);
     res.locals.typeDefs += mutationTypes;
     return next();
-  }
+  },
+  buildResolvers(req: Request, res: Response, next: NextFunction) {
+    const arrayOfTableObjects: Table[] = res.locals.tablesArray;
+    const db = res.locals.db;
+    const resolvers: IResolvers = resolverMaker.generateResolvers(arrayOfTableObjects, db);
+    res.locals.resolvers = resolvers;
+    return next();
+  },
+  buildSchema(req: Request, res: Response, next: NextFunction) {
+    globalRouterVars.updateTypeDefs(res.locals.typeDefs);  
+    globalRouterVars.updateResolvers(res.locals.resolvers);
+    globalRouterVars.updateEndPoint(res.locals.typeDefs, res.locals.resolvers);
+    // console.log("resolvers", res.locals.resolvers);
+    // console.log("typeDefs", res.locals.typeDefs);
+    return next();
+  },
 }
