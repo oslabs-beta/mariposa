@@ -1,18 +1,23 @@
 import { IResolvers } from "@graphql-tools/utils";
 import { PoolWrapper } from "../types/PoolWrapper";
 import { Table } from "../types/Table";
+import { SQLConversionHelpers } from './SQLConversionHelpers'
+const {checkIsTableJoin, inObjectTypeCase, queryPluralCase, querySingularCase} = SQLConversionHelpers;
+
 
 const resolverMaker = {
   generateResolvers(tables: Table[], db: PoolWrapper): IResolvers {
     const resolver = tables.reduce((acc: IResolvers, curr: Table) => {
-      acc["Query"] = makeQueryResolver(acc["Query"], curr, db);
-      acc["Mutation"] = makeMutationResolver(acc["Mutation"], curr, db);
-
       const { tablename, columns } = curr;
-      const upCaseTabNam = tablename.charAt(0).toUpperCase() + tablename.slice(1);
-      if(!acc.hasOwnProperty(upCaseTabNam)) {
-        acc[upCaseTabNam] = {};
+      if(checkIsTableJoin(columns)) {
+        acc["Query"] = makeQueryResolver(acc["Query"], curr, db);
+        acc["Mutation"] = makeMutationResolver(acc["Mutation"], curr, db);
       }
+
+      // const upCaseTabNam = tablename.charAt(0).toUpperCase() + tablename.slice(1);
+      // if(!acc.hasOwnProperty(upCaseTabNam)) {
+      //   acc[upCaseTabNam] = {};
+      // }
       // for (let i = 0; i < columns.length; i++) {
       //   const { constraint_type, column_name, primary_table, primary_column } = columns[i];
       //   if(constraint_type === 'FOREIGN KEY' && primary_table && primary_table && primary_column) {
@@ -46,7 +51,7 @@ const resolverMaker = {
 function makeQueryResolver(queryObj: { [key: string]: any }, table: Table, db: PoolWrapper): object {
   const { tablename, columns } = table;
 
-  queryObj[tablename] = async () => {
+  queryObj[queryPluralCase(tablename)] = async () => { // people, films, planets, etc.
     try {
       const query = `SELECT * FROM ${tablename}`;
       const result = await db.query(query);
@@ -60,7 +65,8 @@ function makeQueryResolver(queryObj: { [key: string]: any }, table: Table, db: P
   for (let i = 0; i < columns.length; i++) {
     const { constraint_type, column_name } = columns[i];
     if (constraint_type === "PRIMARY KEY") {
-      queryObj[`${tablename}_by_id`] = async (parent: any, args: { [key: string]: any }) => {
+      // person, film, planet, etc.
+      queryObj[querySingularCase(tablename)] = async (parent: any, args: { [key: string]: any }) => {
         console.log('Arguments', args); 
         try {
           const query = `SELECT * FROM ${tablename} WHERE ${column_name} = $1`;
@@ -78,11 +84,11 @@ function makeQueryResolver(queryObj: { [key: string]: any }, table: Table, db: P
   return queryObj;
 }
 
-function makeMutationResolver(queryObj: { [key: string]: any }, table: Table, db: PoolWrapper): object {
+function makeMutationResolver(mutationObj: { [key: string]: any }, table: Table, db: PoolWrapper): object {
 
   const { tablename, columns } = table;
 
-  queryObj[`add_${tablename}`] = async (parent: any, args: { [key: string]: any }) => {
+  mutationObj[`add_${tablename}`] = async (parent: any, args: { [key: string]: any }) => {
     console.log('Arguments', args);
     //TODO OPTION 2: instead of dynamically generating cols which won't work a static export,
     // use every column that you're given, and set the default params = null for any nullable item.
@@ -110,7 +116,7 @@ function makeMutationResolver(queryObj: { [key: string]: any }, table: Table, db
     const { constraint_type, column_name } = columns[i];
     if (constraint_type === "PRIMARY KEY") {
 
-      queryObj[`update_${tablename}_by_id`] = async (parent: any, args: { [key: string]: any }) => {
+      mutationObj[`update_${tablename}_by_id`] = async (parent: any, args: { [key: string]: any }) => {
         console.log('Arguments', args);
         //TODO OPTION 2: instead of dynamically generating cols which won't work a static export,
         // use every column that you're given, and set the default params = null for any nullable item.
@@ -138,7 +144,7 @@ function makeMutationResolver(queryObj: { [key: string]: any }, table: Table, db
       }
     }
   }
-  return queryObj;
+  return mutationObj;
 }
 
 function makeTypeResolver(queryObj: {[key: string]: any}, column_name: string, primary_table: string, primary_column: string): object {

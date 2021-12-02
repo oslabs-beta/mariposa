@@ -55,6 +55,7 @@ export const SQLConversionHelpers = {
   },
   querySingularCase(tablename: string): string {
     let pascalizedName = inPascalCase(tablename);
-    return singular(pascalizedName[0].toLowerCase() + pascalizedName.substring(1));
+    let sing: string = singular(pascalizedName[0].toLowerCase() + pascalizedName.substring(1));
+    return sing.endsWith('s') ? sing.substring(0, sing.length - 1) : sing;
   }
 }
