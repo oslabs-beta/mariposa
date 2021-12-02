@@ -40,7 +40,7 @@ const Logout = () => {
 
   return (
     <div> 
-    {(user.isLoggedIn === true) ? <LandingPage /> :<LoginForm Login={Login} error={error}/>}
+    {(user.isLoggedIn === false) ? <LandingPage /> :<LoginForm Login={Login} error={error}/>}
     </div>
 
  )
