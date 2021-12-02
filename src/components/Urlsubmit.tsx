@@ -53,5 +53,5 @@ export default function UseInput() {
       body: JSON.stringify({ uri: uri})
     })
   }
-  return <div style={{display: 'inline-block'}}><CustomInput placeholder="URI input..." onChange={(e) => setUri(e.target.value)}/><Button style={{float: 'inline-end', display: 'inline-block'}} onClick={handleClick}>Submit</Button></div>;
+  return <div style={{display: 'table'}}><CustomInput style={{display: 'table-cell'}} placeholder="URI input..." onChange={(e) => setUri(e.target.value)}/><Button style={{display: 'table-cell'}} onClick={handleClick}>Submit</Button></div>;
 }
