@@ -5,11 +5,11 @@ const projectRouter = express.Router();
 const { getAllTables, createObjectTypes, createQueryTypes, createMutationsTypes, buildResolvers, buildSchema } = projectDBController;
 
 //returns all tables and relevant SQL schema from user's provided db 
-projectRouter.get('/tables', getAllTables, createObjectTypes, createQueryTypes, createMutationsTypes, buildResolvers, (req: Request, res: Response, next: NextFunction) => {
-  return res.json(rowsToTable(res.locals.userDbResponse));
-});
+// projectRouter.get('/tables', getAllTables, createObjectTypes, createQueryTypes, createMutationsTypes, buildResolvers, (req: Request, res: Response, next: NextFunction) => {
+//   return res.json(rowsToTable(res.locals.userDbResponse));
+// });
 
-projectRouter.post('/tables', getAllTables, createObjectTypes, createQueryTypes, createMutationsTypes, buildResolvers, buildSchema, (req: Request, res: Response, next: NextFunction) => {
+projectRouter.get('/tables', getAllTables, createObjectTypes, createQueryTypes, createMutationsTypes, buildResolvers, buildSchema, (req: Request, res: Response, next: NextFunction) => {
   return res.status(201).json({
     typeDefs: res.locals.typeDefs,
     resolvers: res.locals.resolvers,
