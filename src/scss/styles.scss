@@ -3,9 +3,19 @@ body {
 }
 
 .graphD3 {
-  height: 400px;
-  width: 200px;
+  height: 100%;
+  width: 100%;
   padding-left: 20px;
+}
+
+.resolverText {
+  margin-top: 4%;
+}
+
+.resolvers {
+  height: 93%;
+  border-radius: 5px;
+  box-shadow: pink;
 }
 
 * {
@@ -128,3 +138,6 @@ button {
   /* Let's also make the radius of leaf nodes larger */
   r: 40;
 }
+
+
+

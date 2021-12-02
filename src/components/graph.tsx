@@ -1,21 +1,26 @@
 import * as React from 'react';
 import Paper from '@mui/material/Paper';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import { purple } from '@mui/material/colors';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Tree from './Tree.tsx'
+import OpenInFullIcon from '@mui/icons-material/OpenInFull';
+import Button from '@mui/material/Button';
 
 
 const theme = createTheme({ palette: { mode: 'light' } });
 
 export default function graph() {
   return (
-    <ThemeProvider theme={theme}>
-    <Paper elevation={2} color='primary'>
+    <ThemeProvider theme={theme} >
+    <Paper elevation={2} color='primary' style={{
+  border: "gray",
+  minWidth: "100%",
+  height: "100%",
+  position: 'relative'
+}}>
     <div className='graphD3'>
       <Tree/>
     </div>
+    <Button style={{position: 'absolute', bottom: '0%', right: '0%'}} ><OpenInFullIcon /></Button>
   </Paper>
   </ThemeProvider>
  )
