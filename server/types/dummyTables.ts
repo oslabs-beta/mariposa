@@ -473,131 +473,131 @@ export const tables = [
   //     }
   //   ]
   // },
-  // {
-  //   "tablename": "species",
-  //   "columns": [
-  //     {
-  //       "column_id": 1,
-  //       "column_name": "_id",
-  //       "data_type": "integer",
-  //       "is_nullable": "NO",
-  //       "is_updatable": "YES",
-  //       "column_default": "nextval('species__id_seq'::regclass)",
-  //       "constraint_name": "species_pk",
-  //       "constraint_type": "PRIMARY KEY",
-  //       "primary_table": null,
-  //       "primary_column": null
-  //     },
-  //     {
-  //       "column_id": 2,
-  //       "column_name": "name",
-  //       "data_type": "character varying",
-  //       "is_nullable": "NO",
-  //       "is_updatable": "YES",
-  //       "column_default": null,
-  //       "constraint_name": null,
-  //       "constraint_type": null,
-  //       "primary_table": null,
-  //       "primary_column": null
-  //     },
-  //     {
-  //       "column_id": 3,
-  //       "column_name": "classification",
-  //       "data_type": "character varying",
-  //       "is_nullable": "YES",
-  //       "is_updatable": "YES",
-  //       "column_default": null,
-  //       "constraint_name": null,
-  //       "constraint_type": null,
-  //       "primary_table": null,
-  //       "primary_column": null
-  //     },
-  //     {
-  //       "column_id": 4,
-  //       "column_name": "average_height",
-  //       "data_type": "character varying",
-  //       "is_nullable": "YES",
-  //       "is_updatable": "YES",
-  //       "column_default": null,
-  //       "constraint_name": null,
-  //       "constraint_type": null,
-  //       "primary_table": null,
-  //       "primary_column": null
-  //     },
-  //     {
-  //       "column_id": 5,
-  //       "column_name": "average_lifespan",
-  //       "data_type": "character varying",
-  //       "is_nullable": "YES",
-  //       "is_updatable": "YES",
-  //       "column_default": null,
-  //       "constraint_name": null,
-  //       "constraint_type": null,
-  //       "primary_table": null,
-  //       "primary_column": null
-  //     },
-  //     {
-  //       "column_id": 6,
-  //       "column_name": "hair_colors",
-  //       "data_type": "character varying",
-  //       "is_nullable": "YES",
-  //       "is_updatable": "YES",
-  //       "column_default": null,
-  //       "constraint_name": null,
-  //       "constraint_type": null,
-  //       "primary_table": null,
-  //       "primary_column": null
-  //     },
-  //     {
-  //       "column_id": 7,
-  //       "column_name": "skin_colors",
-  //       "data_type": "character varying",
-  //       "is_nullable": "YES",
-  //       "is_updatable": "YES",
-  //       "column_default": null,
-  //       "constraint_name": null,
-  //       "constraint_type": null,
-  //       "primary_table": null,
-  //       "primary_column": null
-  //     },
-  //     {
-  //       "column_id": 8,
-  //       "column_name": "eye_colors",
-  //       "data_type": "character varying",
-  //       "is_nullable": "YES",
-  //       "is_updatable": "YES",
-  //       "column_default": null,
-  //       "constraint_name": null,
-  //       "constraint_type": null,
-  //       "primary_table": null,
-  //       "primary_column": null
-  //     },
-  //     {
-  //       "column_id": 9,
-  //       "column_name": "language",
-  //       "data_type": "character varying",
-  //       "is_nullable": "YES",
-  //       "is_updatable": "YES",
-  //       "column_default": null,
-  //       "constraint_name": null,
-  //       "constraint_type": null,
-  //       "primary_table": null,
-  //       "primary_column": null
-  //     },
-  //     {
-  //       "column_id": 10,
-  //       "column_name": "homeworld_id",
-  //       "data_type": "bigint",
-  //       "is_nullable": "YES",
-  //       "is_updatable": "YES",
-  //       "column_default": null,
-  //       "constraint_name": "species_fk0",
-  //       "constraint_type": "FOREIGN KEY",
-  //       "primary_table": "planets",
-  //       "primary_column": "_id"
-  //     }
-  //   ]
-  // },
+  {
+    "tablename": "species",
+    "columns": [
+      {
+        "column_id": 1,
+        "column_name": "_id",
+        "data_type": "integer",
+        "is_nullable": "NO",
+        "is_updatable": "YES",
+        "column_default": "nextval('species__id_seq'::regclass)",
+        "constraint_name": "species_pk",
+        "constraint_type": "PRIMARY KEY",
+        "primary_table": null,
+        "primary_column": null
+      },
+      {
+        "column_id": 2,
+        "column_name": "name",
+        "data_type": "character varying",
+        "is_nullable": "NO",
+        "is_updatable": "YES",
+        "column_default": null,
+        "constraint_name": null,
+        "constraint_type": null,
+        "primary_table": null,
+        "primary_column": null
+      },
+      {
+        "column_id": 3,
+        "column_name": "classification",
+        "data_type": "character varying",
+        "is_nullable": "YES",
+        "is_updatable": "YES",
+        "column_default": null,
+        "constraint_name": null,
+        "constraint_type": null,
+        "primary_table": null,
+        "primary_column": null
+      },
+      {
+        "column_id": 4,
+        "column_name": "average_height",
+        "data_type": "character varying",
+        "is_nullable": "YES",
+        "is_updatable": "YES",
+        "column_default": null,
+        "constraint_name": null,
+        "constraint_type": null,
+        "primary_table": null,
+        "primary_column": null
+      },
+      {
+        "column_id": 5,
+        "column_name": "average_lifespan",
+        "data_type": "character varying",
+        "is_nullable": "YES",
+        "is_updatable": "YES",
+        "column_default": null,
+        "constraint_name": null,
+        "constraint_type": null,
+        "primary_table": null,
+        "primary_column": null
+      },
+      {
+        "column_id": 6,
+        "column_name": "hair_colors",
+        "data_type": "character varying",
+        "is_nullable": "YES",
+        "is_updatable": "YES",
+        "column_default": null,
+        "constraint_name": null,
+        "constraint_type": null,
+        "primary_table": null,
+        "primary_column": null
+      },
+      {
+        "column_id": 7,
+        "column_name": "skin_colors",
+        "data_type": "character varying",
+        "is_nullable": "YES",
+        "is_updatable": "YES",
+        "column_default": null,
+        "constraint_name": null,
+        "constraint_type": null,
+        "primary_table": null,
+        "primary_column": null
+      },
+      {
+        "column_id": 8,
+        "column_name": "eye_colors",
+        "data_type": "character varying",
+        "is_nullable": "YES",
+        "is_updatable": "YES",
+        "column_default": null,
+        "constraint_name": null,
+        "constraint_type": null,
+        "primary_table": null,
+        "primary_column": null
+      },
+      {
+        "column_id": 9,
+        "column_name": "language",
+        "data_type": "character varying",
+        "is_nullable": "YES",
+        "is_updatable": "YES",
+        "column_default": null,
+        "constraint_name": null,
+        "constraint_type": null,
+        "primary_table": null,
+        "primary_column": null
+      },
+      {
+        "column_id": 10,
+        "column_name": "homeworld_id",
+        "data_type": "bigint",
+        "is_nullable": "YES",
+        "is_updatable": "YES",
+        "column_default": null,
+        "constraint_name": "species_fk0",
+        "constraint_type": "FOREIGN KEY",
+        "primary_table": "planets",
+        "primary_column": "_id"
+      }
+    ]
+  },
   // {
   //   "tablename": "species_in_films",
   //   "columns": [

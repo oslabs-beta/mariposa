@@ -13,6 +13,19 @@ const resolverMaker = {
       Mutation: {},
     });
 
+    resolver["People"] = {
+      species: async (people) => {
+        console.log('Person:', people);
+        try {
+          const query = `SELECT * FROM species WHERE _id = $1`;
+          const result = await db.query(query, [people.species_id]);
+          return result.rows[0]
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    }
+
     return resolver;
   }
 }
@@ -55,10 +68,36 @@ function makeQueryResolver(queryObj: { [key: string]: any }, table: Table, db: P
 function makeMutationResolver(queryObj: { [key: string]: any }, table: Table, db: PoolWrapper): object {
 
   const { tablename, columns } = table;
+
+  queryObj[`add_${tablename}`] = async (parent: any, args: { [key: string]: any }) => {
+    console.log('Arguments', args);
+    //TODO OPTION 2: instead of dynamically generating cols which won't work a static export,
+    // use every column that you're given, and set the default params = null for any nullable item.
+    // I.e. 1. loop through columns, if its PK don't include, if there's default val don't include, etc.
+    // inner function with everything in args and default values of null for any nullable
+    try {
+      const col_array: string[] = [];
+      const val_array: string[] = [];
+      const param_array: string[] = [];
+      for (const [key, value] of Object.entries(args)) {
+        col_array.push(key);
+        param_array.push(`$${col_array.length}`)
+        val_array.push(value.toString())
+      };
+      const query = `INSERT INTO ${tablename}(${col_array.join()}) VALUES (${param_array.join()}) RETURNING *`;
+      const result = await db.query(query, val_array);
+      return result.rows[0];
+    } catch (err) {
+      console.log(err)
+      /* INSERT YOUR ERROR HANDLING HERE */
+    }
+  }
+
   for (let i = 0; i < columns.length; i++) {
     const { constraint_type, column_name } = columns[i];
-    if (constraint_type === "PRIMARY KEY") { // TODO change parent from ANY to whatever a parent is
-      queryObj[`add_${tablename}`] = async (parent: any, args: { [key: string]: any }) => {
+    if (constraint_type === "PRIMARY KEY") {
+
+      queryObj[`update_${tablename}_by_id`] = async (parent: any, args: { [key: string]: any }) => {
         console.log('Arguments', args);
         //TODO OPTION 2: instead of dynamically generating cols which won't work a static export,
         // use every column that you're given, and set the default params = null for any nullable item.
@@ -67,13 +106,14 @@ function makeMutationResolver(queryObj: { [key: string]: any }, table: Table, db
         try {
           const col_array: string[] = [];
           const val_array: string[] = [];
-          const param_array: string[] = [];
           for (const [key, value] of Object.entries(args)) {
-            col_array.push(key);
-            param_array.push(`$${col_array.length}`)
-            val_array.push(value.toString())
+            if (key !== column_name) {
+              col_array.push(`${key} = $${col_array.length + 1}`);
+              val_array.push(value.toString())
+            }
           };
-          const query = `INSERT INTO ${tablename}(${col_array.join()}) VALUES (${param_array.join()}) RETURNING *`;
+          val_array.push(args[column_name]);
+          const query = `UPDATE ${tablename} SET ${col_array.join()} WHERE ${column_name} = $${col_array.length + 1} RETURNING *`;
           const result = await db.query(query, val_array);
           return result.rows[0];
         } catch (err) {
@@ -81,10 +121,8 @@ function makeMutationResolver(queryObj: { [key: string]: any }, table: Table, db
           /* INSERT YOUR ERROR HANDLING HERE */
         }
       }
-      break;
     }
   }
-
   return queryObj;
 }
 

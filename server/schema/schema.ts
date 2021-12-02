@@ -175,21 +175,55 @@ const typeDefs = gql`
     eye_color: String
     birth_year: String
     gender: String
-    species_id: Int
+    species: Species
     homeworld_id: Int
     height: Int
+  }
+
+  type Species {
+    _id: Int!
+    name: String!
+    classification: String
+    average_height: String
+    average_lifespan: String
+    hair_colors: String
+    skin_colors: String
+    eye_colors: String
+    language: String
+    homeworld_id: Int
   }
 
   type Query {
     people: [People]
     people_by_id(_id: ID!): People
+    species: [People]
+    species_by_id(_id: ID!): People
   }
 
   type Mutation {
     add_people(name: String!, mass: String, hair_color: String, skin_color: String, eye_color: String, birth_year: String, gender: String, species_id: Int, homeworld_id: Int, height: Int): People
+    add_species(name: String!,
+      classification: String,
+      average_height: String,
+      average_lifespan: String,
+      hair_colors: String,
+      skin_colors: String,
+      eye_colors: String,
+      language: String,
+      homeworld_id: Int): Species
+    update_people_by_id(_id: ID!, name: String, mass: String, hair_color: String, skin_color: String, eye_color: String, birth_year: String, gender: String, species_id: Int, homeworld_id: Int, height: Int): People
+    update_species_by_id(_id: Int!,
+      name: String!,
+      classification: String,
+      average_height: String,
+      average_lifespan: String,
+      hair_colors: String,
+      skin_colors: String,
+      eye_colors: String,
+      language: String,
+      homeworld_id: Int): Species
   }
   `;
-  // update_people_by_id(_id: ID!, name: String, mass: String, hair_color: String, skin_color: String, eye_color: String, birth_year: String, gender: String, species_id: Int, homeworld_id: Int, height: Int): People
 
 // TODO IMPORTANT: ensure that column names and type parameters are always the same.
 
