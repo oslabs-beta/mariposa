@@ -64,17 +64,28 @@ export const projectDBController = {
       // console.log(tableObject)
       objectTypes += GQLObjectTypeCreator(tableObject);
     });
+    console.log(objectTypes)
     res.locals.typeDefs = objectTypes;
     return next();
   },
-  convertTablestoSchemas(req: Request, res: Response, next: NextFunction){
+  convertTablestoQueries(req: Request, res: Response, next: NextFunction){
     const arrayOfTableObjects = res.locals.tablesArray;
-    let queryTypes = " type Query {";
+    let queryTypes = ' type Query {';
     //iterate through array and extract each table object, feed tablename and columns into helper function  
-    arrayOfTableObjects.forEach((tableObject: any) => {
-      // console.log(tableObject)
-      queryTypes += GQLQueryTypeCreator(tableObject);
-    });
+    //console.log(GQLQueryTypeCreator(arrayOfTableObjects[0])) 
+    for(let i = 0; i < arrayOfTableObjects.length; i++){
+      const tableObj = arrayOfTableObjects[i];
+
+      queryTypes += GQLQueryTypeCreator(tableObj);
+      //console.log(queryTypes);
+    }
+    // arrayOfTableObjects.forEach((tableObject: any) => {
+    //   // console.log(tableObject)
+    //   //queryTypes += GQLQueryTypeCreator(tableObject);
+    //   console.log(GQLQueryTypeCreator(tableObject))
+    // });
+    //queryTypes += '\n}';
+    //console.log(queryTypes);
     res.locals.typeDefs += queryTypes;
     return next();
   },

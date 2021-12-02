@@ -43,7 +43,6 @@ export const SQLConversionHelpers = {
     const gqlDataType = dataTypeConversion[data_type];
     //check for nullability only if gqlDataType is defined
     const nullable = gqlDataType ? checkIsNullable(is_nullable) : '';
-
     return `${gqlDataType}${nullable}`;
   },
   //given a table name, converts to Pascal case as per Type names naming convention  

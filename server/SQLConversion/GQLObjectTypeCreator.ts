@@ -14,13 +14,14 @@ export const GQLObjectTypeCreator = (tableObject: any) => {
       columns.forEach((columnObj: any) => {
       const{column_name, constraint_type, primary_table} = columnObj;
       if(constraint_type === 'FOREIGN KEY') {
-        type += ` ${primary_table}: [${inObjectTypeCase(primary_table)}]\n`
+        type += ` ${primary_table}: ${inObjectTypeCase(primary_table)}\n`
       } else{
         type += ` ${column_name}: ${fieldValueCreator(columnObj)}\n`
       }
     });
   }
-    type += '}\n'
-    console.log(type);
+    type += '}\n';
+    
+    return type;
   }
 
