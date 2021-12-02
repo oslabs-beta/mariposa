@@ -1,9 +1,9 @@
 import express, { Request, Response, NextFunction } from 'express';
+import { graphqlHTTP } from 'express-graphql';
 import path from 'path';
 import mariposaRouter from './routes/mariposa';
 import projectRouter from './routes/project';
-import { graphqlHTTP } from 'express-graphql';
-import schema from './schema/schema';
+import { schema } from './schema/schema';
 /*require in routers: mariposaRouter for app requests / projectRouter 
 for user db/graphql migration*/
 const app = express();
@@ -15,9 +15,9 @@ app.use(express.urlencoded({ extended: true }));
 // routes
 app.use('/mariposa', mariposaRouter);
 app.use('/project', projectRouter);
-app.use('/graphql', graphqlHTTP({ // include graphiql here for sandbox
+app.use('/graphql', graphqlHTTP({
   schema,
-  graphiql: true,
+  graphiql: true
 }));
 
 if (process.env.NODE_ENV === 'production') {
