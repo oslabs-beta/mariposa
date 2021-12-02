@@ -242,7 +242,7 @@ type Film {
   planets: [Planet]!
   planet(_id: ID!): Planet!
   species: [Species]!
-  species(_id: ID!): Species!
+  specie(_id: ID!): Species!
   starshipSpecs: [StarshipSpec]!
   starshipSpec(_id: ID!): StarshipSpec!
   vessels: [Vessel]!

@@ -9,9 +9,9 @@ const resolverMaker = {
   generateResolvers(tables: Table[], db: PoolWrapper): IResolvers {
     const resolver = tables.reduce((acc: IResolvers, curr: Table) => {
       const { tablename, columns } = curr;
-      if(checkIsTableJoin(columns)) {
+      if(!checkIsTableJoin(columns)) {
         acc["Query"] = makeQueryResolver(acc["Query"], curr, db);
-        acc["Mutation"] = makeMutationResolver(acc["Mutation"], curr, db);
+        // acc["Mutation"] = makeMutationResolver(acc["Mutation"], curr, db);
       }
 
       // const upCaseTabNam = tablename.charAt(0).toUpperCase() + tablename.slice(1);
@@ -28,7 +28,7 @@ const resolverMaker = {
       return acc;
     }, {
       Query: {},
-      Mutation: {},
+      // Mutation: {},
     });
 
     // resolver["People"] = {
