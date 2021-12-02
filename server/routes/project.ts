@@ -2,14 +2,14 @@ import express, { Request, Response, NextFunction } from 'express';
 import { projectDBController } from '../controllers/projectDBController';
 import { rowsToD3, rowsToTable } from '../SQLConversion/SQLSchemaHelpers';
 const projectRouter = express.Router();
-const { getAllTables, convertTablestoObjectTypes, convertTablestoQueries, buildResolvers } = projectDBController;
+const { getAllTables, createObjectTypes, createQueryTypes, createMutationsTypes } = projectDBController;
 
 //returns all tables and relevant SQL schema from user's provided db 
-projectRouter.get('/tables', getAllTables, (req: Request, res: Response, next: NextFunction) => {
+projectRouter.get('/tables', getAllTables, createObjectTypes, createQueryTypes, createMutationsTypes, (req: Request, res: Response, next: NextFunction) => {
   return res.json(rowsToTable(res.locals.userDbResponse));
 });
 
-projectRouter.post('/tables', getAllTables, convertTablestoObjectTypes, convertTablestoQueries, buildResolvers, (req: Request, res: Response, next: NextFunction) => {
+projectRouter.post('/tables', getAllTables, (req: Request, res: Response, next: NextFunction) => {
   return res.status(201).send("Schema built successfully!");
 });
 

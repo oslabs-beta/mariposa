@@ -6,7 +6,6 @@ import { IResolvers } from '@graphql-tools/utils';
 import db from '../models/projectDB';
 import resolverMaker from "../SQLConversion/resolverMaker";
 import { tables } from "../types/dummyTables";
-import { ConstructionRounded } from "@mui/icons-material";
 
 const PersonType: GraphQLObjectType = new GraphQLObjectType({
   name: "Person",
