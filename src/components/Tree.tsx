@@ -53,7 +53,13 @@ function TreeChart() {
       setTreeData(data);
   })
   }, [])
-
+  // function CustomPathFuncTree() {
+  //   const straightPathFunc = (linkDatum, orientation) => {
+  //     const { source, target } = linkDatum;
+  //     return orientation === 'horizontal'
+  //       ? `M${source.y},${source.x}L${target.y},${target.x}`
+  //       : `M${source.x},${source.y}L${target.x},${target.y}`;
+  //   };
   return (
     // `<Tree />` will fill width/height of its container; in this case `#treeWrapper`.
     <div id="treeWrapper" style={{ width: '100%', height: '100%' }}>

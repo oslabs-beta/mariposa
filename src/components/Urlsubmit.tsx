@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState} from 'react';
 import { useInput } from '@mui/base';
 import { styled } from '@mui/system';
 import Button from '@mui/material/Button';
@@ -28,6 +28,8 @@ const StyledInputElement = styled('input')`
   }
 `;
 
+
+
 const CustomInput = React.forwardRef(function CustomInput(
   props: React.InputHTMLAttributes<HTMLInputElement>,
   ref: React.ForwardedRef<HTMLInputElement>,
@@ -36,11 +38,20 @@ const CustomInput = React.forwardRef(function CustomInput(
 
   return (
     <div {...getRootProps()}>
-      <StyledInputElement {...props} {...getInputProps()} /> <Button >Submit</Button>
+      <StyledInputElement {...props} {...getInputProps()}  />
     </div>
   );
 });
-
 export default function UseInput() {
-  return <CustomInput aria-label="Demo input" placeholder="URI input..." />;
+  const [uri, setUri] = useState('');
+  const handleClick = () => {
+    fetch('/uri', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ uri: uri})
+    })
+  }
+  return <div style={{display: 'inline-block'}}><CustomInput placeholder="URI input..." onChange={(e) => setUri(e.target.value)}/><Button style={{float: 'inline-end', display: 'inline-block'}} onClick={handleClick}>Submit</Button></div>;
 }
