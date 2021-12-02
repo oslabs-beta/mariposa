@@ -3,7 +3,7 @@ import path from 'path';
 import mariposaRouter from './routes/mariposa';
 import projectRouter from './routes/project';
 import { graphqlHTTP } from 'express-graphql';
-import schema from './schema/schema'; // TODO figure out how to build schema later
+import { schema } from './schema/schema'; // TODO figure out how to build schema later
 /*require in routers: mariposaRouter for app requests / projectRouter 
 for user db/graphql migration*/
 const app = express();
