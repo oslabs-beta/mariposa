@@ -11,11 +11,24 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import Popper from '@mui/base/PopperUnstyled';
+import UseInput from './Urlsubmit';
 
-const pages = ['URI', 'Metrics', 'Expand Schema View', 'Team'];
-const settings = [ 'Logout'];
+const pages = ['URI', 'Metrics', 'Toggle Tree View', 'Team'];
+const settings = ['Logout'];
 
 const ResponsiveAppBar = () => {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popper' : undefined;
+
+
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -35,7 +48,7 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <AppBar position="static" style = {{backgroundColor: 'pink', color: 'blue'}}>
+    <AppBar position="static" style={{ backgroundColor: 'pink', color: 'blue' }}>
       <Container maxWidth="false">
         <Toolbar disableGutters>
           <Typography
@@ -93,11 +106,18 @@ const ResponsiveAppBar = () => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
+              page === "URI" ? 
+                     <div>
+                  <Button aria-describedby={id} type="button" onClick={handleClick} sx={{ my: 2, color: 'black', display: 'block' }}>
+                    URI
+                  </Button>
+                  <Popper id={id} open={open} anchorEl={anchorEl}>
+                    <Box sx={{ bgcolor: 'background.paper' }}>
+                    <UseInput />
+                    </Box>
+                  </Popper>
+                </div> :
+              <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'black', display: 'block' }}>
                 {page}
               </Button>
             ))}
