@@ -7,15 +7,14 @@ import { GQLMutationTypeCreator } from '../SQLConversion/GQLMutationTypeCreator'
 import rowsToTable from '../SQLConversion/SQLQueryHelpers';
 import { IResolvers } from '@graphql-tools/utils';
 import resolverMaker from '../SQLConversion/resolverMaker';
-import { PoolWrapper } from '../types/PoolWrapper';
-import { globalRouterVars, schema } from '../routes/graphql';
+import db from '../models/projectDB';
 
 
 export const projectDBController = {
   async getAllTables(req: Request, res: Response, next: NextFunction) {
-    const { uri } = req.body;
-    const db = new PoolWrapper(uri);
-    res.locals.database = db;
+    // const { uri } = req.body;
+    // const db = new PoolWrapper(uri);
+    // res.locals.database = db;
     try {
       const query = `
         SELECT col.table_schema AS schema, 
@@ -101,11 +100,7 @@ export const projectDBController = {
     return next();
   },
   buildSchema(req: Request, res: Response, next: NextFunction) {
-    globalRouterVars.updateTypeDefs(res.locals.typeDefs);  
-    globalRouterVars.updateResolvers(res.locals.resolvers);
-    globalRouterVars.updateEndPoint(res.locals.typeDefs, res.locals.resolvers);
-    // console.log("resolvers", res.locals.resolvers);
-    // console.log("typeDefs", res.locals.typeDefs);
+    
     return next();
   },
 }

@@ -5,10 +5,11 @@ import { IResolvers } from '@graphql-tools/utils';
 import db from '../models/projectDB';
 import resolverMaker from "../SQLConversion/resolverMaker";
 import { tables } from "../types/dummyTables";
+import { GraphQLSchema } from "graphql/type/schema";
 
 
 const typeDefs = gql`
-Film {
+type Film {
   _id: ID!
   title: String!
   episode_id: Int!
@@ -241,8 +242,8 @@ Film {
 
 const resolvers: IResolvers = resolverMaker.generateResolvers(tables, db);
 
-// console.log('type defs:', typeDefs);
-// console.log('resolvers', resolvers);
+console.log('type defs:', typeDefs);
+console.log('resolvers', resolvers);
 
 export const schema: GraphQLSchema = makeExecutableSchema({
   typeDefs,
