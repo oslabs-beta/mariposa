@@ -7,6 +7,19 @@ const resolverMaker = {
     const resolver = tables.reduce((acc: IResolvers, curr: Table) => {
       acc["Query"] = makeQueryResolver(acc["Query"], curr, db);
       acc["Mutation"] = makeMutationResolver(acc["Mutation"], curr, db);
+
+      const { tablename, columns } = curr;
+      const upCaseTabNam = tablename.charAt(0).toUpperCase() + tablename.slice(1);
+      if(!acc.hasOwnProperty(upCaseTabNam)) {
+        acc[upCaseTabNam] = {};
+      }
+      for (let i = 0; i < columns.length; i++) {
+        const { constraint_type, column_name, primary_table, primary_column } = columns[i];
+        if(constraint_type === 'FOREIGN KEY' && primary_table && primary_table && primary_column) {
+          acc[upCaseTabNam] = makeTypeResolver(acc[upCaseTabNam], column_name, primary_table, primary_column);
+        }
+      }
+
       return acc;
     }, {
       Query: {},
@@ -124,6 +137,11 @@ function makeMutationResolver(queryObj: { [key: string]: any }, table: Table, db
     }
   }
   return queryObj;
+}
+
+function makeTypeResolver(queryObj: {[key: string]: any}, column_name: string, primary_table: string, primary_column: string): object {
+  
+  return {};
 }
 
 export default resolverMaker;
