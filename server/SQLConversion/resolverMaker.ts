@@ -13,12 +13,12 @@ const resolverMaker = {
       if(!acc.hasOwnProperty(upCaseTabNam)) {
         acc[upCaseTabNam] = {};
       }
-      for (let i = 0; i < columns.length; i++) {
-        const { constraint_type, column_name, primary_table, primary_column } = columns[i];
-        if(constraint_type === 'FOREIGN KEY' && primary_table && primary_table && primary_column) {
-          acc[upCaseTabNam] = makeTypeResolver(acc[upCaseTabNam], column_name, primary_table, primary_column);
-        }
-      }
+      // for (let i = 0; i < columns.length; i++) {
+      //   const { constraint_type, column_name, primary_table, primary_column } = columns[i];
+      //   if(constraint_type === 'FOREIGN KEY' && primary_table && primary_table && primary_column) {
+      //     acc[upCaseTabNam] = makeTypeResolver(acc[upCaseTabNam], column_name, primary_table, primary_column);
+      //   }
+      // }
 
       return acc;
     }, {
@@ -26,18 +26,18 @@ const resolverMaker = {
       Mutation: {},
     });
 
-    resolver["People"] = {
-      species: async (people) => {
-        console.log('Person:', people);
-        try {
-          const query = `SELECT * FROM species WHERE _id = $1`;
-          const result = await db.query(query, [people.species_id]);
-          return result.rows[0]
-        } catch (err) {
-          console.log(err);
-        }
-      }
-    }
+    // resolver["People"] = {
+    //   species: async (people) => {
+    //     console.log('Person:', people);
+    //     try {
+    //       const query = `SELECT * FROM species WHERE _id = $1`;
+    //       const result = await db.query(query, [people.species_id]);
+    //       return result.rows[0]
+    //     } catch (err) {
+    //       console.log(err);
+    //     }
+    //   }
+    // }
 
     return resolver;
   }
