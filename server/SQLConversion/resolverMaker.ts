@@ -27,11 +27,11 @@ const resolverMaker = {
     });
 
     // resolver["People"] = {
-    //   species: async (people) => {
-    //     console.log('Person:', people);
+    //   species: async (parent) => {
+    //     console.log('Person:', parent);
     //     try {
     //       const query = `SELECT * FROM species WHERE _id = $1`;
-    //       const result = await db.query(query, [people.species_id]);
+    //       const result = await db.query(query, [parent.species_id]);
     //       return result.rows[0]
     //     } catch (err) {
     //       console.log(err);
@@ -61,7 +61,7 @@ function makeQueryResolver(queryObj: { [key: string]: any }, table: Table, db: P
     const { constraint_type, column_name } = columns[i];
     if (constraint_type === "PRIMARY KEY") {
       queryObj[`${tablename}_by_id`] = async (parent: any, args: { [key: string]: any }) => {
-        console.log('Arguments', args);
+        console.log('Arguments', args); 
         try {
           const query = `SELECT * FROM ${tablename} WHERE ${column_name} = $1`;
           const result = await db.query(query, [args[column_name].toString()]);
@@ -125,6 +125,8 @@ function makeMutationResolver(queryObj: { [key: string]: any }, table: Table, db
               val_array.push(value.toString())
             }
           };
+          // ['name = $1', 'mass = $2']
+
           val_array.push(args[column_name]);
           const query = `UPDATE ${tablename} SET ${col_array.join()} WHERE ${column_name} = $${col_array.length + 1} RETURNING *`;
           const result = await db.query(query, val_array);
