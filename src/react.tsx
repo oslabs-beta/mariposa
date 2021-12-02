@@ -14,6 +14,8 @@ export default function App() {
 const [user, setUser] = useState({ name: "", email: "", isLoggedIn: false });
 // error message
 const [error, setError] = useState("");
+//conditional rendering for graphiql
+const [graphiql, setGraphiql] = useState(false)
 
 
 const Login = (details: { email: string; password: string; name: any; }) => {
@@ -40,7 +42,7 @@ const Logout = () => {
 
   return (
     <div> 
-    {(user.isLoggedIn === false) ? <LandingPage /> :<LoginForm Login={Login} error={error}/>}
+    {(user.isLoggedIn === true) ? <LandingPage graphiql={graphiql} setGraphiql={setGraphiql}/> : <LoginForm Login={Login} error={error}/>}
     </div>
 
  )

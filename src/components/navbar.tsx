@@ -17,12 +17,17 @@ import UseInput from './Urlsubmit';
 const pages = ['URI', 'Metrics', 'Toggle Tree View', 'Team'];
 const settings = ['Logout'];
 
-const ResponsiveAppBar = () => {
+const ResponsiveAppBar = (props) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
+
+  const handleClickGraph = () => {
+    console.log(props.graphiql);
+    (props.graphiql) ? props.setGraphiql(false) : props.setGraphiql(true);
+  }
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popper' : undefined;
@@ -41,6 +46,8 @@ const ResponsiveAppBar = () => {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+    window.open('/graphql', '_blank')
+    (props.graphiql) ? props.setGraphiql(false) : props.setGraphiql(true);
   };
 
   const handleCloseUserMenu = () => {
