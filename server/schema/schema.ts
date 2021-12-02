@@ -6,6 +6,7 @@ import { IResolvers } from '@graphql-tools/utils';
 import db from '../models/projectDB';
 import resolverMaker from "../SQLConversion/resolverMaker";
 import { tables } from "../types/dummyTables";
+import { ConstructionRounded } from "@mui/icons-material";
 
 const PersonType: GraphQLObjectType = new GraphQLObjectType({
   name: "Person",
@@ -257,9 +258,25 @@ const resolvers: IResolvers = resolverMaker.generateResolvers(tables, db);
 // console.log('type defs:', typeDefs);
 console.log('resolvers', resolvers);
 
-const schema: GraphQLSchema = makeExecutableSchema({
-  typeDefs,
-  resolvers,
-})
+// const schema: GraphQLSchema = makeExecutableSchema({
+//   typeDefs,
+//   resolvers,
+// })
 
-export default schema;
+// TODO figure out how to updat this later
+export class Schema {
+  schema: GraphQLSchema;
+
+  constructor(schema: GraphQLSchema = { Query: {} }) {
+    this.schema = schema
+  }
+
+  updateSchema(typeDefs: string, resolvers: IResolvers) {
+    this.schema = makeExecutableSchema({
+      typeDefs,
+      resolvers
+    });
+  }
+}
+
+export const schema = new Schema();

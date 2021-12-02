@@ -3,8 +3,10 @@ import db from '../models/projectDB'
 import { Table } from '../types/Table';
 import { GQLObjectTypeCreator } from '../SQLConversion/GQLObjectTypeCreator';
 import { GQLQueryTypeCreator } from '../SQLConversion/GQLQueryTypeCreator';
-
 import rowsToTable from '../SQLConversion/SQLQueryHelpers';
+import { IResolvers } from '@graphql-tools/utils';
+import resolverMaker from '../SQLConversion/resolverMaker';
+import { PoolWrapper } from '../types/PoolWrapper';
 
 
 export const projectDBController = {
@@ -70,23 +72,22 @@ export const projectDBController = {
     const arrayOfTableObjects = res.locals.tablesArray;
     let queryTypes = 'type Query {';
     //iterate through array and extract each table object, feed tablename and columns into helper function  
-    //console.log(GQLQueryTypeCreator(arrayOfTableObjects[0])) 
-    // for(let i = 0; i < arrayOfTableObjects.length; i++){
-    //   const tableObj = arrayOfTableObjects[i];
-
-    //   queryTypes += GQLQueryTypeCreator(tableObj);
-    //   //console.log(queryTypes);
-    // }
     arrayOfTableObjects.forEach((tableObject: Table) => {
-      // console.log(tableObject)
       queryTypes += GQLQueryTypeCreator(tableObject);
-      // console.log(GQLQueryTypeCreator(tableObject))
     });
     queryTypes += '\n}';
     console.log(queryTypes);
     res.locals.typeDefs += queryTypes;
     return next();
   },
-
-
+  buildResolvers(req: Request, res: Response, next: NextFunction) {
+    const arrayOfTableObjects: Table[] = res.locals.tablesArray;
+    const { url } = req.body;
+    const db = new PoolWrapper(url);
+    const resolvers: IResolvers = resolverMaker.generateResolvers(arrayOfTableObjects, db);
+    res.locals.resolvers = resolvers;
+  },
+  buildSchema(req: Request, res: Response, next: NextFunction) {
+    
+  }
 }
