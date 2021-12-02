@@ -50,5 +50,13 @@ export const SQLConversionHelpers = {
   inObjectTypeCase(tablename : any){
     let pascalizedName = inPascalCase(tablename);
     return singular(pascalizedName);
+  },
+  queryPluralCase(tablename : any){
+    let pascalizedName = inPascalCase(tablename);
+    return pascalizedName[0].toLowerCase() + pascalizedName.substring(1);
+  },
+  querySingularCase(tablename : any){
+    let pascalizedName = inPascalCase(tablename);
+    return singular(pascalizedName[0].toLowerCase() + pascalizedName.substring(1));
   }
 }

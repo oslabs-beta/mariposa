@@ -3,6 +3,8 @@ import { QueryResult } from 'pg';
 import db from '../models/projectDB'
 import { D3Column, D3Schema, D3Table, DBQueryResponse, Table } from '../types/Table';
 import {GQLObjectTypeCreator} from '../SQLConversion/GQLObjectTypeCreator'; 
+import {GQLQueryTypeCreator} from '../SQLConversion/GQLQueryTypeCreator'; 
+
 import rowsToTable from '../SQLConversion/SQLQueryHelpers';
 
 
@@ -67,13 +69,13 @@ export const projectDBController = {
   },
   convertTablestoSchemas(req: Request, res: Response, next: NextFunction){
     const arrayOfTableObjects = res.locals.tablesArray;
-    let objectTypes = "";
+    let queryTypes = " type Query {";
     //iterate through array and extract each table object, feed tablename and columns into helper function  
     arrayOfTableObjects.forEach((tableObject: any) => {
       // console.log(tableObject)
-      objectTypes += GQLObjectTypeCreator(tableObject);
+      queryTypes += GQLQueryTypeCreator(tableObject);
     });
-    res.locals.typeDefs = objectTypes;
+    res.locals.typeDefs += queryTypes;
     return next();
   },
 
