@@ -16,15 +16,15 @@ export const GQLMutationTypeCreator = (tableObject: any) => {
       columns.forEach((columnObj: any) => {
         const{column_name, constraint_type} = columnObj;
         if(constraint_type === "PRIMARY KEY") primaryKey = column_name;
-        mutationFields += `\n ${column_name}: ${fieldValueCreator(columnObj)},`;
+        mutationFields += `\n  ${column_name}: ${fieldValueCreator(columnObj)},`;
       });
-      mutationType = `type Mutation {`
-      const addMutation = `\n add${typeObject}}(${mutationFields})`;
-      const updateMutation = `\n update${typeObject}}(${mutationFields})`;
-      const deleteMutation =`\n delete${typeObject}}(${primaryKey}: ID!): ${typeObject}!`;
+      mutationFields = mutationFields.substring(0, mutationFields.length - 1)
+      const addMutation = `\n add${typeObject}(${mutationFields}): ${typeObject}!\n`;
+      const updateMutation = `\n update${typeObject}(${mutationFields}): ${typeObject}!\n`;
+      const deleteMutation =`\n delete${typeObject}(${primaryKey}: ID!): ${typeObject}!\n`;
       //remove ending comma and replace with '): [typeObject]'
+      mutationType = addMutation + updateMutation + deleteMutation;
     }
-    console.log(mutationType)
     return mutationType;
   }
 
