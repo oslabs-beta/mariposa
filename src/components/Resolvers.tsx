@@ -6,7 +6,6 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
-import { color } from '@mui/system';
 const theme = createTheme({ palette: { mode: 'light' } });
 
 
