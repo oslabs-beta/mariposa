@@ -1,15 +1,20 @@
 import { Request, Response, NextFunction } from 'express';
-import db from '../models/projectDB'
+// import db from '../models/projectDB'
 import { Table } from '../types/Table';
 import { GQLObjectTypeCreator } from '../SQLConversion/GQLObjectTypeCreator';
 import { GQLQueryTypeCreator } from '../SQLConversion/GQLQueryTypeCreator';
 import { GQLMutationTypeCreator } from '../SQLConversion/GQLMutationTypeCreator';
-
 import rowsToTable from '../SQLConversion/SQLQueryHelpers';
+import { IResolvers } from '@graphql-tools/utils';
+import resolverMaker from '../SQLConversion/resolverMaker';
+import db from '../models/projectDB';
 
 
 export const projectDBController = {
   async getAllTables(req: Request, res: Response, next: NextFunction) {
+    // const { uri } = req.body;
+    // const db = new PoolWrapper(uri);
+    // res.locals.database = db;
     try {
       const query = `
         SELECT col.table_schema AS schema, 
@@ -84,8 +89,18 @@ export const projectDBController = {
       mutationTypes += GQLMutationTypeCreator(tableObject);
     });
     mutationTypes = mutationTypes.substring(0, mutationTypes.length - 1) + '\n}';
-    console.log(mutationTypes);
     res.locals.typeDefs += mutationTypes;
     return next();
-  }
+  },
+  buildResolvers(req: Request, res: Response, next: NextFunction) {
+    const arrayOfTableObjects: Table[] = res.locals.tablesArray;
+    const db = res.locals.db;
+    const resolvers: IResolvers = resolverMaker.generateResolvers(arrayOfTableObjects, db);
+    res.locals.resolvers = resolvers;
+    return next();
+  },
+  buildSchema(req: Request, res: Response, next: NextFunction) {
+    
+    return next();
+  },
 }

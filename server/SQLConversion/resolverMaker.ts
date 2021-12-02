@@ -11,7 +11,7 @@ const resolverMaker = {
       const { tablename, columns } = curr;
       if(!checkIsTableJoin(columns)) {
         acc["Query"] = makeQueryResolver(acc["Query"], curr, db);
-        // acc["Mutation"] = makeMutationResolver(acc["Mutation"], curr, db);
+        acc["Mutation"] = makeMutationResolver(acc["Mutation"], curr, db);
       }
 
       // const upCaseTabNam = tablename.charAt(0).toUpperCase() + tablename.slice(1);
@@ -28,7 +28,7 @@ const resolverMaker = {
       return acc;
     }, {
       Query: {},
-      // Mutation: {},
+      Mutation: {},
     });
 
     // resolver["People"] = {
@@ -88,7 +88,7 @@ function makeMutationResolver(mutationObj: { [key: string]: any }, table: Table,
 
   const { tablename, columns } = table;
 
-  mutationObj[`add_${tablename}`] = async (parent: any, args: { [key: string]: any }) => {
+  mutationObj[`add${inObjectTypeCase(tablename)}`] = async (parent: any, args: { [key: string]: any }) => {
     console.log('Arguments', args);
     //TODO OPTION 2: instead of dynamically generating cols which won't work a static export,
     // use every column that you're given, and set the default params = null for any nullable item.
@@ -116,7 +116,7 @@ function makeMutationResolver(mutationObj: { [key: string]: any }, table: Table,
     const { constraint_type, column_name } = columns[i];
     if (constraint_type === "PRIMARY KEY") {
 
-      mutationObj[`update_${tablename}_by_id`] = async (parent: any, args: { [key: string]: any }) => {
+      mutationObj[`update${inObjectTypeCase(tablename)}`] = async (parent: any, args: { [key: string]: any }) => {
         console.log('Arguments', args);
         //TODO OPTION 2: instead of dynamically generating cols which won't work a static export,
         // use every column that you're given, and set the default params = null for any nullable item.
