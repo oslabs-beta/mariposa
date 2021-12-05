@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import './scss/styles.scss';
-import LandingPage from './components/landingPage.tsx';
+import LandingPage from './components/LandingPage.tsx';
 import LoginForm from './components/LoginForm.tsx';
 
 const adminUser = {  

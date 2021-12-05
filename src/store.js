@@ -1,10 +1,11 @@
-import { createStore } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import reducers from './reducers/combineReducer';
+import { configureStore } from '@reduxjs/toolkit';
 
-const store = createStore(
-  reducers,
-  composeWithDevTools()
-);
+import mainReducer from './slices/mainSlice';
+
+const store = configureStore({
+  reducer: {
+    main: mainReducer
+  }
+});
 
 export default store;
