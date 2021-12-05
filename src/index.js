@@ -5,15 +5,15 @@ import App from './App'
 import store from './store'
 import { Provider } from 'react-redux'
 
-const d = document.createElement('div');
-d.getAttribute("id", "root");
-body.appendChild(d);
+const rootDiv = document.createElement("div");
+rootDiv.setAttribute("id", "root");
+document.body.appendChild(rootDiv);
 
 ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('root')
+  rootDiv
 );
 
 
