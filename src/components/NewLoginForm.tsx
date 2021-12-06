@@ -34,30 +34,43 @@ export const NewLoginForm = () => {
   }  
   
   return (
-    <form>
-      <h2>Login</h2>
-      <label htmlFor="usernameEmail"> Username/Email:</label>
-      <input 
-        type="text"
-        id="usernameEmailTitle"
-        name="usernameEmailTitle"
-        placeholder="username/email"
-        value={user}
-        onChange={onUserChanged}
-      />
-      <label htmlFor="password"> Password:</label>
-      <input
-        type="text"
-        id="password"
-        name="password"
-        placeholder="password"
-        value={password}
-        onChange={onPasswordChanged}
-      />
-      <button type ="button" onClick={onSubmitClicked} disabled={!canSubmit}>
-        Submit
-      </button>
-    </form>
+    <div className="form-box">
+       <div class="button-box">
+          <div id ="btn"> </div>
+          <button type="button" class="toggle-btn">Log In </button>
+          <button type="button" class="toggle-btn">Register </button>
+        </div>
+      <form className="input-group">
+       
+        <label htmlFor="usernameEmail"> Username/Email:</label>
+        <input 
+          type="text"
+          className="input-field"
+          name="usernameEmailTitle"
+          placeholder="username/email"
+          value={user}
+          onChange={onUserChanged}
+          required
+        />
+        <label htmlFor="password"> Password:</label>
+        <input
+          type="text"
+          className="input-field"
+          name="password"
+          placeholder="password"
+          value={password}
+          onChange={onPasswordChanged}
+          required
+        />
+        <input
+          type="checkbox"
+          className="check-box"
+        /><span>Forget Password</span>
+        <button type ="button" className="submit-btn" onClick={onSubmitClicked} disabled={!canSubmit}>
+          Submit
+        </button>
+      </form>
+    </div>
   );
 };
 
