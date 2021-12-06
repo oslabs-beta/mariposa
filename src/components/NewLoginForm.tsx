@@ -1,6 +1,5 @@
-import { set } from 'lodash';
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useState} from 'react';
+//import { useDispatch, useSelector } from 'react-redux';
 
 export const NewLoginForm = () => {
   //initial state
@@ -8,17 +7,17 @@ export const NewLoginForm = () => {
   const [password, setPassword] = useState('');
   const [requestStatus, setRequestStatus] = useState('idle');
 
-  //use redux store methods
-  const dispatch = useDispatch();
+  // //use redux store methods
+  // const dispatch = useDispatch();
 
-  //event handlers
-  const onUserChanged = (e) => setUser(e.target.value);
-  const onPasswordChanged = (e) => setPassword(e.target.value);
+  // //event handlers
+  const onUserChanged = (e: any) => setUser(e.target.value);
+  const onPasswordChanged = (e: any) => setPassword(e.target.value);
 
-  //if all fields have been provided, user can submit. requestStatus prohibits multiple button clicks
+  // //if all fields have been provided, user can submit. requestStatus prohibits multiple button clicks
   const canSubmit = [user, password].every(Boolean) && requestStatus === 'idle';
   
-  const onSubmitClicked = async () => {
+  const onSubmitClicked = () => {
     //check to see if user is in the db
     if(canSubmit) {
       try {
@@ -36,8 +35,9 @@ export const NewLoginForm = () => {
   
   return (
     <form>
+      <h2>Login</h2>
       <label htmlFor="usernameEmail"> Username/Email:</label>
-      <input
+      <input 
         type="text"
         id="usernameEmailTitle"
         name="usernameEmailTitle"
@@ -59,7 +59,6 @@ export const NewLoginForm = () => {
       </button>
     </form>
   );
-
 };
 
 

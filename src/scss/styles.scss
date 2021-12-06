@@ -42,21 +42,10 @@ button {
 }
 
 form {
-  display: block;
-  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
-form:after {
-  content: "";
-  display: block;
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  z-index: 1;
-  background-image: linear-gradient(to bottom right, #ffce00, #fe4880);
-}
 
 form .form-inner {
   position: relative;

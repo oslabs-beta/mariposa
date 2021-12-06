@@ -2,5 +2,7 @@ import React, { useState } from 'react';
 import { MainContainer } from './containers/MainContainer';
 
 export const App = () => {
-  return <div>Hello</div>
+  return(
+    <MainContainer />
+    ); 
 };
