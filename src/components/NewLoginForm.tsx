@@ -1,7 +1,25 @@
 import React, {useState} from 'react';
+//import formik and yup libraries for form validation
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
 //import { useDispatch, useSelector } from 'react-redux';
 
-export const NewLoginForm = () => {
+export const NewLoginForm = (props: any) => {
+  const initialValues = {
+    username: "",
+    password: "",
+  };
+
+  const validationSchema = Yup.object().shape({
+    username: Yup.string().required("This field is required!"),
+    password: Yup.string().required("This field is required!"),
+  });
+
+  const handleLogin = (formValue: any) => {
+    const { username, password } = formValue;
+  }
+
+
   //initial state
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
@@ -35,10 +53,10 @@ export const NewLoginForm = () => {
   
   return (
     <div className="form-box">
-       <div class="button-box">
+       <div className="button-box">
           <div id ="btn"> </div>
-          <button type="button" class="toggle-btn">Log In </button>
-          <button type="button" class="toggle-btn">Register </button>
+          <button type="button" className="toggle-btn">Log In </button>
+          <button type="button" className="toggle-btn">Register </button>
         </div>
       <form className="input-group">
        

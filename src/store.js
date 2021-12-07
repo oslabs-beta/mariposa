@@ -1,11 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-
-import mainReducer from './slices/mainSlice';
+//import reducers
+import authReducer from './slices/authentication';
+import messageReducer from './slices/messages';
+//bundle reducers 
+const reducer = {
+  auth: authReducer,
+  message: messageReducer
+}
 
 const store = configureStore({
-  reducer: {
-    main: mainReducer
-  }
-});
+  reducer: reducer,
+  devTools: true,
+})
 
 export default store;
