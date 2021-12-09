@@ -10,14 +10,12 @@ module.exports = {
     rules: [{
       test: /\.(js|ts|tsx)$/,
       // include: /src/,
-      exclude: /node_modules/,
       use: [{ loader: 'babel-loader' }]
     },
     {
-      test: /\.s[ac]ss$/,
-      exclude: /node_modules/,
+      test: /\.(sass|css|scss)$/,
       use: ['style-loader', 'css-loader', 'sass-loader']
-    },]
+    }]
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

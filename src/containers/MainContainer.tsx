@@ -4,9 +4,14 @@ import { useSelector, useDispatch, DefaultRootState } from 'react-redux';
 // import LoginForm from './components/LoginForm';
 import LoginForm from '../components/LoginForm';
 import { NewLoginForm } from '../components/NewLoginForm';
+import { RegisterPage } from '../components/RegisterPage';
+
 
 export const MainContainer = () => {
   return(
+    <div>
       <NewLoginForm />
+      <RegisterPage />
+    </div>
   ); 
 };

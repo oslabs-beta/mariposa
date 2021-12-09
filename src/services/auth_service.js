@@ -42,6 +42,9 @@ const login = (username, password) => {
       }
 
       return response.data;
+    })
+    .catch(error => {
+      return error.message;
     });
 };
 

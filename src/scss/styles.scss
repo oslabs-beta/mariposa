@@ -44,9 +44,13 @@ button {
   background-color: #53565a;
 }
 
+.form-group {
+  margin: 20px;
+}
+
 .form-box{
   width: 380px;
-  height: 480px;
+  min-height: 480px;
   position: relative;
   margin: 6% auto;
   background: #fff;
