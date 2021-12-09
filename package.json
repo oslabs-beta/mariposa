@@ -5,8 +5,8 @@
   "main": "./dist/main.js",
   "scripts": {
     "test": "jest",
-    "dev:electron": "webpack --config webpack.electron.config.js --mode development && electron ./dist/main.js",
-    "dev:react": "webpack-dev-server --config webpack.react.config.js --mode development",
+    "dev:electron": "NODE_ENV=production webpack --config webpack.electron.config.js --mode development && electron ./dist/main.js",
+    "dev:react": "NODE_ENV=production webpack-dev-server --config webpack.react.config.js --mode development",
     "build": "NODE_ENV=production webpack --config ./webpack.react.config.js && NODE_ENV=production webpack --config ./webpack.electron.config.js",
     "prod:server": "NODE_ENV=production ts-node server/server.ts",
     "dev:server": "NODE_ENV=development nodemon server/server.ts",
