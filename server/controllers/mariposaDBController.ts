@@ -7,17 +7,22 @@ const dbController = {
   // TODO: make this check for valid emails
   // TODO: make this check for no spaces in username
   // TODO: make error object more custom
-  async createUser(req: Request, res: Response, next: NextFunction) {
+  async signUp(req: Request, res: Response, next: NextFunction) {
     try {
-      const { username, email, password }: { username: string, email: string, password: string } = req.body;
-      const encrypted = await bcrypt.hash(password, 10);
-      const query = `INSERT INTO users(username, email, password)
-        VALUES($1, $2, $3) RETURNING user_id, username, email`;
-      const values = [username, email, encrypted];
-      const result = await db.query(query, values)
+      //req.body inputs and password encryption 
+      const { firstname, lastname, username, email, password }: { firstname: string, lastname: string, username: string, email: string, password: string } = req.body;
+      //const encryptedPassword = password; //to be changed
+      //const encryptedPassword = await bcrypt.hash(password, 10);
+      
+      const query = `INSERT INTO user_accounts(firstname, lastname, username, email, password)
+        VALUES($1, $2, $3, $4, $5) RETURNING firstname, lastname, username, email, password`;
+      const values = [firstname, lastname, username, email, password];
+      
+      const result = await db.query(query, values);
       const user = result.rows[0];
-      const newUser = new User(user.user_id, user.username, user.email);
-      res.locals.user = newUser;
+      console.log(user)
+      //const newUser = new User(user.user_id, user.username, user.email);
+      res.locals.status = 'Successful registration';
       return next();
     }
     catch (err) {

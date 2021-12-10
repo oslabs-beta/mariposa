@@ -53,22 +53,12 @@ export const RegisterPage = () => {
   });
 
   const handleRegister = (formValue) => {
-    const { 
-      firstname, 
-      lastname, 
-      username, 
-      email, 
-      password } = formValue;
+    const {firstname, lastname, username, email, password } = formValue;
     setSuccessful(false);
 
-    dispatch(register({  
-      firstname, 
-      lastname, 
-      username,
-      username, 
-      email, 
-      password 
-      }))
+    dispatch(
+      //register thunk 
+      register({firstname, lastname, username, email, password}))
       .unwrap()
       .then(() => {
         setSuccessful(true);
@@ -77,6 +67,8 @@ export const RegisterPage = () => {
         setSuccessful(false);
       });
     };
+
+
 
   return (
     <div className="form-box">

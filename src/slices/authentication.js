@@ -4,6 +4,8 @@ import regeneratorRuntime from "regenerator-runtime";
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 //use authService to make async requests - authService.register, login, logout  
 import { authService } from '../services/auth_service';
+import { register as AuthRegister } from '../services/auth_service';
+
 // setMessage dispatched if authentication is successful or fails
 import { setMessage } from './messages';
 //create async thunks 
@@ -22,9 +24,10 @@ export const register = createAsyncThunk(
    thunkAPI        //object that contains all parameters normally passed to a Redux thunk function
    ) => {
     try {
-      const response = await authService.register(firstname, lastname, username, email, password);
+      const response = await AuthRegister(firstname, lastname, username, email, password);
+      console.log(response)
       thunkAPI.dispatch(setMessage(response.data.message));
-      return response.data;
+      return response.data; //contains our response from server 
     } catch (error) {
       const message =
         (error.response &&

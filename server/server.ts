@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // routes
-app.use('/mariposa', mariposaRouter);
+app.use('/mariposa/auth', mariposaRouter);
 app.use('/project', projectRouter);
 app.use('/graphql', graphqlHTTP({
   schema,

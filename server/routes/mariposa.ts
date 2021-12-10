@@ -8,8 +8,8 @@ mariposaRouter.get('/:id', mariposaDBController.getPerson, (req: Request, res: R
 })
 
 // posts a user of given name and password
-mariposaRouter.post('/', mariposaDBController.createUser, (req: Request, res: Response, next: NextFunction) => {
-  return res.json({});
+mariposaRouter.post('/signup', mariposaDBController.signUp, (req: Request, res: Response, next: NextFunction) => {
+  return res.json({message: res.locals.status});
 })
 
 // updates user of a given id 
