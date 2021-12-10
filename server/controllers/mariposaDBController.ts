@@ -28,7 +28,7 @@ const dbController = {
       return next(err);
     }
   },
-  async logIn(req: Request, res: Response, next: NextFunction) {
+  async signIn(req: Request, res: Response, next: NextFunction) {
     try {
       //req.body inputs and password encryption 
       const {username, password }: { username: string, password: string } = req.body;
@@ -38,14 +38,13 @@ const dbController = {
       //const encryptedPassword = password; //to be changed
       //const encryptedPassword = await bcrypt.hash(password, 10);
       
-      const query = `SELECT * FROM user_accounts WHERE ${userColumn} = $1 AND password = $2 RETURNING firstname`
+      const query = `SELECT * FROM user_accounts WHERE ${userColumn} = $1 AND password = $2`
       const values = [username, password];
       
       const result = await db.query(query, values);
       const user = result.rows[0];
-      console.log(user)
       //const newUser = new User(user.user_id, user.username, user.email);
-      res.locals.signup = 'Successful registration';
+      res.locals.accessToken = user ? 'dfj23424fwefw' : '';
       return next();
     }
     catch (err) {

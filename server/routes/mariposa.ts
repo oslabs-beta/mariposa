@@ -7,8 +7,8 @@ mariposaRouter.post('/signup', mariposaDBController.signUp, (req: Request, res: 
   return res.json({message: res.locals.signup});
 });
 
-mariposaRouter.post('/signin', mariposaDBController.signUp, (req: Request, res: Response, next: NextFunction) => {
-  return res.json({message: res.locals.status});
+mariposaRouter.post('/signin', mariposaDBController.signIn, (req: Request, res: Response, next: NextFunction) => {
+  return res.json({accessToken: res.locals.accessToken});
 });
 
 

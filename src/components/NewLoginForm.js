@@ -40,6 +40,7 @@ export const NewLoginForm = (props) => { // disable login submit button if loadi
     const {username, password} = formValue;
     // disable login button by set loading to true
     setLoading(true);
+    console.log(loading)
     dispatch(login({username, password})).unwrap().then(() => {
       props.history.push("/profile");
       window.location.reload();
@@ -66,12 +67,12 @@ export const NewLoginForm = (props) => { // disable login submit button if loadi
             <div className="form-group">
               <label htmlFor="username">Username</label>
               <Field name="username" type="text" className="form-control"/>
-              <ErrorMessage name="username" component="div"/>
+              <ErrorMessage name="username" component="div" className="alert alert-danger"/>
             </div>
             <div className="form-group">
               <label htmlFor="password">Password</label>
               <Field name="password" type="password" className="form-control"/>
-              <ErrorMessage name="password" component="div"/>
+              <ErrorMessage name="password" component="div" className="alert alert-danger"/>
             </div>
             <button type="submit" className="submit-btn"
               disabled={loading}>
