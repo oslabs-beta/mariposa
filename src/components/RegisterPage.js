@@ -147,7 +147,7 @@ export const RegisterPage = () => {
                 </div>
 
                 <div className="form-group">
-                  <button type="submit" className="btn btn-primary btn-block">Register</button>
+                  <button type="submit" className="submit-btn">Register</button>
                 </div>
               </div>
             )}

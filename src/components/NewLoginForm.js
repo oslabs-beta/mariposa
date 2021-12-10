@@ -36,11 +36,11 @@ export const NewLoginForm = (props) => { // disable login submit button if loadi
   });
   
   const handleLogin = (formValue) => { // take in user's provided username and password
+    console.log(formValue);
     const {username, password} = formValue;
     // disable login button by set loading to true
     setLoading(true);
-
-    dispatch(login()).unwrap().then(() => {
+    dispatch(login({username, password})).unwrap().then(() => {
       props.history.push("/profile");
       window.location.reload();
     }).catch(() => { // if login fails, enable login button again
@@ -48,7 +48,8 @@ export const NewLoginForm = (props) => { // disable login submit button if loadi
     });
   };
 
-  if (isLoggedIn) { // return <Redirect to="/profile" />;
+  if (isLoggedIn) { 
+    console.log("we're loggedin")// return <Redirect to="/profile" />;
   }
 
 
@@ -62,14 +63,14 @@ export const NewLoginForm = (props) => { // disable login submit button if loadi
         <div className="form-box">
           <Form>
            
-            <div>
+            <div className="form-group">
               <label htmlFor="username">Username</label>
-              <Field name="username" type="text" className="input-field"/>
+              <Field name="username" type="text" className="form-control"/>
               <ErrorMessage name="username" component="div"/>
             </div>
-            <div>
+            <div className="form-group">
               <label htmlFor="password">Password</label>
-              <Field name="password" type="password" className="input-field"/>
+              <Field name="password" type="password" className="form-control"/>
               <ErrorMessage name="password" component="div"/>
             </div>
             <button type="submit" className="submit-btn"

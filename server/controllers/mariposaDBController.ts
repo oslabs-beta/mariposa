@@ -20,15 +20,41 @@ const dbController = {
       
       const result = await db.query(query, values);
       const user = result.rows[0];
-      console.log(user)
       //const newUser = new User(user.user_id, user.username, user.email);
-      res.locals.status = 'Successful registration';
+      res.locals.signup = 'Successful registration';
       return next();
     }
     catch (err) {
       return next(err);
     }
   },
+  async logIn(req: Request, res: Response, next: NextFunction) {
+    try {
+      //req.body inputs and password encryption 
+      const {username, password }: { username: string, password: string } = req.body;
+      //check to see if username provided is an email instead
+      const regex = new RegExp('@');
+      const userColumn = !regex.test(username) ? 'username' : 'email';
+      //const encryptedPassword = password; //to be changed
+      //const encryptedPassword = await bcrypt.hash(password, 10);
+      
+      const query = `SELECT * FROM user_accounts WHERE ${userColumn} = $1 AND password = $2 RETURNING firstname`
+      const values = [username, password];
+      
+      const result = await db.query(query, values);
+      const user = result.rows[0];
+      console.log(user)
+      //const newUser = new User(user.user_id, user.username, user.email);
+      res.locals.signup = 'Successful registration';
+      return next();
+    }
+    catch (err) {
+      return next(err);
+    }
+  },
+
+
+
 
   async getPerson(req: Request, res: Response, next: NextFunction) {
     try {

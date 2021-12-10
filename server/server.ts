@@ -6,6 +6,7 @@ import projectRouter from './routes/project';
 import { schema } from './schema/schema';
 /*require in routers: mariposaRouter for app requests / projectRouter 
 for user db/graphql migration*/
+const jwt = require('jsonwebtoken');
 const app = express();
 const PORT = 3000;
 

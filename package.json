@@ -72,6 +72,7 @@
     "express-graphql": "^0.12.0",
     "formik": "^2.2.9",
     "graphql": "^15.7.2",
+    "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "nodemon": "^2.0.15",
     "pluralize": "^8.0.0",
