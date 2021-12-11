@@ -2,8 +2,9 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background: linear-gradient(to right, rgb(18, 171, 231), rgb(23, 26, 190),);
+  background: linear-gradient(to right, #ffffff, #b0d2e4)
 }
+
 
 .graphD3 {
   height: 100%;
@@ -53,9 +54,11 @@ button {
   min-height: 480px;
   position: relative;
   margin: 6% auto;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.687);
   padding: 5px;
   border-radius: 10px;
+  border: solid 2px #df29df;
+  box-shadow: 1px 3px 10px #2583b6;
 }
 
 .button-box{

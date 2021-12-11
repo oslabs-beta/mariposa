@@ -81,7 +81,7 @@
     "react-json-pretty": "^2.2.0",
     "react-redux": "^7.2.6",
     "react-resizable": "^3.0.4",
-    "react-router": "^6.0.2",
+    "react-router": "^6.1.0",
     "react-router-dom": "^6.0.2",
     "react-spring": "^9.3.2",
     "redux-starter-kit": "^2.0.0",
