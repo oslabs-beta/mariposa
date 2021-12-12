@@ -54,6 +54,7 @@
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
+    "@devbookhq/splitter": "^1.2.4",
     "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.6.0",
     "@graphql-tools/schema": "^8.3.1",

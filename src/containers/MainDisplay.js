@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar.tsx';
 import Resolvers from '../components/Resolvers.tsx';
 import Sandbox from '../components/sandbox.tsx';
 
+
 export const MainDisplay = (props) => {
   return (
 

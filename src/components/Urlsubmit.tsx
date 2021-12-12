@@ -42,6 +42,7 @@ const CustomInput = React.forwardRef(function CustomInput(
     </div>
   );
 });
+
 export default function UseInput() {
   const [uri, setUri] = useState('');
   const handleClick = () => {
