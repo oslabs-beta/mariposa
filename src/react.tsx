@@ -42,7 +42,7 @@ const Logout = () => {
 
   return (
     <div> 
-    {(user.isLoggedIn === true) ? <LandingPage graphiql={graphiql} setGraphiql={setGraphiql}/> : <LoginForm Login={Login} error={error}/>}
+    {(user.isLoggedIn === false) ? <LandingPage graphiql={graphiql} setGraphiql={setGraphiql}/> : <LoginForm Login={Login} error={error}/>}
     </div>
 
  )

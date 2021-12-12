@@ -2,6 +2,7 @@ import * as React from 'react';
 import Paper from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Tree from './Tree.tsx'
+import G6Tree from './g6tree.tsx';
 import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import Button from '@mui/material/Button';
 
@@ -18,7 +19,8 @@ export default function graph() {
   position: 'relative'
 }}>
     <div className='graphD3'>
-      <Tree/>
+      {/* <Tree/> */}
+      <G6Tree />
     </div>
     <Button style={{position: 'absolute', bottom: '0%', right: '0%'}} ><OpenInFullIcon /></Button>
   </Paper>
