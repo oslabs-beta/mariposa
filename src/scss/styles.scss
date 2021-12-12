@@ -1,6 +1,10 @@
 body {
-  background-color: rgb(248, 218, 223) ;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: linear-gradient(to right, #ffffff, #b0d2e4)
 }
+
 
 .graphD3 {
   height: 100%;
@@ -41,84 +45,98 @@ button {
   background-color: #53565a;
 }
 
-form {
-  display: block;
+.form-group {
+  margin: 20px;
+}
+
+.form-box{
+  width: 380px;
+  min-height: 480px;
   position: relative;
+  margin: 6% auto;
+  background: rgba(255, 255, 255, 0.687);
+  padding: 5px;
+  border-radius: 10px;
+  border: solid 2px #df29df;
+  box-shadow: 1px 3px 10px #2583b6;
 }
 
-form:after {
-  content: "";
+#login-logo{
+  width: 70%;
+  padding-top: 20px;
+  margin: auto;
   display: block;
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  z-index: 1;
-  background-image: linear-gradient(to bottom right, #ffce00, #fe4880);
 }
 
-form .form-inner {
+.button-box{
+  width: 220px;
+  margin: 35px auto;
   position: relative;
-  display: block;
-  background-color: #fff;
-  padding: 30px;
-  z-index: 2;
+  box-shadow: 0 0 20px 9px rgb(248, 218, 223);
+  border-radius: 30px;
 }
 
-form .form-inner h2 {
-  color: #888;
-  font-size: 28px;
-  font-weight: 500;
-  margin-bottom: 30px;
-}
-
-form .form-inner .form-group {
-  display: block;
-  width: 300px;
-  margin-bottom: 15px;
-}
-
-.form-inner .form-group label {
-  display: block;
-  color: #666;
-  font-size: 12px;
-  margin-bottom: 5px;
-  transition: 0.4s;
-}
-
-// .form-inner.form-group: focus-within label {
-//   color: #fe4880;
-// }
-
-form .form-inner .form-group input {
-  display: block;
-  width: 100%;
-  padding: 10px 15px;
-  background-color: #f8f8f8;
-  border-radius: 8px;
-  transition: 0.4s;
-}
-
-// form.form-inner .form-group input: focus {
-//   box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
-// }
-
-form .form-inner input[type="submit"] {
-  display: inline-block;
-  padding: 10px 15px;
-  border-radius: 8px;
-  background-image: linear-gradient(to right, #ffce00 50%, #ffce00 50%);
-  background-size: 200%;
-  background-position: 0%;
-  transition: 0.4s;
-  color: #fff;
-  font-weight: 700;
+.toggle-btn{
+  padding: 10px 30px;
   cursor: pointer;
+  background: transparent;
+  border: 0;
+  outline: none;
+  position: relative;
 }
 
-form .form-inner input[type="submit"]:hover {
-  background-position: 100% 0%;
+#btn{
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 110px;
+  height: 100%;
+  background: #df29df;
+  border-radius: 30px;
+  transition: .5s;
+}
+
+.input-group{
+  top: 180;
+  left: 50px;
+  position: absolute;
+  width: 280px;
+  transition: .5s;
+}
+
+.input-field{
+  width: 100%;
+  padding: 10px 0;
+  margin: 5px 0;
+  border-left: 0;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px solid #999;
+  outline: none;
+  background: transparent;
+}
+
+.submit-btn{
+  width: 85%;
+  padding: 10px 30px;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+  background: #df29df;
+  border: 0;
+  outline: none;
+  border-radius: 30px;
+  color: white
+}
+
+.check-box{
+  margin: 30px 10px 30px 0;
+}
+span{
+  color: #777;
+  font-size: 12px;
+  bottom: 68px;
+  position: absolute;
 }
 
 button {

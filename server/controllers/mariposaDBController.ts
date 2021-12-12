@@ -7,23 +7,53 @@ const dbController = {
   // TODO: make this check for valid emails
   // TODO: make this check for no spaces in username
   // TODO: make error object more custom
-  async createUser(req: Request, res: Response, next: NextFunction) {
+  async signUp(req: Request, res: Response, next: NextFunction) {
     try {
-      const { username, email, password }: { username: string, email: string, password: string } = req.body;
-      const encrypted = await bcrypt.hash(password, 10);
-      const query = `INSERT INTO users(username, email, password)
-        VALUES($1, $2, $3) RETURNING user_id, username, email`;
-      const values = [username, email, encrypted];
-      const result = await db.query(query, values)
+      //req.body inputs and password encryption 
+      const { firstname, lastname, username, email, password }: { firstname: string, lastname: string, username: string, email: string, password: string } = req.body;
+      //const encryptedPassword = password; //to be changed
+      //const encryptedPassword = await bcrypt.hash(password, 10);
+      
+      const query = `INSERT INTO user_accounts(firstname, lastname, username, email, password)
+        VALUES($1, $2, $3, $4, $5) RETURNING firstname, lastname, username, email, password`;
+      const values = [firstname, lastname, username, email, password];
+      
+      const result = await db.query(query, values);
       const user = result.rows[0];
-      const newUser = new User(user.user_id, user.username, user.email);
-      res.locals.user = newUser;
+      //const newUser = new User(user.user_id, user.username, user.email);
+      res.locals.signup = 'Successful registration';
       return next();
     }
     catch (err) {
       return next(err);
     }
   },
+  async signIn(req: Request, res: Response, next: NextFunction) {
+    try {
+      //req.body inputs and password encryption 
+      const {username, password }: { username: string, password: string } = req.body;
+      //check to see if username provided is an email instead
+      const regex = new RegExp('@');
+      const userColumn = !regex.test(username) ? 'username' : 'email';
+      //const encryptedPassword = password; //to be changed
+      //const encryptedPassword = await bcrypt.hash(password, 10);
+      
+      const query = `SELECT * FROM user_accounts WHERE ${userColumn} = $1 AND password = $2`
+      const values = [username, password];
+      
+      const result = await db.query(query, values);
+      const user = result.rows[0];
+      //const newUser = new User(user.user_id, user.username, user.email);
+      res.locals.accessToken = user ? 'dfj23424fwefw' : '';
+      return next();
+    }
+    catch (err) {
+      return next(err);
+    }
+  },
+
+
+
 
   async getPerson(req: Request, res: Response, next: NextFunction) {
     try {
