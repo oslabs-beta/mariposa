@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {Link, Navigate} from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -6,8 +7,9 @@ import * as Yup from "yup";
 import { register } from "../slices/authentication";
 import { clearMessage } from "../slices/messages";
 
-export const RegisterPage = () => {
+export const RegisterForm = () => {
   const [successful, setSuccessful] = useState(false);
+  const [redirect, setRedirect] = useState(false);
 
   const { message } = useSelector((state) => state.message);
   const dispatch = useDispatch();
@@ -15,6 +17,13 @@ export const RegisterPage = () => {
   useEffect(() => {
     dispatch(clearMessage());
   }, [dispatch]);
+
+  useEffect(() => {
+    if(successful){
+      console.log('over here')
+      setTimeout(() => setRedirect(true), 1000)
+    }
+  }, [successful]);
 
   const initialValues = {
     firstname: "",
@@ -30,10 +39,10 @@ export const RegisterPage = () => {
     username: Yup.string()
       .test(
         "len",
-        "The username must be between 3 and 20 characters.",
+        "The username must be between 8 and 20 characters.",
         (val) =>
           val &&
-          val.toString().length >= 3 &&
+          val.toString().length >= 8 &&
           val.toString().length <= 20
       )
       .required("This field is required!"),
@@ -43,10 +52,10 @@ export const RegisterPage = () => {
     password: Yup.string()
       .test(
         "len",
-        "The password must be between 6 and 40 characters.",
+        "The password must be between 8 and 40 characters.",
         (val) =>
           val &&
-          val.toString().length >= 6 &&
+          val.toString().length >= 8 &&
           val.toString().length <= 40
       )
       .required("This field is required!"),
@@ -149,11 +158,16 @@ export const RegisterPage = () => {
                 <div className="form-group">
                   <button type="submit" className="submit-btn">Register</button>
                 </div>
-              </div>
+            
+               <p className="form-group">
+               Already have an account? <Link to="/">Log in</Link>
+               </p>
+               </div>
             )}
-          </Form>
+           
+          </Form>        
         </Formik>
-
+        
       {message && (
         <div className="form-group">
           <div
@@ -162,8 +176,10 @@ export const RegisterPage = () => {
           >
             {message}
           </div>
+          <span className="spinner-border spinner-border-sm" />
         </div>
       )}
+      {redirect && <Navigate to='/'/>}
     </div>
   );
 };
