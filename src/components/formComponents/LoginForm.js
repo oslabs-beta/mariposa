@@ -1,15 +1,15 @@
 import React, {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link, Navigate} from 'react-router-dom';
-import MariposaLogo from '../assets/MariposaLogo.png';
+import MariposaLogo from '../../assets/MariposaLogo.png';
 // import formik and yup libraries for form validation
 import {Formik, Field, Form, ErrorMessage} from "formik";
 import * as Yup from "yup";
 
 // import async thunk - login
-import {login} from "../slices/authentication";
+import {login} from "../../slices/authentication";
 // import reducer - clearMessage
-import {clearMessage} from "../slices/messages";
+import {clearMessage} from "../../slices/messages";
 
 export const LoginForm = (props) => { // disable login submit button if loading
   const [loading, setLoading] = useState(false);

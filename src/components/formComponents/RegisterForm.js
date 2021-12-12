@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-import { register } from "../slices/authentication";
-import { clearMessage } from "../slices/messages";
+import { register } from "../../slices/authentication";
+import { clearMessage } from "../../slices/messages";
 
 export const RegisterForm = () => {
   const [successful, setSuccessful] = useState(false);

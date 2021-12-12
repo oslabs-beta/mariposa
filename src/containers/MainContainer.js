@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, HashRouter, Route, Routes } from 'react-router-dom'
 
-import { useSelector, useDispatch, DefaultRootState } from 'react-redux';
-// import LandingPage from './components/LandingPage';
-// import LoginForm from './components/LoginForm';
-import { LoginForm } from '../components/LoginForm';
-import { RegisterForm } from '../components/RegisterForm';
+import { LoginForm } from '../components/formComponents/LoginForm';
+import { RegisterForm } from '../components/formComponents/RegisterForm';
 import { MainDisplay } from './MainDisplay';
 
 
