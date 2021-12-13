@@ -4,8 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: process.env.NODE_ENV,//'development',
   entry: './src/index.tsx',
-  target: 'electron-renderer',
-  devtool: 'source-map',
   module: {
     rules: [{
       test: /\.(js|ts|tsx)$/,
@@ -14,7 +12,7 @@ module.exports = {
     },
     {
       test: /\.(sass|css|scss)$/,
-      use: ['style-loader', 'css-loader', 'sass-loader']
+      use: ['style-loader', 'css-modules-typescript-loader', 'css-loader', 'sass-loader']
     },
     {
       test: /\.(png|jpe?g|gif)$/i,
@@ -31,7 +29,7 @@ module.exports = {
     historyApiFallback: true,
     compress: true,
     hot: true,
-    port: 4000,
+    port: 8080,
     // publicPath: '/',
     proxy: {
       '/': 'http://localhost:3000'
