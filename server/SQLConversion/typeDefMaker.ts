@@ -1,4 +1,4 @@
-import { Table } from "../types/Table";
+import { Table } from "../types/DBResponseTypes";
 import { GQLMutationTypeCreator } from "./GQLMutationTypeCreator";
 import { GQLObjectTypeCreator } from "./GQLObjectTypeCreator";
 import { GQLQueryTypeCreator } from "./GQLQueryTypeCreator";
