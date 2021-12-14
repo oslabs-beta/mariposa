@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Popper from '@mui/base/PopperUnstyled';
 import UseInput from './Urlsubmit';
 
-const pages = ['URI', 'Metrics', 'Toggle Tree View', 'Sandbox'];
+const pages = ['URI', 'Sandbox'];
 const settings = ['Logout'];
 
 const ResponsiveAppBar = (props) => {

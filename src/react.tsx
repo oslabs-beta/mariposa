@@ -16,6 +16,8 @@ const [user, setUser] = useState({ name: "", email: "", isLoggedIn: false });
 const [error, setError] = useState("");
 //conditional rendering for graphiql
 const [graphiql, setGraphiql] = useState(false)
+//conditional rendering for entering a URI 
+const [uri, setUri] = useState(false)
 
 
 const Login = (details: { email: string; password: string; name: any; }) => {
@@ -42,7 +44,10 @@ const Logout = () => {
 
   return (
     <div> 
-    {(user.isLoggedIn === false) ? <LandingPage graphiql={graphiql} setGraphiql={setGraphiql}/> : <LoginForm Login={Login} error={error}/>}
+    {(user.isLoggedIn === false) ? 
+    (uri) ? <LandingPage graphiql={graphiql} setGraphiql={setGraphiql}/> : <div />
+    : 
+    <LoginForm Login={Login} error={error}/>}
     </div>
 
  )

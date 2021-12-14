@@ -16,6 +16,7 @@ export default function graph() {
   border: "gray",
   minWidth: "100%",
   height: "100%",
+  maxHeight: '97vh',
   position: 'relative'
 }}>
     <div className='graphD3'>

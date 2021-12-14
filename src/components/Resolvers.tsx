@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Paper from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import {Controlled as CodeMirror} from 'react-codemirror2'
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
@@ -66,7 +66,17 @@ export default function Resolvers() {
         <Button onClick={() => setResolver(true)}>Resolvers</Button>
       </ButtonGroup>
       </Box>
-      <Box style={{backgroundColor: 'rgb(245, 234, 234)', margin:'0% 1% 0% 3%', width: '94%', height: '89%', maxHeight:'89%', overflow: "scroll", padding: "30px 0px 0px 20px"}}><NewlineText text={((resolver) ?  schema : text)} /></Box>
+      <Box style={{backgroundColor: 'rgb(245, 234, 234)', margin:'0% 1% 0% 3%', width: '94%', height: '89%', maxHeight:'89%', overflow: "scroll", padding: "30px 0px 0px 20px"}}>
+        {/* <NewlineText text={((resolver) ?  schema : text)} /> */}
+        <CodeMirror
+        value={((resolver) ?  schema : text)}
+        options={{
+          mode: 'javascript',
+          // lineNumbers: true,
+          lineWrapping: true,
+        }}
+      />
+      </Box>
       <Button style={{position: 'absolute', bottom: '0%', right: '0%'}} ><ContentPasteIcon /></Button>
     </div>
   </Paper>
