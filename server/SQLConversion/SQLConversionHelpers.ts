@@ -1,6 +1,6 @@
 const pluralize = require('pluralize');
 const { singular } = pluralize;
-import { Table, Column } from '../types/Table';
+import { Table, Column } from '../types/DBResponseTypes';
 
 
 function checkIsNullable(isNullable: string): string {

@@ -1,10 +1,10 @@
-import { Table } from "../types/Table";
+import { Table } from "../types/DBResponseTypes";
 import { SQLConversionHelpers } from './SQLConversionHelpers';
 const { checkIsTableJoin, inObjectTypeCase, queryPluralCase, querySingularCase } = SQLConversionHelpers;
 
 
 export const resolverStringMaker = {
-  generateResolverString(tables: Table[]): any {
+  generateResolverString(tables: Table[]): string {
     const resolver = tables.reduce((acc: { [key: string]: { [key: string]: string } }, curr: Table) => {
       const { tablename, columns } = curr;
       if (!checkIsTableJoin(columns)) {
@@ -28,7 +28,15 @@ export const resolverStringMaker = {
       Mutation: {},
     });
 
-    return resolver;
+    let resolverString = '';
+    for(const [key, value] of Object.entries(resolver)) {
+      resolverString += `${key}: {\n`;
+      for(const [item, string] of Object.entries(value)) {
+        resolverString += `  ${item}: ${string},\n`
+      }
+      resolverString += `},\n`
+    }
+    return resolverString;
   }
 }
 
@@ -53,7 +61,7 @@ function makeQueryString(queryObj: { [key: string]: string }, table: Table): { [
       queryObj[querySingularCase(tablename)] = `async (parent: any, args: { [key: string]: any }) => {
         try {
           const query = \`SELECT * FROM ${tablename} WHERE ${column_name} = $1\`;
-          const result = await db.query(query, [args[${column_name}].toString()]);
+          const result = await db.query(query, [args[\"${column_name}\"].toString()]);
           return result.rows[0];
         } catch (err) {
           console.log(err)
@@ -91,7 +99,7 @@ function makeMutationString(mutationObj: { [key: string]: string }, table: Table
   mutationObj[`add${inObjectTypeCase(tablename)}`] = `async (parent: any, args: { [key: string]: any }) => {
     try {
       const query = \`INSERT INTO ${tablename}(${col_array.join()}) VALUES (${param_array.join()}) RETURNING *\`;
-      const result = await db.query(query, ${val_array});
+      const result = await db.query(query, [${val_array}]);
       return result.rows[0];
     } catch (err) {
       console.log(err)
@@ -123,7 +131,7 @@ function makeTypeString(typeObj: { [key: string]: any }, column_name: string, pr
   typeObj[primary_table] = `async (parent: any) => {
     try {
       const query = \`SELECT * FROM ${primary_table} WHERE ${primary_column} = $1\`;
-      const result = await db.query(query, [parent[${column_name}]]);
+      const result = await db.query(query, [parent[\"${column_name}\"]]);
       return result.rows[0];
     } catch(err) {
       /* INSERT ERROR HANDLING HERE */
@@ -131,5 +139,3 @@ function makeTypeString(typeObj: { [key: string]: any }, column_name: string, pr
   }`
   return typeObj;
 }
-
-// export default resolverStringMaker;
