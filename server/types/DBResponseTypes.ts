@@ -44,7 +44,6 @@ export class D3Column implements D3Data {
   }
 }
 
-
 /*
 Used in rowsToTable helper function in getAllTables method found in projectDBController.
 Used to return an array of Table objects.    
@@ -58,9 +57,9 @@ export interface Table {
 export interface Column {
   column_id: number,
   column_name: string,
-  data_type: string, // make an enumorator to convert to TS data types
-  is_nullable: string, // make boolean
-  is_updatable: string, // make boolean
+  data_type: string, 
+  is_nullable: string, 
+  is_updatable: string, 
   column_default: string | null,
   constraint_name: string | null,
   constraint_type: string | null,
@@ -72,4 +71,3 @@ export interface DBQueryResponse extends Column {
   schema: string,
   tablename: string,
 }
-

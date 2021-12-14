@@ -1,10 +1,9 @@
-const { buildSchema } = require('graphql');
 import { SQLConversionHelpers } from './SQLConversionHelpers'
-import { Table, Column } from '../types/Table';
+import { Table, Column } from '../types/DBResponseTypes';
 const {checkIsTableJoin, fieldValueCreator, inObjectTypeCase, queryPluralCase, querySingularCase} = SQLConversionHelpers;
 
 
-export const GQLMutationTypeCreator = (tableObject: any) => {
+export const GQLMutationTypeCreator = (tableObject: Table): string => {
     const {tablename, columns} = tableObject;
     let mutationType = '';
     if(checkIsTableJoin(columns)){
@@ -13,7 +12,7 @@ export const GQLMutationTypeCreator = (tableObject: any) => {
       const typeObject = inObjectTypeCase(tablename);
       let mutationFields = ''
       let primaryKey;
-      columns.forEach((columnObj: any) => {
+      columns.forEach((columnObj: Column) => {
         const{column_name, constraint_type} = columnObj;
         if(constraint_type === "PRIMARY KEY") primaryKey = column_name;
         mutationFields += `\n  ${column_name}: ${fieldValueCreator(columnObj)},`;
