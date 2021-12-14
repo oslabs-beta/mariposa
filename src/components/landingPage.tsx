@@ -13,7 +13,7 @@ import Sandbox from './sandbox.tsx';
 
 //add the conditional rendering right under the Grid
 
-export default function LandingPage(props) {
+export default function LandingPage(props:any) {
   return (
 
   <>
@@ -37,7 +37,7 @@ export default function LandingPage(props) {
     <Graph></Graph>
   </Grid> */}
 </Grid> :
-  <div>hello world</div>}
+  <div></div>}
   </>
  )
 }

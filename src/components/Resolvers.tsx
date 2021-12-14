@@ -29,7 +29,7 @@ export default function Resolvers() {
       .then(data => {
         console.log(data.typeDefs);
         setText(data.typeDefs);
-        setSchema(JSON.stringify(data.resolvers));
+        setSchema(JSON.stringify(data.resolverString));
     })
     }, [])
   
@@ -66,15 +66,15 @@ export default function Resolvers() {
       </ButtonGroup>
       </Box>
       <Box style={{backgroundColor: 'rgb(245, 234, 234)', margin:'0% 1% 0% 3%', width: '94%', height: '89%', maxHeight:'89%', overflow: "scroll", padding: "30px 0px 0px 20px"}}>
-        {/* <NewlineText text={((resolver) ?  schema : text)} /> */}
-        <CodeMirror
+        <NewlineText text={((resolver) ?  schema : text)} />
+        {/* <CodeMirror
         value={((resolver) ?  schema : text)}
         options={{
           mode: 'javascript',
           // lineNumbers: true,
           lineWrapping: true,
         }}
-      />
+      /> */}
       </Box>
       <Button style={{position: 'absolute', bottom: '0%', right: '0%'}} ><ContentPasteIcon /></Button>
     </div>

@@ -17,7 +17,8 @@ export default function graph() {
   minWidth: "100%",
   height: "100%",
   maxHeight: '97vh',
-  position: 'relative'
+  position: 'relative',
+  opacity: '0.85'
 }}>
     <div className='graphD3'>
       {/* <Tree/> */}

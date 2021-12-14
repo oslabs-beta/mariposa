@@ -95,7 +95,12 @@ const TreeGraphReact = () => {
   //     graph.render()
   //     } )
   // }
-  fetch('/project/D3tables')
+  fetch('/project/D3tables', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
   .then((res) => res.json())
   .then((data) => {
     const container = document.getElementById('container');
