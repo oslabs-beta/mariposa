@@ -12,4 +12,4 @@ const typeDefs: string = typeDefMaker.generateTypes(tables);
 export const schema: GraphQLSchema = makeExecutableSchema({
   typeDefs,
   resolvers
-})
+});

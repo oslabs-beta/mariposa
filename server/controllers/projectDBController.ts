@@ -70,7 +70,7 @@ export const projectDBController = {
     const arrayOfTableObjects: Table[] = res.locals.tablesArray;
     const db = res.locals.db;
     const resolvers: IResolvers = resolverMaker.generateResolvers(arrayOfTableObjects, db);
-    const resolverString: object = resolverStringMaker.generateResolverString(arrayOfTableObjects);
+    const resolverString: string = resolverStringMaker.generateResolverString(arrayOfTableObjects);
     res.locals.resolvers = resolvers;
     res.locals.resolverString = resolverString;
     return next();
