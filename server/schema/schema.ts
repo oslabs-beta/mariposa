@@ -6,6 +6,7 @@ import db from '../models/projectDB';
 import resolverMaker from "../SQLConversion/resolverMaker";
 import { tables } from "../types/dummyTables";
 import { GraphQLSchema } from "graphql/type/schema";
+import { resolverStringMaker } from "../SQLConversion/resolverStringMaker";
 
 
 const typeDefs = gql`
@@ -244,6 +245,9 @@ const resolvers: IResolvers = resolverMaker.generateResolvers(tables, db);
 
 console.log('type defs:', typeDefs);
 console.log('resolvers', resolvers);
+
+console.log(resolverStringMaker.generateResolverString(tables));
+
 
 export const schema: GraphQLSchema = makeExecutableSchema({
   typeDefs,
