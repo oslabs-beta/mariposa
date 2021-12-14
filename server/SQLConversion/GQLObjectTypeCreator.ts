@@ -1,4 +1,3 @@
-const { buildSchema } = require('graphql');
 import { SQLConversionHelpers } from './SQLConversionHelpers'
 import { Table, Column } from '../types/Table';
 const { checkIsTableJoin, fieldValueCreator, inObjectTypeCase } = SQLConversionHelpers;
