@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-// import db from '../models/projectDB'
 import { Table } from '../types/Table';
 import { GQLObjectTypeCreator } from '../SQLConversion/GQLObjectTypeCreator';
 import { GQLQueryTypeCreator } from '../SQLConversion/GQLQueryTypeCreator';
@@ -8,13 +7,17 @@ import rowsToTable from '../SQLConversion/SQLQueryHelpers';
 import { IResolvers } from '@graphql-tools/utils';
 import resolverMaker from '../SQLConversion/resolverMaker';
 import db from '../models/projectDB';
+import { resolverStringMaker } from '../SQLConversion/resolverStringMaker';
 
 
 export const projectDBController = {
+  async updateDatabase(req: Request, res: Response, next: NextFunction) {
+    const {uri} = req.body;
+    if(uri) db.updateUri(uri);
+    next();
+  },
+
   async getAllTables(req: Request, res: Response, next: NextFunction) {
-    // const { uri } = req.body;
-    // const db = new PoolWrapper(uri);
-    // res.locals.database = db;
     try {
       const query = `
         SELECT col.table_schema AS schema, 
@@ -96,7 +99,9 @@ export const projectDBController = {
     const arrayOfTableObjects: Table[] = res.locals.tablesArray;
     const db = res.locals.db;
     const resolvers: IResolvers = resolverMaker.generateResolvers(arrayOfTableObjects, db);
+    const resolverString: string = resolverStringMaker.generateResolverString(arrayOfTableObjects);
     res.locals.resolvers = resolvers;
+    res.locals.resolverString = resolverString;
     return next();
   },
   buildSchema(req: Request, res: Response, next: NextFunction) {

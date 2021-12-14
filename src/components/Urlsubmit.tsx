@@ -46,7 +46,7 @@ const CustomInput = React.forwardRef(function CustomInput(
 export default function UseInput() {
   const [uri, setUri] = useState('');
   const handleClick = () => {
-    fetch('/uri', {
+    fetch('/project/D3tables', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

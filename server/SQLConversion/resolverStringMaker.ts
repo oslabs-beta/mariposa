@@ -14,35 +14,19 @@ export const resolverStringMaker = {
         if (!acc.hasOwnProperty(tab)) {
           acc[tab] = {};
         }
-        // should have something for all foreign keys
-        acc[tab] = makeTypeString(acc[tab], curr);
+        for (let i = 0; i < columns.length; i++) {
+          const { constraint_type, column_name, primary_table, primary_column } = columns[i];
+          if(constraint_type === 'FOREIGN KEY' && primary_table && primary_table && primary_column) {
+            acc[tab] = makeTypeString(acc[tab], column_name, primary_table, primary_column);
+          }
+        }
       }
-
-      // for (let i = 0; i < columns.length; i++) {
-      //   const { constraint_type, column_name, primary_table, primary_column } = columns[i];
-      //   if(constraint_type === 'FOREIGN KEY' && primary_table && primary_table && primary_column) {
-      //     acc[upCaseTabNam] = makeTypeResolver(acc[upCaseTabNam], column_name, primary_table, primary_column);
-      //   }
-      // }
 
       return acc;
     }, {
       Query: {},
       Mutation: {},
     });
-
-    // resolver["People"] = {
-    //   species: async (parent) => {
-    //     console.log('Person:', parent);
-    //     try {
-    //       const query = `SELECT * FROM species WHERE _id = $1`;
-    //       const result = await db.query(query, [parent.species_id]);
-    //       return result.rows[0]
-    //     } catch (err) {
-    //       console.log(err);
-    //     }
-    //   }
-    // }
 
     return resolver;
   }
@@ -135,9 +119,17 @@ function makeMutationString(mutationObj: { [key: string]: string }, table: Table
   return mutationObj;
 }
 
-function makeTypeString(tpyeObj: { [key: string]: any }, table: Table): { [key: string]: string } {
-
-  return {};
+function makeTypeString(typeObj: { [key: string]: any }, column_name: string, primary_table: string, primary_column: string): { [key: string]: string } {
+  typeObj[primary_table] = `async (parent: any) => {
+    try {
+      const query = \`SELECT * FROM ${primary_table} WHERE ${primary_column} = $1\`;
+      const result = await db.query(query, [parent[${column_name}]]);
+      return result.rows[0];
+    } catch(err) {
+      /* INSERT ERROR HANDLING HERE */
+    }
+  }`
+  return typeObj;
 }
 
 // export default resolverStringMaker;

@@ -20,7 +20,7 @@ export default function Resolvers() {
 
   useEffect (() => {
     fetch('/project/tables', {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       }
@@ -33,7 +33,7 @@ export default function Resolvers() {
     })
     }, [])
   
-  function NewlineText(props) {
+  function NewlineText(props: any) {
       const text = props.text;
       return text.split('\n').map((str: string) => <p>{str}</p>);
   }
