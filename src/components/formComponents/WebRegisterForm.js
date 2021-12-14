@@ -6,6 +6,7 @@ import * as Yup from "yup";
 
 import { register } from "../../slices/authentication";
 import { clearMessage } from "../../slices/messages";
+import { set } from "lodash";
 
 export const WebRegisterForm = (props) => {
   const {setFormToDisplay} = props;  
@@ -19,13 +20,6 @@ export const WebRegisterForm = (props) => {
   useEffect(() => {
     dispatch(clearMessage());
   }, [dispatch]);
-
-  // useEffect(() => {
-  //   if(successful){
-  //     console.log('over here')
-  //     setTimeout(() => setRedirect(true), 1000)
-  //   }
-  // }, [successful]);
 
   const initialValues = {
     firstname: "",
@@ -73,7 +67,6 @@ export const WebRegisterForm = (props) => {
       .unwrap()
       .then(() => {
         setSuccessful(true);
-        setRedirect(true);
       })
       .catch(() => {
         setSuccessful(false);
@@ -173,7 +166,7 @@ export const WebRegisterForm = (props) => {
                Already have an account? <button type = "submit" onClick={handleFormDisplay} >Sign In</button>
         </p>
         
-      {message && (
+        {message && (
         <div className="form-group">
           <div
             className={successful ? "alert alert-success" : "alert alert-danger"}
@@ -182,9 +175,12 @@ export const WebRegisterForm = (props) => {
             {message}
           </div>
           <span className="spinner-border spinner-border-sm" />
+
         </div>
+        
       )}
-      {redirect && <Navigate to="/"/>}
+      {successful && setTimeout(() => setFormToDisplay('login'), 1000)}
+
     </div>
   );
 };

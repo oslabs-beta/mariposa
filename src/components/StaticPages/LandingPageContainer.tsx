@@ -9,6 +9,10 @@ function LandingPage() {
   const[hideNavBar, setHideNavBar] = useState(false);
   const[changeToFormDisplay, setChangeToFormDisplay] = useState(false);
   const[formToDisplay, setFormToDisplay] = useState('login');
+  
+  console.log('hideNavBar:', hideNavBar)
+  console.log('changeToFormDisplay: ', changeToFormDisplay)
+  console.log('formToDisplay: ', formToDisplay)
 
   const handleStartNow = () => {
     setChangeToFormDisplay(true);
@@ -26,7 +30,7 @@ function LandingPage() {
     }).then((response) => {
       if (response.status === 200) {
         router.replace('/dashboard');
-      }7
+      }
     });
   }
   console.log(formToDisplay)
@@ -50,6 +54,7 @@ function LandingPage() {
       <div className={"rightLandingPageWrapper"}>
         {!changeToFormDisplay && ( 
           <div>
+            <h2>This APP WILL CHANGE YOUR LIFE</h2>
         <button type='button' onClick={handleStartNow}>
           Start now
         </button>
