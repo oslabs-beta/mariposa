@@ -1,3 +1,4 @@
+import { urlencoded } from "express";
 import { Pool, QueryResult } from "pg";
 
 export class PoolWrapper {
@@ -20,5 +21,11 @@ export class PoolWrapper {
         }
       });
     }); 
+  }
+  updateUri = (uri: string) => {
+    this.pg_uri = uri;
+    this.pool = new Pool({
+      connectionString: uri,
+    });
   }
 }

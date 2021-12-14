@@ -1,10 +1,16 @@
-import { createStore } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import reducers from './reducers/combineReducer';
+import { configureStore } from '@reduxjs/toolkit';
+//import reducers
+import authReducer from './slices/authentication';
+import messageReducer from './slices/messages';
+//bundle reducers 
+const reducer = {
+  auth: authReducer,
+  message: messageReducer
+}
 
-const store = createStore(
-  reducers,
-  composeWithDevTools()
-);
+const store = configureStore({
+  reducer: reducer,
+  devTools: true,
+})
 
 export default store;

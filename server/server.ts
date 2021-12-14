@@ -6,19 +6,21 @@ import projectRouter from './routes/project';
 import { schema } from './schema/schema';
 /*require in routers: mariposaRouter for app requests / projectRouter 
 for user db/graphql migration*/
+const jwt = require('jsonwebtoken');
 const app = express();
 const PORT = 3000;
+const graphiql = graphqlHTTP({
+  schema,
+  graphiql: true
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // routes
-app.use('/mariposa', mariposaRouter);
+app.use('/mariposa/auth', mariposaRouter);
 app.use('/project', projectRouter);
-app.use('/graphql', graphqlHTTP({
-  schema,
-  graphiql: true
-}));
+app.use('/graphql', graphiql);
 
 if (process.env.NODE_ENV === 'production') {
   app.get('/', (req, res) => {

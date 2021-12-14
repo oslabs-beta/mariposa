@@ -25,8 +25,6 @@ export const GQLQueryTypeCreator = (tableObject: Table): string => {
       querySingularType = querySingularType.substring(0, querySingularType.length - 1) + `): ${typeObject}!`; 
       queryType += queryPluralType + querySingularType;
     }
-    // console.log(queryType)
     return queryType;
   }
 
-console.log(GQLQueryTypeCreator(tables[0]));
