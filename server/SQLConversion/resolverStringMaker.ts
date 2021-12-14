@@ -36,7 +36,6 @@ export const resolverStringMaker = {
       }
       resolverString += `},\n`
     }
-    console.log(resolverString);
     return resolverString;
   }
 }
@@ -62,7 +61,7 @@ function makeQueryString(queryObj: { [key: string]: string }, table: Table): { [
       queryObj[querySingularCase(tablename)] = `async (parent: any, args: { [key: string]: any }) => {
         try {
           const query = \`SELECT * FROM ${tablename} WHERE ${column_name} = $1\`;
-          const result = await db.query(query, [args[\'${column_name}\'].toString()]);
+          const result = await db.query(query, [args[\"${column_name}\"].toString()]);
           return result.rows[0];
         } catch (err) {
           console.log(err)
@@ -140,5 +139,3 @@ function makeTypeString(typeObj: { [key: string]: any }, column_name: string, pr
   }`
   return typeObj;
 }
-
-// export default resolverStringMaker;
