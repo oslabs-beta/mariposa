@@ -1,8 +1,18 @@
-import React from 'react';
-import styles from '../../styles/LandingPage.module.scss'
+import React, { useState } from 'react';
+// import styles from '../../styles/LandingPage.scss'
 import NavBarLandingPage from './NavBarLandingPage';
+import { WebLoginForm } from '../formComponents/WebLoginForm'
+import { WebRegisterForm } from '../formComponents/WebRegisterForm'
+
 
 function LandingPage() {
+  
+  const[changeToFormDisplay, setChangeToFormDisplay] = useState(false);
+  const[formToDisplay, setFormToDisplay] = useState('login');
+
+  const handleStartNow = () => {
+    setChangeToFormDisplay(true);
+  }  
   function guestLogin() {
     fetch('/api/userLogin', {
       method: 'POST',
@@ -13,21 +23,33 @@ function LandingPage() {
       }
     });
   }
-  
+  console.log(formToDisplay)
+
+
   return (
-    <div className={styles.LandingPageWrapper}>
+    <div className={"LandingPageWrapper"}>
       <NavBarLandingPage />
-      <div className={styles.leftLandingPageWrapper}>
+      <div className={"leftLandingPageWrapper"}>
 
       </div>
-      <h1 id={styles.logo}>REVIS</h1>
-      <div className={styles.rightLandingPageWrapper}>
-        <button type='button' onClick={() => router.replace('/login')}>
+      <h1 id={"logo"}>Mariposa</h1>
+      <div className={"rightLandingPageWrapper"}>
+        {!changeToFormDisplay && ( 
+          <div>
+        <button type='button' onClick={handleStartNow}>
           Start now
         </button>
         <button type='button' onClick={guestLogin}>
-            Free demo
-          </button>
+        Free demo
+      </button>
+      </div>
+        )}
+         {((changeToFormDisplay && 
+          formToDisplay === 'login') && (<WebLoginForm setFormToDisplay = {setFormToDisplay}/>)) ||
+          ((changeToFormDisplay && 
+          formToDisplay === 'register') && (<WebRegisterForm setFormToDisplay = {setFormToDisplay}/>))}
+         
+        
       </div>
     </div>
   );

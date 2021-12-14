@@ -1,9 +1,10 @@
 import React from 'react';
-import styles from '../../styles/LandingPage.module.scss';
+import {Link, Navigate} from 'react-router-dom';
+// import styles from '../../styles/LandingPage.module.scss';
 
 function NavBarLandingPage() {
   return (
-    <div className={styles.NavBar}>
+    <div className={"NavBar"}>
       <button
         type="button"
         onClick={() =>
@@ -14,11 +15,11 @@ function NavBarLandingPage() {
       >
         Documentation
       </button>
-      <button type="button" onClick={() => router.replace('/aboutus')}>
-        About us
+      <button type="button">
+        <Link to="/about"> About us</Link>
       </button>
       <button
-        id={styles.download}
+        id={"download"}
         type="button"
         onClick={() => router.replace('/download')}
       >
