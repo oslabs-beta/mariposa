@@ -20,12 +20,12 @@ export const WebRegisterForm = (props) => {
     dispatch(clearMessage());
   }, [dispatch]);
 
-  useEffect(() => {
-    if(successful){
-      console.log('over here')
-      setTimeout(() => setRedirect(true), 1000)
-    }
-  }, [successful]);
+  // useEffect(() => {
+  //   if(successful){
+  //     console.log('over here')
+  //     setTimeout(() => setRedirect(true), 1000)
+  //   }
+  // }, [successful]);
 
   const initialValues = {
     firstname: "",
@@ -73,6 +73,7 @@ export const WebRegisterForm = (props) => {
       .unwrap()
       .then(() => {
         setSuccessful(true);
+        setRedirect(true);
       })
       .catch(() => {
         setSuccessful(false);
@@ -183,7 +184,7 @@ export const WebRegisterForm = (props) => {
           <span className="spinner-border spinner-border-sm" />
         </div>
       )}
-      {/* {redirect && <Navigate to='/'/>} */}
+      {redirect && <Navigate to="/"/>}
     </div>
   );
 };

@@ -1,5 +1,7 @@
 import React from 'react';
 import NavBarLandingPage from './NavBarLandingPage';
+import {Link, Navigate} from 'react-router-dom';
+
 // import styles from '../../styles/LandingPage.module.scss'
 
 // import router from 'next/router';
@@ -16,10 +18,8 @@ function AboutUs() {
 			<div className={"downloadWrapper"}>
 			<button
 				id={"backButton"}
-				type="button"
-				onClick={() => router.replace('/')}
-			>
-				Back
+				type="button"> 
+				<Link to='/'>Back</Link>
 			</button>
 			</div>
     </div>

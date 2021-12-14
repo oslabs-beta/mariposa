@@ -1,5 +1,6 @@
 @import './colorsAndFonts.scss';
 
+
 .aboutUsWrapper {
 	background-color: var(--background);
 	margin-top: 15vh;
@@ -11,7 +12,7 @@
 
 	#backButton {
 		position: absolute;
-		left: 10%;
+		left: 50%;
 		top: 2%;
 		background-color: transparent;
 		border-color: transparent;

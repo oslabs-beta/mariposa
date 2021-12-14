@@ -1,5 +1,6 @@
 @import './colorsAndFonts.scss';
 
+
 .LandingPageWrapper {
 	@media screen and (max-device-width: 800px) and (orientation: portrait) {
 		flex-direction: column;
@@ -11,6 +12,21 @@
 	justify-content: center;
 	height: 100vh;
 	margin-left: 10%;
+	
+	#backButton {
+		position: absolute;
+		left: 9.5%;
+		top: 2%;
+		background-color: transparent;
+		border-color: transparent;
+		text-decoration: none;
+		font-size: 20px;
+		color: var(--grey);
+		font-family: $fontOfSummaryTitle;
+	}
+	#backButton:hover {
+		cursor: pointer;
+	}
 
 	.NavBar {
 		position: absolute;

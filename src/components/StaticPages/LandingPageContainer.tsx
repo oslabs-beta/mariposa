@@ -1,18 +1,24 @@
 import React, { useState } from 'react';
-// import styles from '../../styles/LandingPage.scss'
 import NavBarLandingPage from './NavBarLandingPage';
+import {Link} from 'react-router-dom';
 import { WebLoginForm } from '../formComponents/WebLoginForm'
 import { WebRegisterForm } from '../formComponents/WebRegisterForm'
 
 
 function LandingPage() {
-  
+  const[hideNavBar, setHideNavBar] = useState(false);
   const[changeToFormDisplay, setChangeToFormDisplay] = useState(false);
   const[formToDisplay, setFormToDisplay] = useState('login');
 
   const handleStartNow = () => {
     setChangeToFormDisplay(true);
+    setHideNavBar(true);
   }  
+
+  const handleBackButton = () => {
+    setChangeToFormDisplay(false);
+    setHideNavBar(false);
+  }
   function guestLogin() {
     fetch('/api/userLogin', {
       method: 'POST',
@@ -20,7 +26,7 @@ function LandingPage() {
     }).then((response) => {
       if (response.status === 200) {
         router.replace('/dashboard');
-      }
+      }7
     });
   }
   console.log(formToDisplay)
@@ -28,11 +34,19 @@ function LandingPage() {
 
   return (
     <div className={"LandingPageWrapper"}>
-      <NavBarLandingPage />
-      <div className={"leftLandingPageWrapper"}>
+      {!hideNavBar ? <NavBarLandingPage /> : 
+      <div>
+      <Link to='/'>
+        <button
+          id={"backButton"}
+          type="button" onClick = {handleBackButton}>Back
+        </button>
+        </Link>
+			</div>}
 
-      </div>
+      <div className={"leftLandingPageWrapper"}>
       <h1 id={"logo"}>Mariposa</h1>
+      </div>
       <div className={"rightLandingPageWrapper"}>
         {!changeToFormDisplay && ( 
           <div>
