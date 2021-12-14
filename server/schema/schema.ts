@@ -243,12 +243,6 @@ type Film {
 
 const resolvers: IResolvers = resolverMaker.generateResolvers(tables, db);
 
-console.log('type defs:', typeDefs);
-console.log('resolvers', resolvers);
-
-console.log(resolverStringMaker.generateResolverString(tables));
-
-
 export const schema: GraphQLSchema = makeExecutableSchema({
   typeDefs,
   resolvers,
