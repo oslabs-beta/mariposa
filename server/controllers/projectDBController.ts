@@ -1,8 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 import { Table } from '../types/DBResponseTypes';
-import { GQLObjectTypeCreator } from '../SQLConversion/GQLObjectTypeCreator';
-import { GQLQueryTypeCreator } from '../SQLConversion/GQLQueryTypeCreator';
-import { GQLMutationTypeCreator } from '../SQLConversion/GQLMutationTypeCreator';
 import rowsToTable from '../SQLConversion/SQLQueryHelpers';
 import { IResolvers } from '@graphql-tools/utils';
 import resolverMaker from '../SQLConversion/resolverMaker';
