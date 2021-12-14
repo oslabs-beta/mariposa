@@ -1,6 +1,6 @@
 //helper function to shape response array of Table objects
 
-import { D3Column, D3Schema, D3Table, DBQueryResponse, Table } from "../types/Table";
+import { D3Column, D3Schema, D3Table, DBQueryResponse, Table } from "../types/DBResponseTypes";
 
 /***modified queryResult to type any[]***/
 export function rowsToTable(queryResult: DBQueryResponse[]): Table[] {

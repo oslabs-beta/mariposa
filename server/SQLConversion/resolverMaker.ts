@@ -1,9 +1,8 @@
 import { IResolvers } from "@graphql-tools/utils";
 import { PoolWrapper } from "../types/PoolWrapper";
-import { Table } from "../types/Table";
+import { Table } from "../types/DBResponseTypes";
 import { SQLConversionHelpers } from './SQLConversionHelpers'
 const {checkIsTableJoin, inObjectTypeCase, queryPluralCase, querySingularCase} = SQLConversionHelpers;
-
 
 const resolverMaker = {
   generateResolvers(tables: Table[], db: PoolWrapper): IResolvers {

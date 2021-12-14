@@ -1,7 +1,7 @@
 //helper function to shape response array of Table objects
 /***modified queryResult to type any[]***/
 
-import {DBQueryResponse, Table } from '../types/Table';
+import {DBQueryResponse, Table } from '../types/DBResponseTypes';
 
 export default function rowsToTable(queryResult: any[]): Table[] {
   const tablesObject = queryResult.reduce((tablesObject: { [key: string]: Table }, curr: DBQueryResponse) => {

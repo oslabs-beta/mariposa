@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { Table } from '../types/Table';
+import { Table } from '../types/DBResponseTypes';
 import { GQLObjectTypeCreator } from '../SQLConversion/GQLObjectTypeCreator';
 import { GQLQueryTypeCreator } from '../SQLConversion/GQLQueryTypeCreator';
 import { GQLMutationTypeCreator } from '../SQLConversion/GQLMutationTypeCreator';
@@ -8,6 +8,7 @@ import { IResolvers } from '@graphql-tools/utils';
 import resolverMaker from '../SQLConversion/resolverMaker';
 import db from '../models/projectDB';
 import { resolverStringMaker } from '../SQLConversion/resolverStringMaker';
+import { typeDefMaker } from '../SQLConversion/typeDefMaker';
 
 
 export const projectDBController = {
@@ -62,44 +63,17 @@ export const projectDBController = {
       });
     }
   },
-  createObjectTypes(req: Request, res: Response, next: NextFunction) {
+  buildTypeDefs(req: Request, res: Response, next: NextFunction) {
     const arrayOfTableObjects = rowsToTable(res.locals.userDbResponse);
     res.locals.tablesArray = arrayOfTableObjects;
-
-    let objectTypes = "";
-    //iterate through array and extract each table object, feed tablename and columns into helper function  
-    arrayOfTableObjects.forEach((tableObject: Table) => {
-      objectTypes += GQLObjectTypeCreator(tableObject);
-    });
-    res.locals.typeDefs = objectTypes;
-    return next();
-  },
-  createQueryTypes(req: Request, res: Response, next: NextFunction) {
-    const arrayOfTableObjects = res.locals.tablesArray;
-    let queryTypes = 'type Query {';
-   
-    arrayOfTableObjects.forEach((tableObject: Table) => {
-      queryTypes += GQLQueryTypeCreator(tableObject);
-    });
-    queryTypes += '\n}';
-    res.locals.typeDefs += queryTypes;
-    return next();
-  },
-  createMutationsTypes(req: Request, res: Response, next: NextFunction){
-    const arrayOfTableObjects = res.locals.tablesArray;
-    let mutationTypes = `type Mutation {`;
-    arrayOfTableObjects.forEach((tableObject: Table) => {
-      mutationTypes += GQLMutationTypeCreator(tableObject);
-    });
-    mutationTypes = mutationTypes.substring(0, mutationTypes.length - 1) + '\n}';
-    res.locals.typeDefs += mutationTypes;
+    res.locals.typeDefs = typeDefMaker.generateTypes(arrayOfTableObjects);
     return next();
   },
   buildResolvers(req: Request, res: Response, next: NextFunction) {
     const arrayOfTableObjects: Table[] = res.locals.tablesArray;
     const db = res.locals.db;
     const resolvers: IResolvers = resolverMaker.generateResolvers(arrayOfTableObjects, db);
-    const resolverString: string = resolverStringMaker.generateResolverString(arrayOfTableObjects);
+    const resolverString: object = resolverStringMaker.generateResolverString(arrayOfTableObjects);
     res.locals.resolvers = resolvers;
     res.locals.resolverString = resolverString;
     return next();

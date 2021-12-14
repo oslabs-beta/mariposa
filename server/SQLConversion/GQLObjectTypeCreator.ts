@@ -1,5 +1,5 @@
 import { SQLConversionHelpers } from './SQLConversionHelpers'
-import { Table, Column } from '../types/Table';
+import { Table, Column } from '../types/DBResponseTypes';
 const { checkIsTableJoin, fieldValueCreator, inObjectTypeCase } = SQLConversionHelpers;
 
 // IF IN JOIN TABLE IT's an [TYPE], othersie TYPE

@@ -1,10 +1,10 @@
-import { Table } from "../types/Table";
+import { Table } from "../types/DBResponseTypes";
 import { SQLConversionHelpers } from './SQLConversionHelpers';
 const { checkIsTableJoin, inObjectTypeCase, queryPluralCase, querySingularCase } = SQLConversionHelpers;
 
 
 export const resolverStringMaker = {
-  generateResolverString(tables: Table[]): any {
+  generateResolverString(tables: Table[]): {[key: string]: {[key: string]: string}} {
     const resolver = tables.reduce((acc: { [key: string]: { [key: string]: string } }, curr: Table) => {
       const { tablename, columns } = curr;
       if (!checkIsTableJoin(columns)) {
