@@ -43,7 +43,7 @@ function TreeChart() {
   //do the get request, obtaint the res.locals. setTreeData(res.locals.)
   useEffect (() => {
   fetch('/project/D3tables', {
-    method: 'GET',
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     }
