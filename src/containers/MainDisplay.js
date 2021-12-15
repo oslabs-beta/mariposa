@@ -33,20 +33,20 @@ export const MainDisplay = (props) => {
         style={
           {
             minWidth: "100%",
-            height: "94vh",
-            padding: '.8% .5% .5% .5%'
+            height: "91vh",
+            padding: '.8% 2% .5% .5%'
           }
         }>
         <Grid 
           item
           xs={6}
-          md={6}
+          md={10}
         >
-        <Graph></Graph> //???????
+        <Graph></Graph>
         </Grid>
         <Grid item
           xs={6}
-          md={6}
+          md={2}
         >
           <Resolvers/>
         </Grid>

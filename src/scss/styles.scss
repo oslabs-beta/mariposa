@@ -9,15 +9,19 @@ body {
 .graphD3 {
   height: 100%;
   width: 100%;
-  padding-left: 20px;
 }
 
+#container {
+  width: 100%;
+  height: 100%;
+}
 .resolverText {
   margin-top: 4%;
 }
 
 .resolvers {
   height: 93%;
+  width: 95%;
   border-radius: 5px;
   box-shadow: pink;
 }
@@ -25,8 +29,8 @@ body {
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: montserrat, sans-serif;
+  //box-sizing: border-box;
+  // font-family: montserrat, sans-serif;
 }
 
 input,
