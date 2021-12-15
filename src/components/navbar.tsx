@@ -16,7 +16,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Popper from '@mui/base/PopperUnstyled';
 import UseInput from './Urlsubmit';
 
-const pages = ['URI', 'Metrics', 'Toggle Tree View', 'Team', 'Signout'];
+const pages = ['URI', 'Sandbox'];
 const settings = ['Logout'];
 
 const ResponsiveAppBar = (props: any) => {
@@ -49,8 +49,8 @@ const ResponsiveAppBar = (props: any) => {
 
   const handleCloseNavMenu = () => {
     // setAnchorElNav(null);
-    setRedirect(true);
-    // window.open('/graphql', '_blank')
+    //setRedirect(true);
+    window.open('/graphql', '_blank')
     // (props.graphiql) ? props.setGraphiql(false) : props.setGraphiql(true);
   };
 

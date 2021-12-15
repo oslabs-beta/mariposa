@@ -1,6 +1,6 @@
 const { buildSchema } = require('graphql');
 import { SQLConversionHelpers } from './SQLConversionHelpers'
-import { Table, Column } from '../types/Table';
+import { Table, Column } from '../types/DBResponseTypes';
 import { tables } from '../types/dummyTables';
 const {checkIsTableJoin, fieldValueCreator, inObjectTypeCase, queryPluralCase, querySingularCase} = SQLConversionHelpers;
 

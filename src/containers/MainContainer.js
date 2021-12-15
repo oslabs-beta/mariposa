@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, HashRouter, Route, Routes } from 'react-router-dom'
-
-import { LoginForm } from '../components/oldFormComponents/LoginForm';
-import { RegisterForm } from '../components/oldFormComponents/RegisterForm';
-import { MainDisplay } from './MainDisplay';
+import LandingPage from '../components/landingPage';
+import { LoginForm } from '../components/formComponents/LoginForm';
+import { RegisterForm } from '../components/formComponents/RegisterForm';
+import App from '../react';
 
 
 export const MainContainer = () => {
@@ -20,7 +20,7 @@ export const MainContainer = () => {
         />
         <Route 
         exact path = "/main" 
-        element ={<MainDisplay/>} 
+        element ={<App/>} 
         />
       </Routes>
     </HashRouter>
