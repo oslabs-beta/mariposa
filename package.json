@@ -90,8 +90,10 @@
     "redux-starter-kit": "^2.0.0",
     "sass": "^1.43.4",
     "sass-loader": "^12.4.0",
+    "start-server-webpack-plugin": "^2.2.5",
     "styled-components": "^5.3.3",
     "ts-node": "^10.4.0",
+    "webpack-node-externals": "^3.0.0",
     "yup": "^0.32.11"
   }
 }

@@ -1,4 +1,3 @@
-import { urlencoded } from "express";
 import { Pool, QueryResult } from "pg";
 
 export class PoolWrapper {
@@ -15,17 +14,19 @@ export class PoolWrapper {
     console.log('executed query', text);
     return new Promise((resolve, reject) => {
       this.pool.query(text, params, (err, res) => {
-        if(err) return reject(err);
+        if (err) return reject(err);
         else {
           resolve((res));
         }
       });
-    }); 
+    });
   }
   updateUri = (uri: string) => {
-    this.pg_uri = uri;
-    this.pool = new Pool({
-      connectionString: uri,
-    });
+    if (this.pg_uri !== uri) {
+      this.pg_uri = uri;
+      this.pool = new Pool({
+        connectionString: uri,
+      });
+    }
   }
 }
