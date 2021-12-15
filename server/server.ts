@@ -9,7 +9,7 @@ for user db/graphql migration*/
 const jwt = require('jsonwebtoken');
 const app = express();
 const PORT = 3000;
-const GRAPHQL_PORT = 3001;
+// const GRAPHQL_PORT = 3001;
 
 const graphiql = graphqlHTTP({
   schema,
