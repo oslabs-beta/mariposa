@@ -49,8 +49,8 @@ const ResponsiveAppBar = (props: any) => {
 
   const handleCloseNavMenu = () => {
     // setAnchorElNav(null);
-    //setRedirect(true);
-    window.open('/graphql', '_blank')
+    setRedirect(true);
+    //window.open('/graphql', '_blank')
     // (props.graphiql) ? props.setGraphiql(false) : props.setGraphiql(true);
   };
 
