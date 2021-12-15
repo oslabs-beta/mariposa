@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link, Navigate} from 'react-router-dom';
 import MariposaLogo from '../../assets/MariposaLogo.png';
+// import styles from '../../styles/LandingPage.module.scss'
+
 // import formik and yup libraries for form validation
 import {Formik, Field, Form, ErrorMessage} from "formik";
 import * as Yup from "yup";
@@ -11,8 +13,9 @@ import {login} from "../../slices/authentication";
 // import reducer - clearMessage
 import {clearMessage} from "../../slices/messages";
 
-export const LoginForm = (props) => { // disable login submit button if loading
-  const [loading, setLoading] = useState(false);
+export const WebLoginForm = (props) => { // disable login submit button if loading
+const {setFormToDisplay} = props;  
+const [loading, setLoading] = useState(false);
   const [redirect, setRedirect] = useState(false);
 
 
@@ -55,19 +58,23 @@ export const LoginForm = (props) => { // disable login submit button if loading
     console.log("we're loggedin")// return <Redirect to="/profile" />;
   }
 
+  const handleFormDisplay = () => setFormToDisplay('register');
+  
+  
 
   return (
-    <div>
+    <div className="rightLandingPageWrapper">
+      <div className="form-box">
       <Formik initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleLogin}
         //handlelogin dispatches login() thunk
       >
-        <div className="form-box">
+        <div>
           <Form>
-            <div id="login-logo">  
-              <img src={MariposaLogo}/>
-            </div>
+            <p id="sign-in-text">  
+              Sign In
+            </p>
             <div className="form-group">
               <label htmlFor="username">Username</label>
               <Field name="username" type="text" className="form-control"/>
@@ -87,14 +94,16 @@ export const LoginForm = (props) => { // disable login submit button if loading
             }
               Login
             </button>
-            <p className="form-group">
-            Don't have account? <Link to="/register">Register</Link>
-            </p>
+            
           </Form>
          
         </div>
       </Formik>
-          
+      <p className="form-group">
+       Don't have account? <button type = "submit" onClick={handleFormDisplay} >Register</button>
+      </p>
+      </div>
+        
       {
       message && (
         <div className="form-group">
