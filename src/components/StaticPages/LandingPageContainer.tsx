@@ -3,7 +3,7 @@ import NavBarLandingPage from './NavBarLandingPage';
 import {Link} from 'react-router-dom';
 import { WebLoginForm } from '../formComponents/WebLoginForm'
 import { WebRegisterForm } from '../formComponents/WebRegisterForm'
-import MariposaLogo from '../../assets/image2vector.svg';
+import MariposaLogo from '../../assets/MariposaLogo.svg';
 
 
 

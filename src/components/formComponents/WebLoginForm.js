@@ -63,7 +63,7 @@ const [loading, setLoading] = useState(false);
   
 
   return (
-    <div>
+    <div className="rightLandingPageWrapper">
       <div className="form-box">
       <Formik initialValues={initialValues}
         validationSchema={validationSchema}

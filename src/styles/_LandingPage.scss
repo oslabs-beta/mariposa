@@ -102,6 +102,10 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		min-height: 480px;
+		width: 380px;
+
+
 
 		h2 {
 			width: 60%;
@@ -173,5 +177,16 @@
 				opacity: 1;
 			}
 		}
+		.form-box{
+			  width: 70vh;
+			  min-height: 480px;
+			  position: relative;
+			  margin: 6% auto;
+			  background: rgba(255, 255, 255, 0.687);
+			  padding: 5px;
+			  border-radius: 10px;
+			  border: solid 2px #df29df;
+			  box-shadow: 1px 3px 10px #2583b6;
+			}
 	}
 }

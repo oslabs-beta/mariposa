@@ -16,7 +16,7 @@ function NavBarLandingPage() {
         Documentation
       </button>
       <button type="button">
-        <Link to="/about"> About us</Link>
+        <Link to="/about"> The Team</Link>
       </button>
       <button
         id={"download"}

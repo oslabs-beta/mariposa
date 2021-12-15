@@ -8,11 +8,11 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	color: var(--grey);
+	color: white;
 
 	#backButton {
 		position: absolute;
-		left: 50%;
+		left: 5%;
 		top: 2%;
 		background-color: transparent;
 		border-color: transparent;
@@ -49,21 +49,21 @@
 		width: 70%;
 		text-align: center;
 	}
-	#meetTheTeam {
-		background-color: var(--green);
-		font-family: $fontOfButtons;
-		color: var(--background);
-		border-radius: 4px;
-		border: none;
-		padding: 2vh;
-		font-size: 2vh;
-		margin-top: 5vh;
-		cursor: pointer;
-	}
+	// #meetTheTeam {
+	// 	background-color: blue;
+	// 	font-family: $fontOfButtons;
+	// 	color: var(--background);
+	// 	border-radius: 4px;
+	// 	border: none;
+	// 	padding: 2vh;
+	// 	font-size: 2vh;
+	// 	margin-top: 5vh;
+	// 	cursor: pointer;
+	// }
 	#theTeam {
 		margin-top: 10vh;
 		font-family: $fontOfMetrics;
-		font-size: 4vh;
+		font-size: vh;
 	}
 	.team {
 		height: 10vh;
@@ -85,76 +85,33 @@
 			$pictureHeight: 25vh;
 			$backgroundSize: 25vw;
 
-			@media screen and (max-device-width: 2600px) {
-				$pictureWidth: 25vh;
-				$pictureHeight: 25vh;
-				$backgroundSize: 25vh;
+			#profilePic {
+				// background-image: url('../assets/image0.png');
+				height: 20vh;
+				width: 20vh;
+				border-radius: 50%;
+				background-repeat: no-repeat;
 			}
-
-			@media screen and (max-device-width: 1200px) {
-				$pictureWidth: 10vh;
-				$pictureHeight: 10vh;
-				$backgroundSize: 12vh;
+		}
+		.contactIcons {
+			display: flex;
+			gap: 1vh;
+			#linkedin {
+				background-size: 3vh;
+				width: 3vh;
+				height: 3vh;
+				border: none;
+				background-color: transparent;
+				cursor: pointer;
 			}
-		
-
-		// 	#chao {
-		// 		background-image: url('../components/StaticPages/IMG_0978\ \(1\).PNG');
-		// 		background-size: $backgroundSize;
-		// 		height: $pictureHeight;
-		// 		width: $pictureWidth;
-		// 		border-radius: 50%;
-		// 		background-repeat: no-repeat;
-		// 	}
-
-		// 	#jason {
-		// 		background-image: url(../components/StaticPages/image0.png);
-		// 		background-size: $backgroundSize;
-		// 		height: $pictureHeight;
-		// 		width: $pictureWidth;
-		// 		border-radius: 50%;
-		// 		background-repeat: no-repeat;
-		// 	}
-
-		// 	#liam {
-		// 		background-image: url(../components/StaticPages/IMG_1914.jpg);
-		// 		background-size: $backgroundSize;
-		// 		height: $pictureHeight;
-		// 		width: $pictureWidth;
-		// 		border-radius: 50%;
-		// 		background-repeat: no-repeat;
-		// 	}
-
-		// 	#mercedes {
-		// 		background-image: url(../components/StaticPages/Mercedes.png);
-		// 		background-size: $backgroundSize;
-		// 		height: $pictureHeight;
-		// 		width: $pictureWidth;
-		// 		border-radius: 50%;
-		// 		background-repeat: no-repeat;
-		// 	}
-		// }
-		// .contactIcons {
-		// 	display: flex;
-		// 	gap: 1vh;
-		// 	#linkedin {
-		// 		background-image: url(../components/StaticPages/61109.png);
-		// 		background-size: 3vh;
-		// 		width: 3vh;
-		// 		height: 3vh;
-		// 		border: none;
-		// 		background-color: transparent;
-		// 		cursor: pointer;
-		// 	}
-		// 	#github {
-		// 		background-image: url(../components/StaticPages/25231.png);
-		// 		background-size: 3vh;
-		// 		width: 3vh;
-		// 		height: 3vh;
-		// 		border: none;
-		// 		background-color: transparent;
-		// 		cursor: pointer;
-		// 	}
+			#github {
+				background-size: 3vh;
+				width: 3vh;
+				height: 3vh;
+				border: none;
+				background-color: transparent;
+				cursor: pointer;
+			}
 		}
 	}
 }

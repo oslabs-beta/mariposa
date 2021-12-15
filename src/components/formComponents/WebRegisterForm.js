@@ -77,6 +77,7 @@ export const WebRegisterForm = (props) => {
 
 
   return (
+    <div className="rightLandingPageWrapper">
     <div className="form-box">
         <Formik
           initialValues={initialValues}
@@ -181,6 +182,7 @@ export const WebRegisterForm = (props) => {
       )}
       {successful && setTimeout(() => setFormToDisplay('login'), 1000)}
 
+    </div>
     </div>
   );
 };
