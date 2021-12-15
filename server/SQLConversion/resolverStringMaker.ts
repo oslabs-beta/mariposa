@@ -16,7 +16,7 @@ export const resolverStringMaker = {
         }
         for (let i = 0; i < columns.length; i++) {
           const { constraint_type, column_name, primary_table, primary_column } = columns[i];
-          if(constraint_type === 'FOREIGN KEY' && primary_table && primary_table && primary_column) {
+          if (constraint_type === 'FOREIGN KEY' && primary_table && primary_table && primary_column) {
             acc[tab] = makeTypeString(acc[tab], column_name, primary_table, primary_column);
           }
         }
@@ -29,9 +29,9 @@ export const resolverStringMaker = {
     });
 
     let resolverString = '';
-    for(const [key, value] of Object.entries(resolver)) {
+    for (const [key, value] of Object.entries(resolver)) {
       resolverString += `${key}: {\n`;
-      for(const [item, string] of Object.entries(value)) {
+      for (const [item, string] of Object.entries(value)) {
         resolverString += `  ${item}: ${string},\n`
       }
       resolverString += `},\n`
@@ -45,28 +45,26 @@ function makeQueryString(queryObj: { [key: string]: string }, table: Table): { [
 
   queryObj[queryPluralCase(tablename)] = `async () => {
     try {
-      const query = \`SELECT * FROM ${tablename}\`;
-      const result = await db.query(query);
-      return result.rows;
-    } catch (err) {
-      console.log(err)
+      const query = \`SELECT * FROM ${tablename}\`; 
+      const result = await db.query(query); 
+      return result.rows; 
+    } catch (err) { 
       /* INSERT YOUR ERROR HANDLING HERE */
-    }
+    } 
   }`
 
   for (let i = 0; i < columns.length; i++) {
     const { constraint_type, column_name } = columns[i];
     if (constraint_type === "PRIMARY KEY") {
       // person, film, planet, etc.
-      queryObj[querySingularCase(tablename)] = `async (parent: any, args: { [key: string]: any }) => {
-        try {
-          const query = \`SELECT * FROM ${tablename} WHERE ${column_name} = $1\`;
-          const result = await db.query(query, [args[\"${column_name}\"].toString()]);
-          return result.rows[0];
-        } catch (err) {
-          console.log(err)
-          /* INSERT YOUR ERROR HANDLING HERE */
-        }
+      queryObj[querySingularCase(tablename)] = `async (parent: any, args: { [key: string]: any }) => { 
+        try { 
+          const query = \`SELECT * FROM ${tablename} WHERE ${column_name} = $1\`; 
+          const result = await db.query(query, [args[\"${column_name}\"].toString()]); 
+          return result.rows[0]; 
+        } catch (err) { 
+          /* INSERT YOUR ERROR HANDLING HERE */ 
+        } 
       }`
       break;
     }
