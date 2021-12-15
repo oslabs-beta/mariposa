@@ -13,11 +13,11 @@ export const App = () => {
     <Router>
     <Routes>
     <Route 
-      exact path = {"/main"} 
+      exact path = {"/"} 
       element ={<LandingPageContainer />} 
       />
     <Route 
-      exact path = "/" 
+      exact path = "/about" 
       element ={<AboutUs/>} 
       />
       <Route 
