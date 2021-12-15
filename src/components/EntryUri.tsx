@@ -7,27 +7,12 @@ const EntryUri = (props:any) => {
   const [uri, setUri] = useState('');
   
   const handleClickCustom = () => {
-    fetch('/project/D3tables', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ uri: uri})
-    })
+    props.setUriString(uri);
+    props.setUriBoolean(true);
   }
 
   const handleClickSample = () => {
-    fetch('/project/D3tables', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ uri: uri})
-    })
-    .then(() =>{
-      console.log('clicked', props);
-      props.setUriBoolean(true)
-    })
+    props.setUriBoolean(true)
   }
 
  return (
@@ -41,3 +26,4 @@ const EntryUri = (props:any) => {
 }
 
 export default EntryUri;
+

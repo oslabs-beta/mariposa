@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import Paper from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {Controlled as CodeMirror} from 'react-codemirror2'
+import { UnControlled as CodeMirror } from 'react-codemirror2';
+import 'codemirror/mode/javascript/javascript';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
-import { left } from '@popperjs/core';
 const theme = createTheme({ palette: { mode: 'light' } });
+//import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/material.css';
+import Highlighter from './CodeHighlight.tsx';
+import { javascript } from 'webpack';
+
 
 
 export default function Resolvers() {
@@ -62,24 +67,15 @@ export default function Resolvers() {
       <ButtonGroup variant="outlined" aria-label="outlined button group">
         <Button onClick={() => setResolver(false)}>Schema</Button>
         <Button onClick={() => setResolver(true)}>Resolvers</Button>
-        <Button><ContentPasteIcon /></Button>
+        <Button onClick={() => {navigator.clipboard.writeText((resolver) ?  schema : text)}}><ContentPasteIcon /></Button>
       </ButtonGroup>
       </Box>
       <Box style={{backgroundColor: 'rgb(245, 234, 234)', margin:'0% 1% 0% 3%', width: '100%', height: '89%', maxHeight:'89%', overflow: "scroll", padding: "30px 0px 0px 20px"}}>
         <NewlineText text={((resolver) ?  schema : text)} />
-        {/* <CodeMirror
-        value={((resolver) ?  JSON.stringify(schema) : JSON.stringify(text))}
-        options={{
-          mode: 'javascript',
-          // lineNumbers: true,
-          lineWrapping: false,
-        }}
-      /> */}
+      {/* <Highlighter content={(resolver) ?  schema : text} language={'javascript'}> </Highlighter> */}
       </Box>
     </div>
   </Paper>
   </ThemeProvider>
  )
 }
-
-// onClick={() => {navigator.clipboard.writeText(this.state.textToCopy)}}

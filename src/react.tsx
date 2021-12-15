@@ -19,33 +19,12 @@ export default function App() {
 const [graphiql, setGraphiql] = useState(false)
 //conditional rendering for entering a URI 
 const [uriBoolean, setUriBoolean] = useState(false)
-
-
-// const Login = (details: { email: string; password: string; name: any; }) => {
-//   console.log(details);
-//   if (details.email == adminUser.email && details.password == adminUser.password) {
-//   console.log("Logged In");
-//   setUser({
-//       name: details.name,
-//       email: details.email,
-//       isLoggedIn: true
-//   });
-// } else {
-//   console.log("wrong details")
-//   setError("wrong details")
-// }
-// }  
-
-// // reset the state on logout
-// const Logout = () => {
-//   //console.log("logout");
-//   setUser({name: "", email: "", isLoggedIn: false});
-// }
-
+//hold the string for the URI
+const [uriString, setUriString] = useState('')
 
   return (
     <div> 
-    {(uriBoolean) ? <LandingPage graphiql={graphiql} setGraphiql={setGraphiql}/> : <EntryUri uriBoolean={uriBoolean} setUriBoolean={setUriBoolean}/>}
+    {(uriBoolean) ? <LandingPage graphiql={graphiql} setGraphiql={setGraphiql} setUriString={setUriString}/> : <EntryUri uriBoolean={uriBoolean} setUriBoolean={setUriBoolean} setUriString={setUriString}/>}
     </div>
 
  )

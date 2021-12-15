@@ -21,10 +21,10 @@ export default function graph() {
   opacity: '0.85'
 }}>
     <div className='graphD3'>
-      {/* <Tree/> */}
-      <G6Tree />
+      <Tree/>
+      {/* <G6Tree /> */}
     </div>
-    <Button style={{position: 'absolute', bottom: '0%', right: '0%'}} ><OpenInFullIcon /></Button>
+    
   </Paper>
   </ThemeProvider>
  )
