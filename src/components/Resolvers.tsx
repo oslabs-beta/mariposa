@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
+import { left } from '@popperjs/core';
 const theme = createTheme({ palette: { mode: 'light' } });
 
 
@@ -29,7 +30,7 @@ export default function Resolvers() {
       .then(data => {
         console.log(data.typeDefs);
         setText(data.typeDefs);
-        setSchema(JSON.stringify(data.resolverString));
+        setSchema(data.resolverString);
     })
     }, [])
   
@@ -44,10 +45,8 @@ export default function Resolvers() {
   border: "gray",
   minWidth: "100%",
   height: "100%",
+  // paddingLeft: "5%",
   maxHeight: '97vh',
-  display: 'inline-block',
-  overflow: 'auto'
-  // position: 'relative'
 }}>
     <div className='resolvers' >
       <Box
@@ -63,20 +62,20 @@ export default function Resolvers() {
       <ButtonGroup variant="outlined" aria-label="outlined button group">
         <Button onClick={() => setResolver(false)}>Schema</Button>
         <Button onClick={() => setResolver(true)}>Resolvers</Button>
+        <Button><ContentPasteIcon /></Button>
       </ButtonGroup>
       </Box>
-      <Box style={{backgroundColor: 'rgb(245, 234, 234)', margin:'0% 1% 0% 3%', width: '94%', height: '89%', maxHeight:'89%', overflow: "scroll", padding: "30px 0px 0px 20px"}}>
+      <Box style={{backgroundColor: 'rgb(245, 234, 234)', margin:'0% 1% 0% 3%', width: '100%', height: '89%', maxHeight:'89%', overflow: "scroll", padding: "30px 0px 0px 20px"}}>
         <NewlineText text={((resolver) ?  schema : text)} />
         {/* <CodeMirror
-        value={((resolver) ?  schema : text)}
+        value={((resolver) ?  JSON.stringify(schema) : JSON.stringify(text))}
         options={{
           mode: 'javascript',
           // lineNumbers: true,
-          lineWrapping: true,
+          lineWrapping: false,
         }}
       /> */}
       </Box>
-      <Button style={{position: 'absolute', bottom: '0%', right: '0%'}} ><ContentPasteIcon /></Button>
     </div>
   </Paper>
   </ThemeProvider>

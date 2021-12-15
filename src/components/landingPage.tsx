@@ -14,6 +14,7 @@ import Sandbox from './sandbox.tsx';
 //add the conditional rendering right under the Grid
 
 export default function LandingPage(props:any) {
+  
   return (
 
   <>
@@ -24,18 +25,12 @@ export default function LandingPage(props:any) {
   height: "94vh",
   padding: '.8% .5% .5% .5%'
 }}>
-  <Grid item xs={6} md={10} >
+  <Grid item xs={6} md={9} >
   <Graph></Graph>
   </Grid>
-  <Grid item xs={6} md={2} >
+  <Grid item xs={6} md={3} >
   <Resolvers />
   </Grid>
-  {/* <Grid  item xs={6} md={6}>
-  <Graph></Graph>
-  </Grid>
-  <Grid item xs={6} md={6}>
-    <Graph></Graph>
-  </Grid> */}
 </Grid> :
   <div></div>}
   </>

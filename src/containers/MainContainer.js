@@ -3,6 +3,7 @@ import { BrowserRouter as Router, HashRouter, Route, Routes } from 'react-router
 import LandingPage from '../components/landingPage';
 import { LoginForm } from '../components/formComponents/LoginForm';
 import { RegisterForm } from '../components/formComponents/RegisterForm';
+import App from '../react';
 
 
 export const MainContainer = () => {
@@ -19,7 +20,7 @@ export const MainContainer = () => {
         />
         <Route 
         exact path = "/main" 
-        element ={<LandingPage/>} 
+        element ={<App/>} 
         />
       </Routes>
     </HashRouter>
