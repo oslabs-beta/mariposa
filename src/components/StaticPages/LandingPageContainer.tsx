@@ -3,6 +3,8 @@ import NavBarLandingPage from './NavBarLandingPage';
 import {Link} from 'react-router-dom';
 import { WebLoginForm } from '../formComponents/WebLoginForm'
 import { WebRegisterForm } from '../formComponents/WebRegisterForm'
+import MariposaLogo from '../../assets/image2vector.svg';
+
 
 
 function LandingPage() {
@@ -49,18 +51,20 @@ function LandingPage() {
 			</div>}
 
       <div className={"leftLandingPageWrapper"}>
-      <h1 id={"logo"}>Mariposa</h1>
+        <img id ={"logo"} src={MariposaLogo} style={{ width: '100vh' }}/>
       </div>
       <div className={"rightLandingPageWrapper"}>
         {!changeToFormDisplay && ( 
-          <div>
-            <h2>This APP WILL CHANGE YOUR LIFE</h2>
-        <button type='button' onClick={handleStartNow}>
+          <div className={"rightLandingPageWrapper"}>
+            <h2>A Restful API to GraphQL Migration Tool</h2>
+        <div className="buttonDiv">
+        <button type='button' className='neon-button' onClick={handleStartNow}>
           Start now
         </button>
-        <button type='button' onClick={guestLogin}>
+        <button type='button' className='neon-button' onClick={guestLogin}>
         Free demo
       </button>
+      </div>
       </div>
         )}
          {((changeToFormDisplay && 

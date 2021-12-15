@@ -112,7 +112,7 @@ const [loading, setLoading] = useState(false);
         </div>
         
       )} 
-      {/* {redirect && <Navigate to='/main'/>} */}
+      {redirect && <Navigate to='/main'/>}
       </div>
   );
 };

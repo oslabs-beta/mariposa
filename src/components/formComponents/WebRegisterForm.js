@@ -38,7 +38,7 @@ export const WebRegisterForm = (props) => {
         "The username must be between 8 and 20 characters.",
         (val) =>
           val &&
-          val.toString().length >= 8 &&
+          val.toString().length >= 1 &&
           val.toString().length <= 20
       )
       .required("This field is required!"),
@@ -51,7 +51,7 @@ export const WebRegisterForm = (props) => {
         "The password must be between 8 and 40 characters.",
         (val) =>
           val &&
-          val.toString().length >= 8 &&
+          val.toString().length >= 1 &&
           val.toString().length <= 40
       )
       .required("This field is required!"),

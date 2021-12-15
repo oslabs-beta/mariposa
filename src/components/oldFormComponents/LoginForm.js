@@ -66,7 +66,7 @@ export const LoginForm = (props) => { // disable login submit button if loading
         <div className="form-box">
           <Form>
             <div id="login-logo">  
-              <img src={MariposaLogo}/>
+              <img src={MariposaLogo} style={{ height: '200px', width: '36px' }}/>
             </div>
             <div className="form-group">
               <label htmlFor="username">Username</label>

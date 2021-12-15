@@ -18,7 +18,17 @@ module.exports = {
       test: /\.(png|jpe?g|gif)$/i,
       use: [{ loader: 'file-loader' }],
     },
-    ]
+    {
+      test: /\.svg$/,
+      use: [
+        {
+          loader: 'svg-url-loader',
+          options: {
+            limit: 10000,
+          },
+        }
+     ]
+    }]
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
