@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Paper from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { UnControlled as CodeMirror } from 'react-codemirror2';
-import 'codemirror/mode/javascript/javascript';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 const theme = createTheme({ palette: { mode: 'light' } });
-//import 'codemirror/lib/codemirror.css';
-import 'codemirror/theme/material.css';
-import Highlighter from './CodeHighlight.tsx';
-import { javascript } from 'webpack';
+
 
 
 
