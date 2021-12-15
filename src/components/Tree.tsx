@@ -43,7 +43,7 @@ function TreeChart() {
   //do the get request, obtaint the res.locals. setTreeData(res.locals.)
   useEffect (() => {
   fetch('/project/D3tables', {
-    method: 'GET',
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     }
@@ -63,7 +63,7 @@ function TreeChart() {
   return (
     // `<Tree />` will fill width/height of its container; in this case `#treeWrapper`.
     <div id="treeWrapper" style={{ width: '100%', height: '100%' }}>
-        <Tree data={treeData} orientation="horizontal" pathFunc ='step' nodeSize ={{ x: 180, y: 140 }} shouldCollapseNeighborNodes= 'false' />
+        <Tree data={treeData} orientation="horizontal" pathFunc ='step' nodeSize ={{ x: 100, y: 140 }} shouldCollapseNeighborNodes= 'false' />
     </div>
   );
 }

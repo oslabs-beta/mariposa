@@ -3,21 +3,24 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: process.env.NODE_ENV,//'development',
-  entry: './src/react.tsx',
+  entry: './src/index.tsx',
   target: 'electron-renderer',
   devtool: 'source-map',
   module: {
     rules: [{
       test: /\.(js|ts|tsx)$/,
       // include: /src/,
-      exclude: /node_modules/,
       use: [{ loader: 'babel-loader' }]
     },
     {
-      test: /\.s[ac]ss$/,
-      exclude: /node_modules/,
+      test: /\.(sass|css|scss)$/,
       use: ['style-loader', 'css-loader', 'sass-loader']
-    },]
+    },
+    {
+      test: /\.(png|jpe?g|gif)$/i,
+      use: [{ loader: 'file-loader' }],
+    },
+    ]
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

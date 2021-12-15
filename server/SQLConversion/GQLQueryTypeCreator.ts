@@ -1,6 +1,6 @@
 const { buildSchema } = require('graphql');
 import { SQLConversionHelpers } from './SQLConversionHelpers'
-import { Table, Column } from '../types/Table';
+import { Table, Column } from '../types/DBResponseTypes';
 import { tables } from '../types/dummyTables';
 const {checkIsTableJoin, fieldValueCreator, inObjectTypeCase, queryPluralCase, querySingularCase} = SQLConversionHelpers;
 
@@ -25,8 +25,6 @@ export const GQLQueryTypeCreator = (tableObject: Table): string => {
       querySingularType = querySingularType.substring(0, querySingularType.length - 1) + `): ${typeObject}!`; 
       queryType += queryPluralType + querySingularType;
     }
-    // console.log(queryType)
     return queryType;
   }
 
-console.log(GQLQueryTypeCreator(tables[0]));

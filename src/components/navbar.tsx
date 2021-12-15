@@ -1,4 +1,6 @@
-import * as React from 'react';
+import React, {useState} from 'react';
+import {Link, Navigate} from 'react-router-dom';
+
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -14,11 +16,12 @@ import MenuItem from '@mui/material/MenuItem';
 import Popper from '@mui/base/PopperUnstyled';
 import UseInput from './Urlsubmit';
 
-const pages = ['URI', 'Metrics', 'Toggle Tree View', 'Team'];
+const pages = ['URI', 'Sandbox'];
 const settings = ['Logout'];
 
-const ResponsiveAppBar = (props) => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+const ResponsiveAppBar = (props: any) => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [redirect, setRedirect] = useState(false);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
@@ -34,8 +37,8 @@ const ResponsiveAppBar = (props) => {
 
 
 
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -45,9 +48,10 @@ const ResponsiveAppBar = (props) => {
   };
 
   const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+    // setAnchorElNav(null);
+    //setRedirect(true);
     window.open('/graphql', '_blank')
-    (props.graphiql) ? props.setGraphiql(false) : props.setGraphiql(true);
+    // (props.graphiql) ? props.setGraphiql(false) : props.setGraphiql(true);
   };
 
   const handleCloseUserMenu = () => {
@@ -155,6 +159,7 @@ const ResponsiveAppBar = (props) => {
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{setting}</Typography>
+                  {redirect && (<Navigate to='/'/>)}
                 </MenuItem>
               ))}
             </Menu>
