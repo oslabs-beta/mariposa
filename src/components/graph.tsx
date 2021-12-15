@@ -24,7 +24,6 @@ export default function graph() {
       <Tree/>
       {/* <G6Tree /> */}
     </div>
-    
   </Paper>
   </ThemeProvider>
  )

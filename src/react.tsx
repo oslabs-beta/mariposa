@@ -23,8 +23,9 @@ const [uriBoolean, setUriBoolean] = useState(false)
 const [uriString, setUriString] = useState('')
 
   return (
-    <div> 
-    {(uriBoolean) ? <LandingPage graphiql={graphiql} setGraphiql={setGraphiql} setUriString={setUriString}/> : <EntryUri uriBoolean={uriBoolean} setUriBoolean={setUriBoolean} setUriString={setUriString}/>}
+    <div>
+      <p>aiosjubnsiodujcnisodjuvn siodjuvndsiodfjuvn disofujvndiofjuvndiofjuvndiofujvndiofvun</p>
+    {(uriBoolean) ? <LandingPage uriString={uriString} setUriString={setUriString}/> : <EntryUri uriBoolean={uriBoolean} setUriBoolean={setUriBoolean} setUriString={setUriString}/>}
     </div>
 
  )

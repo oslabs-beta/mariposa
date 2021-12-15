@@ -10,12 +10,10 @@ import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 const theme = createTheme({ palette: { mode: 'light' } });
 //import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
-import Highlighter from './CodeHighlight.tsx';
-import { javascript } from 'webpack';
 
 
 
-export default function Resolvers() {
+export default function Resolvers(props:any) {
 
   //state for the user defaulted to resolvers
   const [resolver, setResolver] = useState(true);
@@ -29,7 +27,8 @@ export default function Resolvers() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      body: JSON.stringify({uri: props.uriString})
     })
       .then(res => res.json())
       .then(data => {

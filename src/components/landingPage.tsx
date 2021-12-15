@@ -18,7 +18,7 @@ export default function LandingPage(props:any) {
   return (
 
   <>
-  <ResponsiveAppBar style={{minWidth: "100%"}} graphiql={props.graphiql} setGraphiql={props.setGraphiql}></ResponsiveAppBar>
+  <ResponsiveAppBar style={{minWidth: "100%"}} graphiql={props.graphiql} setGraphiql={props.setGraphiql} uriString={props.uriString} setUriString={props.setUriString}></ResponsiveAppBar>
   {(!props.graphiql) ?   
   <Grid container rowSpacing={1.5} columnSpacing={{ xs: 1, sm: 2, md: 1.5}} style={{
   minWidth: "100%",
@@ -26,10 +26,10 @@ export default function LandingPage(props:any) {
   padding: '.8% 0% 0% .0%'
 }}>
   <Grid item xs={6} md={9} >
-  <Graph></Graph>
+  <Graph uriString={props.uriString}></Graph>
   </Grid>
   <Grid item xs={6} md={3} >
-  <Resolvers />
+  <Resolvers uriString={props.uriString}/>
   </Grid>
 </Grid> :
   <div></div>}

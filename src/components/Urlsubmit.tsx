@@ -43,16 +43,8 @@ const CustomInput = React.forwardRef(function CustomInput(
   );
 });
 
-export default function UseInput() {
+export default function UseInput(props:any) {
   const [uri, setUri] = useState('');
-  const handleClick = () => {
-    fetch('/project/D3tables', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ uri: uri})
-    })
-  }
-  return <div style={{display: 'inline-block'}}><CustomInput placeholder="URI input..." onChange={(e) => setUri(e.target.value)}/><Button style={{float: 'inline-end', display: 'inline-block'}} onClick={handleClick}>Submit</Button></div>;
+  return <div style={{display: 'inline-block'}}><CustomInput placeholder="URI input..." onChange={(e) => setUri(e.target.value)}/>
+  <Button style={{float: 'inline-end', display: 'inline-block'}} onClick={props.setUriString(uri)}>Submit</Button></div>;
 }

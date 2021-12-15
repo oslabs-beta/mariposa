@@ -27,11 +27,6 @@ const ResponsiveAppBar = (props: any) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
 
-  const handleClickGraph = () => {
-    console.log(props.graphiql);
-    (props.graphiql) ? props.setGraphiql(false) : props.setGraphiql(true);
-  }
-
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popper' : undefined;
 
@@ -122,9 +117,9 @@ const ResponsiveAppBar = (props: any) => {
                   <Button aria-describedby={id} type="button" onClick={handleClick} sx={{ my: 2, color: 'black', display: 'block' }}>
                     URI
                   </Button>
-                  <Popper id={id} open={open} anchorEl={anchorEl}>
+                  <Popper id={id} open={open} anchorEl={anchorEl} >
                     <Box sx={{ bgcolor: 'background.paper' }}>
-                    <UseInput />
+                    <UseInput setUriString={props.setUriString}/>
                     </Box>
                   </Popper>
                 </div> :
