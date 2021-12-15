@@ -56,6 +56,9 @@ module.exports = {
     filename: 'js/[name].js',
   },
   plugins: [
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'dev',
+      template: './index.html'
+    }),
   ],
 };
