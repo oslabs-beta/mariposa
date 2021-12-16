@@ -1,4 +1,4 @@
-import { Table } from "../types/DBResponseTypes";
+import { Column, Table } from "../types/DBResponseTypes";
 import { SQLConversionHelpers } from './SQLConversionHelpers';
 const { checkIsTableJoin, inObjectTypeCase, queryPluralCase, querySingularCase } = SQLConversionHelpers;
 
@@ -16,11 +16,34 @@ export const resolverStringMaker = {
         }
         for (let i = 0; i < columns.length; i++) {
           const { constraint_type, column_name, primary_table, primary_column } = columns[i];
-          if (constraint_type === 'FOREIGN KEY' && primary_table && primary_table && primary_column) {
+          if (constraint_type === 'FOREIGN KEY' && primary_table && primary_column) {
             acc[tab] = makeTypeString(acc[tab], column_name, primary_table, primary_column);
           }
         }
       }
+      else {
+        const foreignKeys: Column[] = []
+        for (let i = 0; i < columns.length; i++) {
+          const { constraint_type } = columns[i];
+          if (constraint_type === 'FOREIGN KEY') {
+            foreignKeys.push(columns[i]);
+          }
+        }
+        foreignKeys.forEach((col: Column, idx: number, array: Column[]) => {
+          const other = array[1 - idx];
+          const tablename = other.primary_table;
+          const column_name = other.primary_column;
+          const { primary_table, primary_column } = col;
+          if (primary_table && primary_column && tablename && column_name) {
+            const tab = inObjectTypeCase(tablename);
+            if (!acc.hasOwnProperty(tab)) {
+              acc[tab] = {};
+            }
+            acc[tab] = makeTypeString(acc[tab], primary_column, primary_table, column_name);
+          }
+        });
+      }
+
 
       return acc;
     }, {
@@ -100,7 +123,6 @@ function makeMutationString(mutationObj: { [key: string]: string }, table: Table
       const result = await db.query(query, [${val_array}]);
       return result.rows[0];
     } catch (err) {
-      console.log(err)
       /* INSERT YOUR ERROR HANDLING HERE */
     }
   }`
@@ -117,7 +139,6 @@ function makeMutationString(mutationObj: { [key: string]: string }, table: Table
         const result = await db.query(query, [${val_array}]);
         return result.rows[0];
       } catch (err) {
-        console.log(err)
         /* INSERT YOUR ERROR HANDLING HERE */
       }
     }`
