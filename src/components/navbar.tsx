@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Link, Navigate} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, Navigate } from 'react-router-dom';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -14,7 +14,6 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Popper from '@mui/base/PopperUnstyled';
-import UseInput from './Urlsubmit';
 
 const pages = ['URI', 'Sandbox'];
 const settings = ['Logout'];
@@ -55,7 +54,7 @@ const ResponsiveAppBar = (props: any) => {
 
   return (
     <AppBar position="static" style={{ backgroundColor: 'pink', color: 'blue' }}>
-      <Container maxWidth="false">
+      <Container maxWidth={false}>
         <Toolbar disableGutters>
           <Typography
             variant="h6"
@@ -112,15 +111,15 @@ const ResponsiveAppBar = (props: any) => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              page === "URI" ? 
-                     <div>
-                  <Button aria-describedby={id} type="button" onClick={() => {props.setUriBoolean(false)}} sx={{ my: 2, color: 'black', display: 'block' }}>
+              page === "URI" ?
+                <div>
+                  <Button aria-describedby={id} type="button" onClick={() => { props.setUriBoolean(false) }} sx={{ my: 2, color: 'black', display: 'block' }}>
                     URI
                   </Button>
                 </div> :
-              <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'black', display: 'block' }}>
-                {page}
-              </Button>
+                <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'black', display: 'block' }}>
+                  {page}
+                </Button>
             ))}
           </Box>
 
@@ -149,7 +148,7 @@ const ResponsiveAppBar = (props: any) => {
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{setting}</Typography>
-                  {redirect && (<Navigate to='/'/>)}
+                  {redirect && (<Navigate to='/' />)}
                 </MenuItem>
               ))}
             </Menu>

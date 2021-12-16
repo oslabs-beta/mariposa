@@ -100,7 +100,6 @@ function makeMutationString(mutationObj: { [key: string]: string }, table: Table
       const result = await db.query(query, [${val_array}]);
       return result.rows[0];
     } catch (err) {
-      console.log(err)
       /* INSERT YOUR ERROR HANDLING HERE */
     }
   }`
@@ -117,7 +116,6 @@ function makeMutationString(mutationObj: { [key: string]: string }, table: Table
         const result = await db.query(query, [${val_array}]);
         return result.rows[0];
       } catch (err) {
-        console.log(err)
         /* INSERT YOUR ERROR HANDLING HERE */
       }
     }`
