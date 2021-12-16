@@ -170,4 +170,23 @@ button {
   border-radius: 5px;
 }
 
+.enterUri{
+  h2 {
+    font-size: 29px;
+    font-weight: lighter;
+    display: inline-block;
+    font-family:'Open Sans', sans-serif;
+    margin:0;
+    margin-right: 42px;
+  }
+button {
+    margin:0;
+    font-size: 2vh;
+    margin-top: 1%; 
+    margin-left: 45%;
+    width: 10%;
+    display: inline-block;
+    vertical-align:left;
+}
+}
 

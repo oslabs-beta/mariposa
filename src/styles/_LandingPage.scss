@@ -210,14 +210,15 @@
 	// align-items: center;
 	width: 25em;
 	min-height: 1em;
-	// position: relative;
-	background: rgba(255, 255, 255, 0.05);
+	position: absolute;
+	background: rgb(37, 2, 48);
 	// padding: 5px;
 	border-radius: 10px;
 	border: solid 2px #df29df;
 	box-shadow: 1px 3px 10px #2583b6;
 	color: rgb(230, 225, 225);
 	font-size: 2.5vh;
+	margin: 50vh;
 	z-index: 1;
 	}
 
@@ -225,6 +226,7 @@
 		display:flex;
 		flex-direction: column;
 		width: 100%;
+		z-index: -1;
 	}
 
 	.mainDisplayWrapper{
