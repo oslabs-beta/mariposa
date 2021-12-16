@@ -10,8 +10,6 @@ body {
 
 }
 
-
-
 .graphD3 {
   height: 100%;
   width: 100%;
@@ -152,15 +150,15 @@ button {
 }
 
 .node__root > circle {
-  fill: red;
+  fill: #df29df;
 }
 
 .node__branch > circle {
-  fill: yellow;
+  fill: #df29df;
 }
 
 .node__leaf > circle {
-  fill: green;
+  fill: #df29df;
   /* Let's also make the radius of leaf nodes larger */
   r: 40;
 }
