@@ -9,44 +9,11 @@ for user db/graphql migration*/
 const jwt = require('jsonwebtoken');
 const app = express();
 const PORT = 3000;
-// const GRAPHQL_PORT = 3001;
 
 const graphiql = graphqlHTTP({
   schema,
   graphiql: true
 });
-
-// let graphQLServer;
-// function createGraphQLServer(callback) {
-//   if (graphQLServer) {
-//     graphQLServer.close();
-//     delete require.cache[path.resolve('./data/database.js')];
-//     delete require.cache[path.resolve('./data/schema.js')];
-//   }
-//   const {Schema} = require('./data/schema');
-//   const graphQLApp = express();
-//   graphQLApp.use('/', graphQLHTTP({
-//     graphiql: true,
-//     pretty: true,
-//     schema: Schema,
-//   }));
-//   graphQLServer = graphQLApp.listen(GRAPHQL_PORT, () => {
-//     console.log(
-//       `GraphQL server is now running on http://localhost:${GRAPHQL_PORT}`
-//     );
-//     if (callback) {
-//       callback();
-//     }
-//   });
-// }
-// const watcher = chokidar.watch('./data/{database,schema}.js');
-// watcher.on('change', path => {
-//   console.log(`\`${path}\` changed. Restarting the GraphQL server.`);
-//   createGraphQLServer(() =>
-//     console.log('Restart your browser to use the updated schema.')
-//   );
-// });
-// createGraphQLServer();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -60,6 +27,7 @@ if (process.env.NODE_ENV === 'production') {
   app.get('/', (req, res) => {
     return res.status(200).sendFile(path.resolve(__dirname, '../dist/index.html'));
   });
+  app.use('/', express.static(path.resolve(__dirname, '../dist')));
   app.use('/js', express.static(path.resolve(__dirname, '../dist/js')));
 };
 
