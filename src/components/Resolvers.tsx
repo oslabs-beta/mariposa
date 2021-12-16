@@ -66,11 +66,7 @@ export default function Resolvers(props:any) {
               </ButtonGroup>
             </Box>
 
-<<<<<<< HEAD
-            <Box style={{ backgroundColor: 'rgb(245, 234, 234)', margin: '0% 0% 0% 0%', width: '100%', height: '93%', maxHeight: '100%', overflow: "scroll", padding: "0px 0px 0px 0px", borderRadius: '5px' }}>
-=======
             <Box style={{ backgroundColor: 'transparent', margin: '0% 0% 0% 0%', minHeight: '93%', maxHeight: '93%', overflow: "scroll", padding: "0px 0px 0px 0px" }}>
->>>>>>> 7434185ae0132e5f70967d0db21042d8b8d0eefd
               
                 <Highlight  className="javascript">
                   {resolver ? props.schema : props.text}
