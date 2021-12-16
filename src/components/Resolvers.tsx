@@ -8,7 +8,7 @@ import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 const theme = createTheme({ palette: { mode: 'light' } });
 
 import Highlight from 'react-highlight';
-
+// import '../../node_modules/highlight.js/styles/github.css'
 
 
 
@@ -66,7 +66,7 @@ export default function Resolvers(props:any) {
               </ButtonGroup>
             </Box>
 
-            <Box style={{ backgroundColor: 'rgb(245, 234, 234)', margin: '0% 0% 0% 0%', width: '100%', height: '89%', maxHeight: '89%', overflow: "scroll", padding: "0px 0px 0px 0px" }}>
+            <Box style={{ backgroundColor: 'transparent', margin: '0% 0% 0% 0%', width: '100%', height: '93%', maxHeight: '100%', overflow: "scroll", padding: "0px 0px 0px 0px", borderRadius: '5px' }}>
               
                 <Highlight className="javascript">
                   {resolver ? schema : text}

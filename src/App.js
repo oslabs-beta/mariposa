@@ -9,29 +9,29 @@ import { MainDisplay } from './containers/MainDisplay';
 
 
 export const App = () => {
-  return(
+  return (
     <Router>
-    <Routes>
-    <Route 
-      exact path = {"/"} 
-      element ={<LandingPageContainer />} 
-      />
-    <Route 
-      exact path = "/about" 
-      element ={<AboutUs/>} 
-      />
-      <Route 
-      exact path = "/download" 
-      element ={<Download/>} 
-      />
-      <Route 
-      exact path = "/main" 
-      element ={<MainDisplay/>} 
-      />
-    </Routes>
-  </Router>
-   
-    ); 
+      <Routes>
+        <Route
+          exact path={"/"}
+          element={<LandingPageContainer />}
+        />
+        <Route
+          exact path="/about"
+          element={<AboutUs />}
+        />
+        <Route
+          exact path="/download"
+          element={<Download />}
+        />
+        <Route
+          exact path="/main"
+          element={<MainDisplay />}
+        />
+      </Routes>
+    </Router>
+
+  );
 };
 
 
