@@ -7,7 +7,6 @@ import db, { PG_URI } from '../models/projectDB';
 import { resolverStringMaker } from '../SQLConversion/resolverStringMaker';
 import { typeDefMaker } from '../SQLConversion/typeDefMaker';
 
-
 export const projectDBController = {
   async updateDatabase(req: Request, res: Response, next: NextFunction) {
     const { uri } = req.body;
@@ -74,10 +73,6 @@ export const projectDBController = {
     const resolverString: string = resolverStringMaker.generateResolverString(arrayOfTableObjects);
     res.locals.resolvers = resolvers;
     res.locals.resolverString = resolverString;
-    return next();
-  },
-  buildSchema(req: Request, res: Response, next: NextFunction) {
-
     return next();
   },
 }
