@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Link, Navigate} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, Navigate } from 'react-router-dom';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -14,7 +14,8 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import LogoutIcon from '@mui/icons-material/Logout';
-import MariposaLogo from '../assets/MariposaLogo.svg';
+import MariposaLogo from '../assets/MariposaLogo.svg'
+// const MariposaLogo = require('../assets/MariposaLogo.svg');
 
 const pages = ['URI', 'Sandbox'];
 const settings = ['Logout'];
@@ -107,11 +108,23 @@ const ResponsiveAppBar = (props: any) => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+             {pages.map((page) => (
+              page === "URI" ? 
+                     <div>
+                    <Button aria-describedby={id} type="button" onClick={() => {props.setUriBoolean(false)}} sx={{ my: 2, color: 'black', display: 'block' }}>
+                      URI
+                    </Button>
+                </div> :
+              page === "Sandbox" ?
+              <div>
+              <Button aria-describedby={id} type="button" onClick={handleSandbox} sx={{ my: 2, color: 'black', display: 'block' }}>
+                SANDBOX
+              </Button>
+              </div> :
+              <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'black', display: 'block' }}>
+                {page}
+              </Button>
+            ))}
             </Menu>
           </Box>
           {/* <Typography
@@ -145,7 +158,7 @@ const ResponsiveAppBar = (props: any) => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <LogoutIcon></LogoutIcon>
+                <LogoutIcon sx={{ color: 'white'}}></LogoutIcon>
               </IconButton>
             </Tooltip>
             <Menu
@@ -167,7 +180,7 @@ const ResponsiveAppBar = (props: any) => {
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{setting}</Typography>
-                  {redirect && (<Navigate to='/'/>)}
+                  {redirect && (<Navigate to='/' />)}
                 </MenuItem>
               ))}
             </Menu>
