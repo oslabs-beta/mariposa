@@ -4,9 +4,6 @@ import User from '../../user';
 import db from '../models/mariposaDB'
 
 const dbController = {
-  // TODO: make this check for valid emails
-  // TODO: make this check for no spaces in username
-  // TODO: make error object more custom
   async signUp(req: Request, res: Response, next: NextFunction) {
     try {
       //req.body inputs and password encryption 
@@ -51,9 +48,6 @@ const dbController = {
       return next(err);
     }
   },
-
-
-
 
   async getPerson(req: Request, res: Response, next: NextFunction) {
     try {
