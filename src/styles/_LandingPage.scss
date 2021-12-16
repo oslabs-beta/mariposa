@@ -224,23 +224,25 @@
 	.mainDisplayContainer{
 		display:flex;
 		flex-direction: column;
-		width: 80vh;
+		width: 100%;
 	}
 
 	.mainDisplayWrapper{
 		display: flex;
-		z-index: -1;
+		margin-top: 2vh;
 		gap: 2vh;
 	}
 
 	.treeDiv{
 		display: flex;
-		width: 80vh;
+		width: 60%;
+		background: rgba(255, 255, 255, 0.05);
+
 	}
 
 	.resolverDiv{
 		display: flex;
-		width: 60vh;
-		background: blue;
-		
+		width: 40%;
+		max-height: 100vh;
+		background: rgba(255, 255, 255, 0.05);
 	}

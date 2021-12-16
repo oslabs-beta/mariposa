@@ -16,14 +16,14 @@ import Sandbox from './sandbox';
 export default function LandingPage(props: any) {
 
   return (
-    <>
-      <ResponsiveAppBar style={{ minWidth: "100%" }} setUriBoolean={props.setUriBoolean}></ResponsiveAppBar>
+   <div className="mainDisplayContainer">
+      <ResponsiveAppBar setUriBoolean={props.setUriBoolean}></ResponsiveAppBar>
       {!props.graphiql && (
-        <div>
-          <Graph uriString={props.uriString} />            
+        <div className="mainDisplayWrapper">
+          <Graph  uriString={props.uriString} />            
           <Resolvers uriString={props.uriString} />
         </div>)
       }
-    </>
+    </div>
   )
 }
