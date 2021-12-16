@@ -18,7 +18,8 @@ export default function Resolvers(props:any) {
   const [resolver, setResolver] = useState(false);
   const [text, setText] = useState('');
   const [schema, setSchema] = useState('');
-
+  
+  console.log(props.uriString)
   //function that renders innertext based on the resolver status
 
   useEffect(() => {
@@ -31,7 +32,6 @@ export default function Resolvers(props:any) {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data.typeDefs);
         setText(data.typeDefs);
         setSchema(data.resolverString);
       })

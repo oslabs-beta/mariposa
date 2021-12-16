@@ -31,7 +31,7 @@ const ResponsiveAppBar = (props: any) => {
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popper' : undefined;
 
-
+  console.log(props)
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -53,6 +53,13 @@ const ResponsiveAppBar = (props: any) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleUriDisplay = () =>{
+   if(props.uriBtnClose === true){
+    props.setHandleUriBtnClose(false)
+   }
+  };
+
 
   return (
     <div className="navAppBar">
@@ -113,12 +120,13 @@ const ResponsiveAppBar = (props: any) => {
             MariposaQL
           </Typography> */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Button aria-describedby={id} type="submit" onClick={handleUriDisplay} sx={{ my: 2, color: 'white', display: 'block' }}>
+                    URI
+          </Button>
             {pages.map((page) => (
               page === "URI" ? 
                      <div>
-                  <Button aria-describedby={id} type="button" onClick={() => {props.setUriBoolean(false)}} sx={{ my: 2, color: 'white', display: 'block' }}>
-                    URI
-                  </Button>
+                  
                 </div> :
               <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
                 {page}

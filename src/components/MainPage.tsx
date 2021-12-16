@@ -15,29 +15,37 @@ import Sandbox from './sandbox';
 
 export default function LandingPage(props: any) {
   const[uriBtnClose, setHandleUriBtnClose] = useState(false);
+  const [uriString, setUriString] = useState('');
+  const [uri, setUri] = useState('');
+
+  console.log('latest string', uriString)
+  console.log('here', uri)
   return (
- 
-      
+    
    <div className="mainDisplayContainer">
      
-      <ResponsiveAppBar uriBtnClose = {uriBtnClose} setUriBoolean={props.setUriBoolean}></ResponsiveAppBar>
+      <ResponsiveAppBar uriBtnClose ={uriBtnClose} setHandleUriBtnClose ={setHandleUriBtnClose} setUriBoolean={props.setUriBoolean}></ResponsiveAppBar>
       {!uriBtnClose && <div className="uri-box">
-        <form>
+        <form onSubmit={ () => setUriString(uri)}>
+          
           <div className="enterUri">
-      <h2 >Enter URI</h2>       
-      <button onClick={()=>setHandleUriBtnClose(true)}><span>Exit</span></button>
-      </div>
-             <div className="form-group">
-              <label htmlFor="uri">Enter URI</label>
-              <input type="text" className='form-control'/>
-            </div>
+            <h2 >Enter URI</h2>       
+            <button onClick={()=>setHandleUriBtnClose(true)}><span>Close</span></button>
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="uri">URI:</label>
+            <input type="text" className='form-control' onChange={(e) => setUri(e.target.value)}/>
+          </div>
+          <button type="submit" id="submitBtn">Submit</button>
+        
         </form>
      </div>
       }
       {!props.graphiql && (
         <div className="mainDisplayWrapper">
-          <Graph uriString={props.uriString} />            
-          <Resolvers uriString={props.uriString} />
+          <Graph uriString={uriString} />            
+          <Resolvers uriString={uriString} />
         </div>)
       }
     </div>
