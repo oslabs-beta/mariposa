@@ -13,8 +13,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import Popper from '@mui/base/PopperUnstyled';
-import UseInput from './Urlsubmit';
 import MariposaLogo from '../assets/MariposaLogo.svg';
 
 const pages = ['URI', 'Sandbox'];
@@ -63,7 +61,7 @@ const ResponsiveAppBar = (props: any) => {
 
   return (
     <div className="navAppBar">
-      <Container maxWidth="false">
+      <Container maxWidth={false}>
         <Toolbar disableGutters>
           {/* <Typography
             variant="h6"
