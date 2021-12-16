@@ -95,7 +95,8 @@ export const WebRegisterForm = (props) => {
                   <Field 
                   name="firstname" 
                   type="text" 
-                  className="form-control"/>
+                  className="form-control"
+                  autocomplete="off"/>
                   <ErrorMessage 
                   name="firstname" 
                   component="div"  
@@ -108,6 +109,7 @@ export const WebRegisterForm = (props) => {
                   name="lastname" 
                   type="text" 
                   className="form-control"
+                  autocomplete="off"
                   />
                   <ErrorMessage 
                   name="lastname" 
@@ -120,7 +122,8 @@ export const WebRegisterForm = (props) => {
                   <Field 
                   name="username" 
                   type="text" 
-                  className="form-control" 
+                  className="form-control"
+                  autocomplete="off" 
                   />
                   <ErrorMessage
                     name="username"
@@ -133,7 +136,8 @@ export const WebRegisterForm = (props) => {
                   <label htmlFor="email">Email</label>
                   <Field name="email" 
                   type="email" 
-                  className="form-control" 
+                  className="form-control"
+                  autocomplete="off" 
                   />
                   <ErrorMessage
                     name="email"
@@ -148,6 +152,7 @@ export const WebRegisterForm = (props) => {
                     name="password"
                     type="password"
                     className="form-control"
+                    autocomplete="off"
                   />
                   <ErrorMessage
                     name="password"

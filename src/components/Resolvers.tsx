@@ -9,16 +9,10 @@ const theme = createTheme({ palette: { mode: 'light' } });
 
 import Highlight from 'react-highlight';
 
-// import '../../node_modules/highlight.js/styles/github.css'
-
-
-
 export default function Resolvers(props:any) {
 
   //state for the user defaulted to resolvers
   const [resolver, setResolver] = useState(false);
-  const [text, setText] = useState('');
-  const [schema, setSchema] = useState('');
   
   return (
 
