@@ -26,8 +26,8 @@ body {
 }
 
 .resolvers {
-  height: 93%;
-  width: 95%;
+  height: 100%;
+  width: 100%;
   border-radius: 5px;
   box-shadow: pink;
 }
@@ -140,12 +140,12 @@ button {
 .check-box{
   margin: 30px 10px 30px 0;
 }
-span{
-  color: #777;
-  font-size: 12px;
-  bottom: 68px;
-  position: absolute;
-}
+// span{
+//   color: #777;
+//   font-size: 12px;
+//   bottom: 68px;
+//   position: absolute;
+// }
 
 button {
   background-color: white;

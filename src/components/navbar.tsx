@@ -27,11 +27,6 @@ const ResponsiveAppBar = (props: any) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
 
-  const handleClickGraph = () => {
-    console.log(props.graphiql);
-    (props.graphiql) ? props.setGraphiql(false) : props.setGraphiql(true);
-  }
-
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popper' : undefined;
 
@@ -50,7 +45,7 @@ const ResponsiveAppBar = (props: any) => {
   const handleCloseNavMenu = () => {
     // setAnchorElNav(null);
     setRedirect(true);
-    // window.open('/graphql', '_blank')
+    //window.open('/graphql', '_blank')
     // (props.graphiql) ? props.setGraphiql(false) : props.setGraphiql(true);
   };
 
@@ -119,14 +114,9 @@ const ResponsiveAppBar = (props: any) => {
             {pages.map((page) => (
               page === "URI" ? 
                      <div>
-                  <Button aria-describedby={id} type="button" onClick={handleClick} sx={{ my: 2, color: 'black', display: 'block' }}>
+                  <Button aria-describedby={id} type="button" onClick={() => {props.setUriBoolean(false)}} sx={{ my: 2, color: 'black', display: 'block' }}>
                     URI
                   </Button>
-                  <Popper id={id} open={open} anchorEl={anchorEl}>
-                    <Box sx={{ bgcolor: 'background.paper' }}>
-                    <UseInput />
-                    </Box>
-                  </Popper>
                 </div> :
               <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'black', display: 'block' }}>
                 {page}

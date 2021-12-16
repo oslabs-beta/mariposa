@@ -12,7 +12,8 @@ const EntryUri = (props:any) => {
   }
 
   const handleClickSample = () => {
-    props.setUriBoolean(true)
+    props.setUriBoolean(true);
+    props.setUriString();
   }
 
  return (

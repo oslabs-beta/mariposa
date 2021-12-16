@@ -1,4 +1,6 @@
 const path = require('path');
+// const nodeExternals = require('webpack-node-externals');
+// const StartServerPlugin = require('start-server-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -54,6 +56,9 @@ module.exports = {
     filename: 'js/[name].js',
   },
   plugins: [
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'dev',
+      template: './index.html'
+    }),
   ],
 };
