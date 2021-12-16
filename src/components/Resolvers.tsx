@@ -8,6 +8,7 @@ import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 const theme = createTheme({ palette: { mode: 'light' } });
 
 import Highlight from 'react-highlight';
+import { purple } from '@mui/material/colors';
 
 
 
@@ -38,16 +39,16 @@ export default function Resolvers(props:any) {
   // }, []);
 
   return (
-    <div className = "resolverDiv">
 
-      {/* <ThemeProvider theme={theme} > */}
-        {/* <Paper elevation={2} color='primary' style={{
+      <ThemeProvider theme={theme} >
+        <Paper elevation={2} color='primary' style={{
           border: "gray",
-          maxWidth: "300px",
           height: "100%",
           // paddingLeft: "5%",
           maxHeight: '97vh',
-        }}> */}
+          backgroundColor: "#ffedff",
+          opacity: ".99",
+        }}>
           <div className='resolvers' >
             <Box
               sx={{
@@ -66,7 +67,7 @@ export default function Resolvers(props:any) {
               </ButtonGroup>
             </Box>
 
-            <Box style={{ backgroundColor: 'transparent', margin: '0% 0% 0% 0%', minHeight: '93%', maxHeight: '93%', overflow: "scroll", padding: "0px 0px 0px 0px" }}>
+            <Box style={{ backgroundColor: 'transparent', margin: '0% 0% 0% 0%', width: "100%", minHeight: '93%', maxHeight: '93%', overflow: "scroll", padding: "0px 0px 0px 0px" }}>
               
                 <Highlight  className="javascript">
                   {resolver ? props.schema : props.text}
@@ -74,8 +75,7 @@ export default function Resolvers(props:any) {
               
             </Box>
           </div>
-        {/* </Paper> */}
-      {/* </ThemeProvider > */}
-    </div>
+        </Paper>
+      </ThemeProvider >
   )
 }

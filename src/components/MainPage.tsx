@@ -3,7 +3,8 @@ import Grid from '@mui/material/Grid';
 import Graph from './graph';
 import ResponsiveAppBar from './navbar';
 import Resolvers from './Resolvers';
-import Sandbox from './sandbox';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 // style={{
 //   border: "solid",
@@ -69,7 +70,7 @@ export default function LandingPage(props: any) {
 
       <ResponsiveAppBar uriBtnClose={uriBtnClose} setHandleUriBtnClose={setHandleUriBtnClose} setUriBoolean={props.setUriBoolean}></ResponsiveAppBar>
       {!uriBtnClose && <div className="uri-box">
-        <form onSubmit={(e) => handleClick(uriString, e)}>
+        {/* <form onSubmit={(e) => handleClick(uriString, e)}>
 
           <div className="enterUri">
             <h2 >Enter URI</h2>
@@ -82,15 +83,29 @@ export default function LandingPage(props: any) {
           </div>
           <button type="submit" id="submitBtn">Submit</button>
 
-        </form>
+        </form> */}
+        <Button style={{width: "20%", float: "right"}} onClick={() => setHandleUriBtnClose(true)}><span>Close</span></Button>
+        <TextField label={'URI Input....'} id="URI" onChange={(e) => setUriString(e.target.value)}/>
+        <div className='uriButtons'> 
+          <Button style={{width: "33%"}} onClick={(e) => handleClick(uriString, e)}>Submit</Button>
+          <Button style={{width: "33%"}} onClick={(e) => handleClick('', e)}>Sample Data</Button>
+        </div>
       </div>
       }
-      {!props.graphiql && (
-        <div className="mainDisplayWrapper">
-          <Graph treeData={treeData} />
-          <Resolvers text={text} schema={schema} />
-        </div>)
-      }
+        <Grid container={true} rowSpacing={1.5} columnSpacing={{ xs: 1, sm: 2, md: 1.5 }} style={{
+          minWidth: "100%",
+          height: "92vh",
+          padding: '.8% 0% 0% .0%'
+        }}>
+          <Grid item xs={6} md={7} >
+            <Graph treeData={treeData} />
+          </Grid>
+          <Grid item xs={6} md={5} >
+            <Resolvers text={text} schema={schema} />
+          </Grid>
+        </Grid>
+    
+      
     </div>
   )
 }
