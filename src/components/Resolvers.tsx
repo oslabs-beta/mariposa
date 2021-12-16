@@ -8,12 +8,8 @@ import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 const theme = createTheme({ palette: { mode: 'light' } });
 
 import Highlight from 'react-highlight';
-<<<<<<< HEAD
-import { purple } from '@mui/material/colors';
 
-=======
 // import '../../node_modules/highlight.js/styles/github.css'
->>>>>>> dev
 
 
 
