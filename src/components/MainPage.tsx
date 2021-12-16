@@ -84,7 +84,7 @@ export default function LandingPage(props: any) {
           <button type="submit" id="submitBtn">Submit</button>
 
         </form> */}
-        <Button style={{width: "20%", float: "right"}} onClick={() => setHandleUriBtnClose(true)}><span>Close</span></Button>
+        <Button style={{width: "20%", marginLeft: "80%"}} onClick={() => setHandleUriBtnClose(true)}><span>Close</span></Button>
         <TextField label={'URI Input....'} id="URI" onChange={(e) => setUriString(e.target.value)}/>
         <div className='uriButtons'> 
           <Button style={{width: "33%"}} onClick={(e) => handleClick(uriString, e)}>Submit</Button>
