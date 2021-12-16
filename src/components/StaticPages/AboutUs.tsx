@@ -129,7 +129,7 @@ function AboutUs() {
 						<button
 							type="button"
 							onClick={() => {
-								window.open('https://www.linkedin.com/in/james-maguire-0b267812a/');
+								window.open('https://www.linkedin.com/in/mark-dolan-86459819/');
 							}}
 							id={"linkedin"}
 						>
