@@ -81,6 +81,8 @@
 		width: 100%;
 	}
 
+
+
 	#sign-in-text{
 		text-align: center;
 		// -webkit-text-stroke: 0.2vh 	#2583b6;
@@ -202,3 +204,43 @@
   opacity: 1;
 }
 
+.uri-box{
+	// display: flex;
+	// flex-direction: column;
+	// align-items: center;
+	width: 25em;
+	min-height: 1em;
+	// position: relative;
+	background: rgba(255, 255, 255, 0.05);
+	// padding: 5px;
+	border-radius: 10px;
+	border: solid 2px #df29df;
+	box-shadow: 1px 3px 10px #2583b6;
+	color: rgb(230, 225, 225);
+	font-size: 2.5vh;
+	z-index: 1;
+	}
+
+	.mainDisplayContainer{
+		display:flex;
+		flex-direction: column;
+		width: 80vh;
+	}
+
+	.mainDisplayWrapper{
+		display: flex;
+		z-index: -1;
+		gap: 2vh;
+	}
+
+	.treeDiv{
+		display: flex;
+		width: 80vh;
+	}
+
+	.resolverDiv{
+		display: flex;
+		width: 60vh;
+		background: blue;
+		
+	}

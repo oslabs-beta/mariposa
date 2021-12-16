@@ -16,23 +16,14 @@ import Sandbox from './sandbox';
 export default function LandingPage(props: any) {
 
   return (
-
     <>
       <ResponsiveAppBar style={{ minWidth: "100%" }} setUriBoolean={props.setUriBoolean}></ResponsiveAppBar>
-      {(!props.graphiql) ?
-        <Grid container={true} rowSpacing={1.5} columnSpacing={{ xs: 1, sm: 2, md: 1.5 }} style={{
-          minWidth: "100%",
-          height: "92vh",
-          padding: '.8% 0% 0% .0%'
-        }}>
-          <Grid item xs={6} md={7} >
-            <Graph uriString={props.uriString}></Graph>
-          </Grid>
-          <Grid item xs={6} md={5} >
-            <Resolvers uriString={props.uriString} />
-          </Grid>
-        </Grid> :
-        <div></div>}
+      {!props.graphiql && (
+        <div>
+          <Graph uriString={props.uriString} />            
+          <Resolvers uriString={props.uriString} />
+        </div>)
+      }
     </>
   )
 }
