@@ -122,16 +122,16 @@ const ResponsiveAppBar = (props: any) => {
                     <Button aria-describedby={id} type="button" onClick={() => {props.setUriBoolean(false)}} sx={{ my: 2, color: 'black', display: 'block' }}>
                       URI
                     </Button>
-                </div> :
+                    </div> :
               page === "Sandbox" ?
-              <div>
-              <Button aria-describedby={id} type="button" onClick={handleSandbox} sx={{ my: 2, color: 'black', display: 'block' }}>
-                SANDBOX
-              </Button>
-              </div> :
-              <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'black', display: 'block' }}>
-                {page}
-              </Button>
+                    <div>
+                    <Button aria-describedby={id} type="button" onClick={handleSandbox} sx={{ my: 2, color: 'black', display: 'block' }}>
+                      SANDBOX
+                    </Button>
+                    </div> :
+                    <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'black', display: 'block' }}>
+                      {page}
+                    </Button>
             ))}
           </Box>
 

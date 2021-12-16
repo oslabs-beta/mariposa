@@ -7,23 +7,19 @@ import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import Button from '@mui/material/Button';
 
 
-const theme = createTheme({ palette: { mode: 'light' } });
+const theme = createTheme({ palette: { mode: 'dark' } });
 
 export default function graph(props: any) {
   return (
-    <ThemeProvider theme={theme} >
-      <Paper elevation={2} color='transparent' style={{
-        border: "gray",
-        minWidth: "100%",
-        height: "100%",
-        maxHeight: '97vh',
-        position: 'relative',
-        
-      }}>
+    // <ThemeProvider theme={theme} >
+      <div className="treeDiv">
+      {/* <Paper> */}
         <div className='graphD3'>
           <Tree uriString={props.uriString} />
         </div>
-      </Paper>
-    </ThemeProvider>
+           {/* </Paper> */}
+    {/* </ThemeProvider> */}
+      </div>
+ 
   )
 }

@@ -8,7 +8,7 @@ import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 const theme = createTheme({ palette: { mode: 'light' } });
 
 import Highlight from 'react-highlight';
-// import '../../node_modules/highlight.js/styles/github.css'
+
 
 
 
@@ -18,7 +18,8 @@ export default function Resolvers(props:any) {
   const [resolver, setResolver] = useState(false);
   const [text, setText] = useState('');
   const [schema, setSchema] = useState('');
-
+  
+  console.log(props.uriString)
   //function that renders innertext based on the resolver status
 
   useEffect(() => {
@@ -31,23 +32,22 @@ export default function Resolvers(props:any) {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data.typeDefs);
         setText(data.typeDefs);
         setSchema(data.resolverString);
       })
   }, []);
 
   return (
-    <div>
+    <div className = "resolverDiv">
 
-      <ThemeProvider theme={theme} >
-        <Paper elevation={2} color='primary' style={{
+      {/* <ThemeProvider theme={theme} > */}
+        {/* <Paper elevation={2} color='primary' style={{
           border: "gray",
-          minWidth: "100%",
+          maxWidth: "300px",
           height: "100%",
           // paddingLeft: "5%",
           maxHeight: '97vh',
-        }}>
+        }}> */}
           <div className='resolvers' >
             <Box
               sx={{
@@ -59,14 +59,14 @@ export default function Resolvers(props:any) {
                 },
               }}
             >
-              <ButtonGroup variant="outlined" aria-label="outlined button group">
+              <ButtonGroup className="buttonGroup" variant="outlined" aria-label="outlined button group">
                 <Button onClick={() => setResolver(false)}>TypeDefs</Button>
                 <Button onClick={() => setResolver(true)}>Resolvers</Button>
                 <Button onClick={() => { navigator.clipboard.writeText((resolver) ? schema : text) }}><ContentPasteIcon /></Button>
               </ButtonGroup>
             </Box>
 
-            <Box style={{ backgroundColor: 'transparent', margin: '0% 0% 0% 0%', width: '100%', height: '93%', maxHeight: '100%', overflow: "scroll", padding: "0px 0px 0px 0px", borderRadius: '5px' }}>
+            <Box style={{ backgroundColor: 'transparent', margin: '0% 0% 0% 0%', maxHeight: '93%', overflow: "scroll", padding: "0px 0px 0px 0px" }}>
               
                 <Highlight className="javascript">
                   {resolver ? schema : text}
@@ -74,8 +74,8 @@ export default function Resolvers(props:any) {
               
             </Box>
           </div>
-        </Paper>
-      </ThemeProvider >
+        {/* </Paper> */}
+      {/* </ThemeProvider > */}
     </div>
   )
 }
