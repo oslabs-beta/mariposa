@@ -15,6 +15,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Popper from '@mui/base/PopperUnstyled';
 import UseInput from './Urlsubmit';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const pages = ['URI', 'Sandbox'];
 const settings = ['Logout'];
@@ -48,6 +49,10 @@ const ResponsiveAppBar = (props: any) => {
     //window.open('/graphql', '_blank')
     // (props.graphiql) ? props.setGraphiql(false) : props.setGraphiql(true);
   };
+
+  const handleSandbox = () => {
+    window.open('/graphql', '_blank')
+  }
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
@@ -114,10 +119,16 @@ const ResponsiveAppBar = (props: any) => {
             {pages.map((page) => (
               page === "URI" ? 
                      <div>
-                  <Button aria-describedby={id} type="button" onClick={() => {props.setUriBoolean(false)}} sx={{ my: 2, color: 'black', display: 'block' }}>
-                    URI
-                  </Button>
+                    <Button aria-describedby={id} type="button" onClick={() => {props.setUriBoolean(false)}} sx={{ my: 2, color: 'black', display: 'block' }}>
+                      URI
+                    </Button>
                 </div> :
+              page === "Sandbox" ?
+              <div>
+              <Button aria-describedby={id} type="button" onClick={handleSandbox} sx={{ my: 2, color: 'black', display: 'block' }}>
+                SANDBOX
+              </Button>
+              </div> :
               <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'black', display: 'block' }}>
                 {page}
               </Button>
@@ -127,7 +138,7 @@ const ResponsiveAppBar = (props: any) => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <LogoutIcon></LogoutIcon>
               </IconButton>
             </Tooltip>
             <Menu
