@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import NavBarLandingPage from './NavBarLandingPage';
-import {Link} from 'react-router-dom';
+import {Link, Navigate} from 'react-router-dom';
 import { WebLoginForm } from '../formComponents/WebLoginForm'
 import { WebRegisterForm } from '../formComponents/WebRegisterForm'
 import MariposaLogo from '../../assets/MariposaLogo.svg';
@@ -27,17 +27,18 @@ function LandingPage() {
     setHideNavBar(false);
   }
   function guestLogin() {
-    fetch('/api/userLogin', {
+    fetch('/mariposa/auth/signin', {
       method: 'POST',
       body: JSON.stringify({ username: 'guest', password: 'password' }),
     }).then((response) => {
       if (response.status === 200) {
-        router.replace('/dashboard');
+        console.log('good')
+        setGuest(true);
       }
     });
   }
   console.log(formToDisplay)
-
+  const[guest, setGuest] = useState(false);
 
   return (
     <div className='grid-container'>
@@ -75,7 +76,7 @@ function LandingPage() {
             formToDisplay === 'login') && (<WebLoginForm setFormToDisplay = {setFormToDisplay}/>)) ||
             ((changeToFormDisplay && 
             formToDisplay === 'register') && (<WebRegisterForm setFormToDisplay = {setFormToDisplay}/>))}
-   
+          {guest && <Navigate to="/main"/>}
     </div>
   );
 }

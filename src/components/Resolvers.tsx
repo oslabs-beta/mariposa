@@ -20,24 +20,6 @@ export default function Resolvers(props:any) {
   const [text, setText] = useState('');
   const [schema, setSchema] = useState('');
   
-  console.log(props.uriString)
-  //function that renders innertext based on the resolver status
-
-  // useEffect(() => {
-  //   fetch('/project/tables', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({uri: props.uriString})
-  //   })
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       setText(data.typeDefs);
-  //       setSchema(data.resolverString);
-  //     })
-  // }, []);
-
   return (
 
       <ThemeProvider theme={theme} >
