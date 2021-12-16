@@ -1,14 +1,16 @@
 @use "LandingPage";
 @use "StaticPages";
+@import './colorsAndFonts.scss';
+
 
 body {
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.824), rgba(174, 25, 184, 0.598));
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.824), rgba(0, 0, 0, 0.598));
   margin: 10%;
+  font-family: $fontOfBody;
+
 }
 
-#sign-in-text{
-	text-align: center;
-}
+
 
 .graphD3 {
   height: 100%;
@@ -53,9 +55,7 @@ button {
   background-color: #53565a;
 }
 
-.form-group {
-  margin: 20px;
-}
+
 
 // .form-box{
 //   width: 380px;

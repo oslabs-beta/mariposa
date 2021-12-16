@@ -4,7 +4,7 @@ import {Link, Navigate} from 'react-router-dom';
 
 function NavBarLandingPage() {
   return (
-    <div className='navWrapper' >
+    <div className='navBar' >
       <button className='neon-button'
         type="button"
         onClick={() =>

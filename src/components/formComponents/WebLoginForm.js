@@ -63,46 +63,60 @@ const [loading, setLoading] = useState(false);
   
 
   return (
-    <div className="rightLandingPageWrapper">
-      <div className="form-box">
+    <div className="form-box">
+
       <Formik initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleLogin}
         //handlelogin dispatches login() thunk
       >
-        <div>
           <Form>
-            <p id="sign-in-text">  
+            <h2 id="sign-in-text">  
               Sign In
-            </p>
+            </h2>
             <div className="form-group">
               <label htmlFor="username">Username</label>
-              <Field name="username" type="text" className="form-control"/>
-              <ErrorMessage name="username" component="div" className="alert alert-danger"/>
+              <Field 
+               name="username"
+               type="text"
+               className="form-control"
+              />
+              <ErrorMessage
+               name="username"
+               component="div"
+               className="alert alert-danger"
+              />
             </div>
+
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <Field name="password" type="password" className="form-control"/>
-              <ErrorMessage name="password" component="div" className="alert alert-danger"/>
+              <Field 
+               name="password" 
+               type="password" 
+               className="form-control"
+              />
+              <ErrorMessage 
+               name="password" 
+               component="div" 
+               className="alert alert-danger"
+              />
             </div>
-            <button type="submit" className="submit-btn"
+
+            <button type="submit" id="loginBtn" 
               disabled={loading}>
               {
               loading && (
-                <span className="spinner-border spinner-border-sm"></span>
+                <div className="spinner-border spinner-border-lg"></div>
               )
             }
               Login
             </button>
-            
+
           </Form>
-         
-        </div>
       </Formik>
       <p className="form-group">
-       Don't have account? <button type = "submit" onClick={handleFormDisplay} >Register</button>
+       Don't have account? <button type = "submit" className="neon-button" onClick={handleFormDisplay} >Register</button>
       </p>
-      </div>
         
       {
       message && (
@@ -110,9 +124,10 @@ const [loading, setLoading] = useState(false);
           <div className="alert alert-danger" role="alert">
             {message} </div>
         </div>
-        
-      )} 
+       )
+      }
+
       {redirect && <Navigate to='/main'/>}
-      </div>
+     </div>
   );
 };

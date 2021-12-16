@@ -6,7 +6,6 @@ import * as Yup from "yup";
 
 import { register } from "../../slices/authentication";
 import { clearMessage } from "../../slices/messages";
-import { set } from "lodash";
 
 export const WebRegisterForm = (props) => {
   const {setFormToDisplay} = props;  
@@ -75,18 +74,22 @@ export const WebRegisterForm = (props) => {
 
     const handleFormDisplay = () => setFormToDisplay('login');
 
-
   return (
-    <div className="rightLandingPageWrapper">
-    <div className="form-box">
+    <div>
+
+    {!successful && (
+          <div className="form-box">
+
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={handleRegister}
         >
           <Form>
-            {!successful && (
-              <div>
+          <h2 id="sign-in-text">  
+              Register
+            </h2>
+            
                 <div className="form-group">
                   <label htmlFor="firstname">Firstname</label>
                   <Field 
@@ -154,35 +157,32 @@ export const WebRegisterForm = (props) => {
                 </div>
 
                 <div className="form-group">
-                  <button type="submit" className="submit-btn">Register</button>
+                  <button type="submit" id="loginBtn">Register</button>
                 </div>
-            
-               
-               </div>
-            )}
-           
+
+                <p className="form-group">
+                  Already have an account? <button type = "submit" className="neon-button" onClick={handleFormDisplay} >Sign In</button>
+                </p>
           </Form>        
         </Formik>
-        <p className="form-group">
-               Already have an account? <button type = "submit" onClick={handleFormDisplay} >Sign In</button>
-        </p>
-        
-        {message && (
-        <div className="form-group">
-          <div
-            className={successful ? "alert alert-success" : "alert alert-danger"}
-            role="alert"
-          >
-            {message}
-          </div>
-          <span className="spinner-border spinner-border-sm" />
-
         </div>
+        )}
+      
         
-      )}
-      {successful && setTimeout(() => setFormToDisplay('login'), 1000)}
+        {
+        message && (
+          <div className="form-box">
+            
+            <div className={successful ? "alert alert-success" : "alert alert-danger"} role="alert">
+              {message}
+            </div>
 
-    </div>
+            <div className="spinner-border spinner-border-sm" />
+          
+          </div>
+         )
+        }
+      {successful && setTimeout(() => setFormToDisplay('login'), 1000)}
     </div>
   );
 };

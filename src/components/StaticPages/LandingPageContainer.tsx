@@ -42,7 +42,7 @@ function LandingPage() {
   return (
     <div className='grid-container'>
        {
-       !hideNavBar ? <NavBarLandingPage /> : 
+       !hideNavBar ? <div className='navWrapper'><NavBarLandingPage /> </div>: 
       <div>
        <Link to='/'>
         <button
@@ -56,26 +56,26 @@ function LandingPage() {
         <div className={"leftWrapper"}>
           <img id ={"logo"} src={MariposaLogo} style={{ width: '100vh' }}/>
         </div>
-        <div className={"rightWrapper"}>
           {
           !changeToFormDisplay && ( 
-          <div>
+            <div className={"rightWrapper"}>
               <h2>A Restful API to GraphQL Migration Tool</h2>
-          <div className="buttonDiv">
-            <button type='button' className='neon-button' onClick={handleStartNow}>
-              Login
-            </button>
-            <button type='button' className='neon-button' onClick={guestLogin}>
-              Free demo
-            </button>
-          </div>
-         </div>
+              <div className="buttonDiv">
+                <button type='button' className='neon-button' onClick={handleStartNow}>
+                  Login
+                </button>
+                <button type='button' className='neon-button' onClick={guestLogin}>
+                  Free demo
+                </button>
+              </div>
+            </div>
           )}
+
           {((changeToFormDisplay && 
             formToDisplay === 'login') && (<WebLoginForm setFormToDisplay = {setFormToDisplay}/>)) ||
             ((changeToFormDisplay && 
             formToDisplay === 'register') && (<WebRegisterForm setFormToDisplay = {setFormToDisplay}/>))}
-        </div>
+   
     </div>
   );
 }
