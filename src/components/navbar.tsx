@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Link, Navigate} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, Navigate } from 'react-router-dom';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -14,7 +14,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import LogoutIcon from '@mui/icons-material/Logout';
-import MariposaLogo from '../assets/MariposaLogo.svg';
+const MariposaLogo = require('../assets/MariposaLogo.svg');
 
 const pages = ['URI', 'Sandbox'];
 const settings = ['Logout'];
@@ -179,7 +179,7 @@ const ResponsiveAppBar = (props: any) => {
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{setting}</Typography>
-                  {redirect && (<Navigate to='/'/>)}
+                  {redirect && (<Navigate to='/' />)}
                 </MenuItem>
               ))}
             </Menu>
