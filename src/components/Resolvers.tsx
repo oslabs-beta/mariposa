@@ -66,9 +66,9 @@ export default function Resolvers(props:any) {
               </ButtonGroup>
             </Box>
 
-            <Box style={{ backgroundColor: 'transparent', margin: '0% 0% 0% 0%', maxHeight: '93%', overflow: "scroll", padding: "0px 0px 0px 0px" }}>
+            <Box style={{ backgroundColor: 'transparent', margin: '0% 0% 0% 0%', minHeight: '93%', maxHeight: '93%', overflow: "scroll", padding: "0px 0px 0px 0px" }}>
               
-                <Highlight className="javascript">
+                <Highlight  className="javascript">
                   {resolver ? props.schema : props.text}
                 </Highlight>
               

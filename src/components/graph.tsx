@@ -8,19 +8,24 @@ const theme = createTheme({ palette: { mode: 'light' } });
 
 export default function graph(props: any) {
   return (
-    <ThemeProvider theme={theme} >
-      <Paper elevation={2} color='transparent' style={{
+    <div className="treeDiv">
+
+    {/* <ThemeProvider theme={theme} > */}
+      {/* <Paper elevation={2} color='transparent' style={{
         border: "gray",
         minWidth: "100%",
         height: "100%",
         maxHeight: '97vh',
         position: 'relative',
         
-      }}>
+      }}> */}
+
         <div className='graphD3'>
           <Tree treeData={props.treeData}/>
         </div>
-      </Paper>
-    </ThemeProvider>
+      {/* </Paper> */}
+    {/* </ThemeProvider> */}
+    </div>
+
   )
 }
