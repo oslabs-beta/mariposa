@@ -29,7 +29,6 @@
 		display: flex;
 		gap: 1vh;
 		align-items: center;
-		font-family: $fontOfMetrics;
 		font-size: 5vh;
 		text-align: center;
 		margin: auto;
@@ -41,9 +40,7 @@
 		padding-left: 0.5vh;
 		padding-right: 0.5vh;
 	}
-	h2 {
-		font-family: $fontOfMetrics;
-	}
+
 	p {
 		font-family: $fontOfButtons;
 		width: 70%;
@@ -62,7 +59,6 @@
 	// }
 	#theTeam {
 		margin-top: 10vh;
-		font-family: $fontOfMetrics;
 		font-size: vh;
 	}
 	.team {
@@ -144,12 +140,10 @@
 		display: flex;
 		gap: 1vh;
 		align-items: center;
-		font-family: $fontOfMetrics;
 		display: inline;
 		font-size: 5vh;
 	}
 	h2 {
-		font-family: $fontOfMetrics;
 		font-size: 2vh;
 		margin-top: 5vh;
 		width: 40vw;
