@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
-
-import AppBar from '@mui/material/AppBar';
+import { Navigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -15,7 +13,6 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import LogoutIcon from '@mui/icons-material/Logout';
 import MariposaLogo from '../assets/MariposaLogo.svg'
-// const MariposaLogo = require('../assets/MariposaLogo.svg');
 
 const pages = ['URI', 'Sandbox'];
 const settings = ['Logout'];
@@ -44,10 +41,7 @@ const ResponsiveAppBar = (props: any) => {
   };
 
   const handleCloseNavMenu = () => {
-    // setAnchorElNav(null);
     setRedirect(true);
-    //window.open('/graphql', '_blank')
-    // (props.graphiql) ? props.setGraphiql(false) : props.setGraphiql(true);
   };
 
   const handleSandbox = () => {
@@ -68,17 +62,7 @@ const ResponsiveAppBar = (props: any) => {
     <div className="navAppBar">
       <Container maxWidth={false}>
         <Toolbar disableGutters>
-          {/* <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-          >
-            MariposaQL
-          </Typography> */}
           <img id ={"logo"} src={MariposaLogo} style={{ width: '20%' }}/>
-
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -127,14 +111,6 @@ const ResponsiveAppBar = (props: any) => {
             ))}
             </Menu>
           </Box>
-          {/* <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-          >
-            MariposaQL
-          </Typography> */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               page === "URI" ? 
