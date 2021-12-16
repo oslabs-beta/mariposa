@@ -2,57 +2,26 @@ import React, { useRef, useEffect, useState } from "react";
 import Tree from 'react-d3-tree';
 
 //get request to the endpoint and set the state equal to this
-function TreeChart(props:any) {
-  const data = {
-    name: 'CEO',
-    children: [
-      {
-        name: 'Manager',
-        attributes: {
-          department: 'Production',
-        },
-        children: [
-          {
-            name: 'Foreman',
-            attributes: {
-              department: 'Fabrication',
-            },
-            children: [
-              {
-                name: 'Worker',
-              },
-            ],
-          },
-          {
-            name: 'Foreman',
-            attributes: {
-              department: 'Assembly',
-            },
-            children: [
-              {
-                name: 'Worker',
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  };
-  const [treeData, setTreeData] = useState(data)
+function TreeChart(props: any) {
+  const [treeData, setTreeData] = useState({
+    name: '',
+    children: [],
+  });
 
   //do the get request, obtaint the res.locals. setTreeData(res.locals.)
-  useEffect (() => {
-  fetch('/project/D3tables', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({uri: props.uriString})
-  })
-    .then(res => res.json())
-    .then(data => {
-      setTreeData(data);
-  })
+  useEffect(() => {
+    fetch('/project/D3tables', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ uri: props.uriString })
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        setTreeData(data);
+      })
   }, [])
 
   const straightPathFunc = (linkDatum: any, orientation: any) => {
@@ -64,7 +33,20 @@ function TreeChart(props:any) {
   return (
     // `<Tree />` will fill width/height of its container; in this case `#treeWrapper`.
     <div id="treeWrapper" style={{ width: '100%', height: '100%' }}>
-      <Tree data={treeData} orientation="vertical" pathFunc='step' nodeSize={{ x: 100, y: 140 }} shouldCollapseNeighborNodes='false' />
+      <Tree
+        data={treeData}
+        rootNodeClassName="node__root"
+        branchNodeClassName="node__branch"
+        leafNodeClassName="node__leaf"
+        orientation="horizontal"
+        translate={{ x: 50, y: 250 }}
+        zoom={.5}
+        nodeSize={{ x: 300, y: 50 }}
+        enableLegacyTransitions={true}
+        depthFactor={500}
+        initialDepth={1}
+        shouldCollapseNeighborNodes={true} 
+        />
     </div>
   );
 }

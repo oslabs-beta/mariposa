@@ -10,8 +10,6 @@ body {
 
 }
 
-
-
 .graphD3 {
   height: 100%;
   width: 100%;
@@ -30,6 +28,10 @@ body {
   width: 100%;
   border-radius: 5px;
   box-shadow: pink;
+}
+
+.hljs{
+  background: transparent;
 }
 
 * {
@@ -152,17 +154,15 @@ button {
 }
 
 .node__root > circle {
-  fill: red;
+  fill: #1976d2;
 }
 
 .node__branch > circle {
-  fill: yellow;
+  fill: #1976d2;
 }
 
 .node__leaf > circle {
-  fill: green;
-  /* Let's also make the radius of leaf nodes larger */
-  r: 40;
+  fill: #1976d2;
 }
 
 
