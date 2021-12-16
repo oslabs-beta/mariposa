@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Paper from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
@@ -12,8 +12,6 @@ export default function Resolvers(props: any) {
 
   //state for the user defaulted to resolvers
   const [resolver, setResolver] = useState(false);
-  const [text, setText] = useState('');
-  const [schema, setSchema] = useState('');
 
   return (
 
@@ -21,7 +19,6 @@ export default function Resolvers(props: any) {
       <Paper elevation={2} color='primary' style={{
         border: "gray",
         height: "100%",
-        // paddingLeft: "5%",
         maxHeight: '97vh',
         backgroundColor: "#ffedff",
         opacity: ".99",
