@@ -18,36 +18,36 @@ export default function Resolvers(props:any) {
   const [resolver, setResolver] = useState(false);
   const [text, setText] = useState('');
   const [schema, setSchema] = useState('');
-
+  
+  console.log(props.uriString)
   //function that renders innertext based on the resolver status
 
-  useEffect(() => {
-    fetch('/project/tables', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({uri: props.uriString})
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data.typeDefs);
-        setText(data.typeDefs);
-        setSchema(data.resolverString);
-      })
-  }, []);
+  // useEffect(() => {
+  //   fetch('/project/tables', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({uri: props.uriString})
+  //   })
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       setText(data.typeDefs);
+  //       setSchema(data.resolverString);
+  //     })
+  // }, []);
 
   return (
-    <div>
+    <div className = "resolverDiv">
 
-      <ThemeProvider theme={theme} >
-        <Paper elevation={2} color='primary' style={{
+      {/* <ThemeProvider theme={theme} > */}
+        {/* <Paper elevation={2} color='primary' style={{
           border: "gray",
-          minWidth: "100%",
+          maxWidth: "300px",
           height: "100%",
           // paddingLeft: "5%",
           maxHeight: '97vh',
-        }}>
+        }}> */}
           <div className='resolvers' >
             <Box
               sx={{
@@ -59,23 +59,23 @@ export default function Resolvers(props:any) {
                 },
               }}
             >
-              <ButtonGroup variant="outlined" aria-label="outlined button group">
+              <ButtonGroup className="buttonGroup" variant="outlined" aria-label="outlined button group">
                 <Button onClick={() => setResolver(false)}>TypeDefs</Button>
                 <Button onClick={() => setResolver(true)}>Resolvers</Button>
-                <Button onClick={() => { navigator.clipboard.writeText((resolver) ? schema : text) }}><ContentPasteIcon /></Button>
+                <Button onClick={() => { navigator.clipboard.writeText((resolver) ? props.schema : props.text) }}><ContentPasteIcon /></Button>
               </ButtonGroup>
             </Box>
 
-            <Box style={{ backgroundColor: 'transparent', margin: '0% 0% 0% 0%', width: '100%', height: '89%', maxHeight: '100%', overflow: "scroll", padding: "0px 0px 0px 0px", borderRadius: '5px' }}>
+            <Box style={{ backgroundColor: 'transparent', margin: '0% 0% 0% 0%', minHeight: '93%', maxHeight: '93%', overflow: "scroll", padding: "0px 0px 0px 0px" }}>
               
-                <Highlight className="javascript">
-                  {resolver ? schema : text}
+                <Highlight  className="javascript">
+                  {resolver ? props.schema : props.text}
                 </Highlight>
               
             </Box>
           </div>
-        </Paper>
-      </ThemeProvider >
+        {/* </Paper> */}
+      {/* </ThemeProvider > */}
     </div>
   )
 }
