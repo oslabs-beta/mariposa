@@ -114,14 +114,9 @@ const ResponsiveAppBar = (props: any) => {
             {pages.map((page) => (
               page === "URI" ? 
                      <div>
-                  <Button aria-describedby={id} type="button" onClick={handleClick} sx={{ my: 2, color: 'black', display: 'block' }}>
+                  <Button aria-describedby={id} type="button" onClick={() => {props.setUriBoolean(false)}} sx={{ my: 2, color: 'black', display: 'block' }}>
                     URI
                   </Button>
-                  <Popper id={id} open={open} anchorEl={anchorEl} >
-                    <Box sx={{ bgcolor: 'background.paper' }}>
-                    <UseInput setUriString={props.setUriString}/>
-                    </Box>
-                  </Popper>
                 </div> :
               <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'black', display: 'block' }}>
                 {page}

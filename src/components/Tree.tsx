@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import Tree from 'react-d3-tree';
 
 //get request to the endpoint and set the state equal to this
-function TreeChart() {
+function TreeChart(props:any) {
   const data = {
     name: 'CEO',
     children: [
@@ -46,7 +46,8 @@ function TreeChart() {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
-    }
+    },
+    body: JSON.stringify({uri: props.uriString})
   })
     .then(res => res.json())
     .then(data => {
