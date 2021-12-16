@@ -12,7 +12,7 @@ import Highlight from 'react-highlight';
 
 
 
-export default function Resolvers() {
+export default function Resolvers(props:any) {
 
   //state for the user defaulted to resolvers
   const [resolver, setResolver] = useState(false);
@@ -26,7 +26,8 @@ export default function Resolvers() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      body: JSON.stringify({uri: props.uriString})
     })
       .then(res => res.json())
       .then(data => {

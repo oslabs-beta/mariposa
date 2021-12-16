@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 
 const theme = createTheme({ palette: { mode: 'light' } });
 
-export default function graph() {
+export default function graph(props:any) {
   return (
     <ThemeProvider theme={theme} >
     <Paper elevation={2} color='primary' style={{
@@ -21,10 +21,9 @@ export default function graph() {
   opacity: '0.85'
 }}>
     <div className='graphD3'>
-      <Tree/>
+      <Tree uriString={props.uriString}/>
       {/* <G6Tree /> */}
     </div>
-    
   </Paper>
   </ThemeProvider>
  )
