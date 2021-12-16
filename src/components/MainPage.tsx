@@ -14,38 +14,79 @@ import Sandbox from './sandbox';
 //add the conditional rendering right under the Grid
 
 export default function LandingPage(props: any) {
-  const[uriBtnClose, setHandleUriBtnClose] = useState(false);
+  const [uriBtnClose, setHandleUriBtnClose] = useState(false);
   const [uriString, setUriString] = useState('');
-  const [uri, setUri] = useState('');
+  const [treeData, setTreeData] = useState({
+    name: '',
+    children: [],
+  })
+
+  const [text, setText] = useState('');
+  const [schema, setSchema] = useState('');
+
+  function obtainTreeData(uriString: string) {
+    fetch('/project/D3tables', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ uri: uriString })
+    })
+      .then(res => res.json())
+      .then(data => {
+        setTreeData(data)
+      })
+  }
+
+  function obtainResolvers(uriString: string) {
+    fetch('/project/tables', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ uri: uriString })
+    })
+      .then(res => res.json())
+      .then(data => {
+        setText(data.typeDefs);
+        setSchema(data.resolverString);
+      })
+  }
+
+  const handleClick = (uriString: string, e:any) => {
+      e.preventDefault()
+      obtainResolvers(uriString);
+      obtainTreeData(uriString);
+      console.log(text, schema, treeData)
+  }
 
   console.log('latest string', uriString)
-  console.log('here', uri)
   return (
-    
-   <div className="mainDisplayContainer">
-     
-      <ResponsiveAppBar uriBtnClose ={uriBtnClose} setHandleUriBtnClose ={setHandleUriBtnClose} setUriBoolean={props.setUriBoolean}></ResponsiveAppBar>
+
+    <div className="mainDisplayContainer">
+
+      <ResponsiveAppBar uriBtnClose={uriBtnClose} setHandleUriBtnClose={setHandleUriBtnClose} setUriBoolean={props.setUriBoolean}></ResponsiveAppBar>
       {!uriBtnClose && <div className="uri-box">
-        <form onSubmit={ () => setUriString(uri)}>
-          
+        <form onSubmit={(e) => handleClick(uriString, e)}>
+
           <div className="enterUri">
-            <h2 >Enter URI</h2>       
-            <button onClick={()=>setHandleUriBtnClose(true)}><span>Close</span></button>
+            <h2 >Enter URI</h2>
+            <button onClick={() => setHandleUriBtnClose(true)}><span>Close</span></button>
           </div>
-          
+
           <div className="form-group">
             <label htmlFor="uri">URI:</label>
-            <input type="text" className='form-control' onChange={(e) => setUri(e.target.value)}/>
+            <input type="text" className='form-control' onChange={(e) => setUriString(e.target.value)} />
           </div>
           <button type="submit" id="submitBtn">Submit</button>
-        
+
         </form>
-     </div>
+      </div>
       }
       {!props.graphiql && (
         <div className="mainDisplayWrapper">
-          <Graph uriString={uriString} />            
-          <Resolvers uriString={uriString} />
+          <Graph treeData={treeData} />
+          <Resolvers text={text} schema={schema} />
         </div>)
       }
     </div>

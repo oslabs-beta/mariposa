@@ -22,20 +22,20 @@ export default function Resolvers(props:any) {
   console.log(props.uriString)
   //function that renders innertext based on the resolver status
 
-  useEffect(() => {
-    fetch('/project/tables', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({uri: props.uriString})
-    })
-      .then(res => res.json())
-      .then(data => {
-        setText(data.typeDefs);
-        setSchema(data.resolverString);
-      })
-  }, []);
+  // useEffect(() => {
+  //   fetch('/project/tables', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({uri: props.uriString})
+  //   })
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       setText(data.typeDefs);
+  //       setSchema(data.resolverString);
+  //     })
+  // }, []);
 
   return (
     <div className = "resolverDiv">
@@ -62,14 +62,14 @@ export default function Resolvers(props:any) {
               <ButtonGroup className="buttonGroup" variant="outlined" aria-label="outlined button group">
                 <Button onClick={() => setResolver(false)}>TypeDefs</Button>
                 <Button onClick={() => setResolver(true)}>Resolvers</Button>
-                <Button onClick={() => { navigator.clipboard.writeText((resolver) ? schema : text) }}><ContentPasteIcon /></Button>
+                <Button onClick={() => { navigator.clipboard.writeText((resolver) ? props.schema : props.text) }}><ContentPasteIcon /></Button>
               </ButtonGroup>
             </Box>
 
             <Box style={{ backgroundColor: 'transparent', margin: '0% 0% 0% 0%', maxHeight: '93%', overflow: "scroll", padding: "0px 0px 0px 0px" }}>
               
                 <Highlight className="javascript">
-                  {resolver ? schema : text}
+                  {resolver ? props.schema : props.text}
                 </Highlight>
               
             </Box>
