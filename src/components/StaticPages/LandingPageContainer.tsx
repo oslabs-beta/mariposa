@@ -23,6 +23,7 @@ function LandingPage() {
 
   const handleBackButton = () => {
     setChangeToFormDisplay(false);
+    setFormToDisplay('login');
     setHideNavBar(false);
   }
   function guestLogin() {
@@ -39,41 +40,42 @@ function LandingPage() {
 
 
   return (
-    <div className={"LandingPageWrapper"}>
-      {!hideNavBar ? <NavBarLandingPage /> : 
+    <div className='grid-container'>
+       {
+       !hideNavBar ? <div className='navWrapper'><NavBarLandingPage /> </div>: 
       <div>
-      <Link to='/'>
+       <Link to='/'>
         <button
-          id={"backButton"}
+          className='neon-button'
           type="button" onClick = {handleBackButton}>Back
         </button>
-        </Link>
-			</div>}
+       </Link>
+			</div>
+      }
 
-      <div className={"leftLandingPageWrapper"}>
-        <img id ={"logo"} src={MariposaLogo} style={{ width: '100vh' }}/>
-      </div>
-      <div className={"rightLandingPageWrapper"}>
-        {!changeToFormDisplay && ( 
-          <div className={"rightLandingPageWrapper"}>
-            <h2>A Restful API to GraphQL Migration Tool</h2>
-        <div className="buttonDiv">
-        <button type='button' className='neon-button' onClick={handleStartNow}>
-          Start now
-        </button>
-        <button type='button' className='neon-button' onClick={guestLogin}>
-        Free demo
-      </button>
-      </div>
-      </div>
-        )}
-         {((changeToFormDisplay && 
-          formToDisplay === 'login') && (<WebLoginForm setFormToDisplay = {setFormToDisplay}/>)) ||
-          ((changeToFormDisplay && 
-          formToDisplay === 'register') && (<WebRegisterForm setFormToDisplay = {setFormToDisplay}/>))}
-         
-        
-      </div>
+        <div className={"leftWrapper"}>
+          <img id ={"logo"} src={MariposaLogo} style={{ width: '100vh' }}/>
+        </div>
+          {
+          !changeToFormDisplay && ( 
+            <div className={"rightWrapper"}>
+              <h2>A Restful API to GraphQL Migration Tool</h2>
+              <div className="buttonDiv">
+                <button type='button' className='neon-button' onClick={handleStartNow}>
+                  Login
+                </button>
+                <button type='button' className='neon-button' onClick={guestLogin}>
+                  Free demo
+                </button>
+              </div>
+            </div>
+          )}
+
+          {((changeToFormDisplay && 
+            formToDisplay === 'login') && (<WebLoginForm setFormToDisplay = {setFormToDisplay}/>)) ||
+            ((changeToFormDisplay && 
+            formToDisplay === 'register') && (<WebRegisterForm setFormToDisplay = {setFormToDisplay}/>))}
+   
     </div>
   );
 }

@@ -20,27 +20,23 @@ function AboutUs() {
 	return (
 		
     <div className={"aboutUsWrapper"}> 
-			<button
-				id={"backButton"}
-				type="button"> 
-				<Link to='/'>Back</Link>
-			</button>
- 
+
+			<Link to='/'>
+        <button
+					className={"neon-button"}
+          type="button"> 
+					<Link to='/'>Back</Link>
+        </button>
+       </Link>
 		 
 			{/* <div className={"title"}>
 				<span id={"highlight"}>By developenrs, for developers</span>
 			</div> */}
-			<h2>Giving back to the community</h2>
+			<h2>Proud to be part of the Open Source Community</h2>
 			<p>
-				Without Open Source Projects, many of the technologies we take for
-				granted today would never have developed, or would be locked away behind
-				patent law. The open source movement is the reason that technology has
-				developed at such a breakneck pace for the past few decades.
-			</p>
-			<p>
-				We created Revis, to contribute to the Open Source Community and for
-				developers using Redis to be able to maximize its potential and to make
-				more efficient and strategic decisions.
+				As software developers who have been deeply inspired by other Open Source projects, 
+				we are extremely excited to contribute back to the Community with Mariposa. We hope 
+				this product will serve developers well and look forward to expanding its potential.
 			</p>
 				Meet our team
 

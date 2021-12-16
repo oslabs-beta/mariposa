@@ -4,8 +4,8 @@ import {Link, Navigate} from 'react-router-dom';
 
 function NavBarLandingPage() {
   return (
-    <div className={"NavBar"}>
-      <button
+    <div className='navBar' >
+      <button className='neon-button'
         type="button"
         onClick={() =>
           window.open(
@@ -16,10 +16,9 @@ function NavBarLandingPage() {
         Documentation
       </button>
       <button type="button">
-        <Link to="/about"> The Team</Link>
+        <Link to="/about" className='neon-button' > The Team </Link>
       </button>
-      <button
-        id={"download"}
+      <button className='neon-button'
         type="button"
         onClick={() => router.replace('/download')}
       >
