@@ -55,6 +55,8 @@ export default function LandingPage(props: any) {
 
   const handleClick = (uriString: string, e:any) => {
       e.preventDefault()
+      setHandleUriBtnClose(true); //closes uri box
+      setUriString(''); //cleans uri bar
       obtainResolvers(uriString);
       obtainTreeData(uriString);
       console.log(text, schema, treeData)
