@@ -34,17 +34,15 @@
 	justify-content: center;
 	align-items: center;
 	h2 {
-		margin-bottom: 5%;
 		text-align: center;
 		font-size: 3.5vh;
 		color: white;
+		padding: 6vh;
 	}
 	.buttonDiv {
 		display: flex;
 		gap: 2vh;
-	}
-	
-
+	}	
 }
 
 .grid-container{
@@ -265,4 +263,7 @@
 		font-size: 2.0vh;
 	}
 
-	
+	.linkStyler{
+		text-decoration: none;
+		color: 'hsl(317 100% 54%)';
+	}
