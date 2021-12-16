@@ -17,9 +17,11 @@ Mariposa is an open-source GraphQL visualization and migration tool designed to 
 ## Demo
 
 Log in or Sign Up!
+
 ![login](https://media.giphy.com/media/lyyPmCjymefTtSOPW5/giphy.gif)
 
 Input URI, visualize your data, and copy your GQL Schema!
+
 ![useApp](https://media.giphy.com/media/cF2KVuoOvTRu8zGxA0/giphy.gif)
 ## Deployment
 
