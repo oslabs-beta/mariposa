@@ -41,7 +41,3 @@ function TreeChart(props: any) {
 }
 
 export default TreeChart;
-
-function setLoginErr(arg0: boolean) {
-  throw new Error("Function not implemented.");
-}

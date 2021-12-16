@@ -46,13 +46,13 @@ export default function LandingPage(props: any) {
       })
   }
 
-  const handleClick = (uriString: string, e:any) => {
-      e.preventDefault()
-      setHandleUriBtnClose(true); //closes uri box
-      setUriString(''); //cleans uri bar
-      obtainResolvers(uriString);
-      obtainTreeData(uriString);
-      console.log(text, schema, treeData)
+  const handleClick = (uriString: string, e: any) => {
+    e.preventDefault()
+    setHandleUriBtnClose(true); //closes uri box
+    setUriString(''); //cleans uri bar
+    obtainResolvers(uriString);
+    obtainTreeData(uriString);
+    console.log(text, schema, treeData)
   }
 
   console.log('latest string', uriString)
@@ -70,20 +70,20 @@ export default function LandingPage(props: any) {
         </div>
       </div>
       }
-        <Grid container={true} rowSpacing={1.5} columnSpacing={{ xs: 1, sm: 2, md: 1.5 }} style={{
-          minWidth: "100%",
-          height: "92vh",
-          padding: '.8% 0% 0% .0%'
-        }}>
-          <Grid item xs={6} md={7} >
-            <Graph treeData={treeData} />
-          </Grid>
-          <Grid item xs={6} md={5} >
-            <Resolvers text={text} schema={schema} />
-          </Grid>
+      <Grid container={true} rowSpacing={1.5} columnSpacing={{ xs: 1, sm: 2, md: 1.5 }} style={{
+        minWidth: "100%",
+        height: "92vh",
+        padding: '.8% 0% 0% .0%'
+      }}>
+        <Grid item xs={6} md={7} >
+          <Graph treeData={treeData} />
         </Grid>
-    
-      
+        <Grid item xs={6} md={5} >
+          <Resolvers text={text} schema={schema} />
+        </Grid>
+      </Grid>
+
+
     </div>
   )
 }
