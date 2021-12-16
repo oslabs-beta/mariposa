@@ -31,7 +31,7 @@ function TreeChart(props: any) {
       : `M${source.x},${source.y}L${target.x},${target.y}`;
   }
   return (
-    // `<Tree />` will fill width/height of its container; in this case `#treeWrapper`.
+    // `<Tree />` will fill width/height of its `#treeWrapper` container
     <div id="treeWrapper" style={{ width: '100%', height: '100%' }}>
       <Tree
         data={treeData}
