@@ -11,7 +11,7 @@ const dbController = {
         VALUES($1, $2, $3, $4, $5) RETURNING firstname, lastname, username, email, password`;
       const values = [firstname, lastname, username, email, password];
       const result = await db.query(query, values);
-      const user = result.rows[0];
+      
       res.locals.signup = 'Successful registration';
       return next();
     }

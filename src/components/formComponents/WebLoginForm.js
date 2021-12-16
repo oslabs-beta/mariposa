@@ -80,6 +80,7 @@ const [loading, setLoading] = useState(false);
                name="username"
                type="text"
                className="form-control"
+               autocomplete="off"
               />
               <ErrorMessage
                name="username"
@@ -94,6 +95,7 @@ const [loading, setLoading] = useState(false);
                name="password" 
                type="password" 
                className="form-control"
+               autocomplete="off"
               />
               <ErrorMessage 
                name="password" 

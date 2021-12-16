@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
-import Graph from './graph';
-import ResponsiveAppBar from './navbar';
+import Graph from './Graph';
+import ResponsiveAppBar from './MainPageNavBar';
 import Resolvers from './Resolvers';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -62,11 +62,11 @@ export default function LandingPage(props: any) {
 
       <ResponsiveAppBar uriBtnClose={uriBtnClose} setHandleUriBtnClose={setHandleUriBtnClose} setUriBoolean={props.setUriBoolean}></ResponsiveAppBar>
       {!uriBtnClose && <div className="uri-box">
-        <Button style={{ width: "20%", marginLeft: "80%" }} onClick={() => setHandleUriBtnClose(true)}><span>Close</span></Button>
-        <TextField label={'URI Input....'} id="URI" onChange={(e) => setUriString(e.target.value)} />
-        <div className='uriButtons'>
-          <Button style={{ width: "33%" }} onClick={(e) => handleClick(uriString, e)}>Submit</Button>
-          <Button style={{ width: "33%" }} onClick={(e) => handleClick('', e)}>Sample Data</Button>
+        <Button style={{width: "20%", marginLeft: "80%"}} onClick={() => setHandleUriBtnClose(true)}><span>Close</span></Button>
+        <TextField label={'URI Input....'} id="URI" onChange={(e) => setUriString(e.target.value)}/>
+        <div className='uriButtons'> 
+          <Button style={{width: "33%"}} onClick={(e) => handleClick(uriString, e)}>Submit</Button>
+          <Button style={{width: "33%"}} onClick={(e) => handleClick('', e)}>Sample Data</Button>
         </div>
       </div>
       }

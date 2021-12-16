@@ -1,6 +1,5 @@
 import React from 'react';
-import {Link, Navigate} from 'react-router-dom';
-// import styles from '../../styles/LandingPage.module.scss';
+import { Link } from 'react-router-dom';
 
 function NavBarLandingPage() {
   return (
