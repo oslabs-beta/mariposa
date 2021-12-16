@@ -1,18 +1,15 @@
-const { buildSchema } = require('graphql');
 import { SQLConversionHelpers } from './SQLConversionHelpers'
 import { Table, Column } from '../types/DBResponseTypes';
-import { tables } from '../types/dummyTables';
 const {checkIsTableJoin, fieldValueCreator, inObjectTypeCase, queryPluralCase, querySingularCase} = SQLConversionHelpers;
-
 
 export const GQLQueryTypeCreator = (tableObject: Table): string => {
     const {tablename, columns} = tableObject;
     let queryType = "";
-    if(checkIsTableJoin(columns)){ //TODO add logic here to add [WHATEVER] to tablename type
+    if(checkIsTableJoin(columns)){ 
       return '';
     } else { 
       const typeObject = inObjectTypeCase(tablename);
-      let queryPluralType = `\n ${queryPluralCase(tablename)}: [${typeObject}]!`; //TODO stuff should be nullable
+      let queryPluralType = `\n ${queryPluralCase(tablename)}: [${typeObject}]!`;
       let querySingularType = `\n ${querySingularCase(tablename)}(`;
       columns.forEach((columnObj: Column) => {
         const{column_name, constraint_type} = columnObj;
@@ -27,4 +24,3 @@ export const GQLQueryTypeCreator = (tableObject: Table): string => {
     }
     return queryType;
   }
-

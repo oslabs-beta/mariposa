@@ -56,7 +56,7 @@ const ResponsiveAppBar = (props: any) => {
     <div className="navAppBar">
       <Container maxWidth={false}>
         <Toolbar disableGutters>
-          <img id ={"logo"} src={MariposaLogo} style={{ width: '20%' }}/>
+          <img id={"logo"} src={MariposaLogo} style={{ width: '20%' }} />
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
