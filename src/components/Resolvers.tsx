@@ -59,14 +59,14 @@ export default function Resolvers(props:any) {
                 },
               }}
             >
-              <ButtonGroup variant="outlined" aria-label="outlined button group">
+              <ButtonGroup className="buttonGroup" variant="outlined" aria-label="outlined button group">
                 <Button onClick={() => setResolver(false)}>TypeDefs</Button>
                 <Button onClick={() => setResolver(true)}>Resolvers</Button>
                 <Button onClick={() => { navigator.clipboard.writeText((resolver) ? schema : text) }}><ContentPasteIcon /></Button>
               </ButtonGroup>
             </Box>
 
-            <Box style={{ backgroundColor: 'transparent', margin: '0% 0% 0% 0%', height: '89%', maxHeight: '89%', overflow: "scroll", padding: "0px 0px 0px 0px" }}>
+            <Box style={{ backgroundColor: 'transparent', margin: '0% 0% 0% 0%', maxHeight: '93%', overflow: "scroll", padding: "0px 0px 0px 0px" }}>
               
                 <Highlight className="javascript">
                   {resolver ? schema : text}

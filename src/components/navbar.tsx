@@ -15,6 +15,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Popper from '@mui/base/PopperUnstyled';
 import UseInput from './Urlsubmit';
+import MariposaLogo from '../assets/MariposaLogo.svg';
 
 const pages = ['URI', 'Sandbox'];
 const settings = ['Logout'];
@@ -54,17 +55,18 @@ const ResponsiveAppBar = (props: any) => {
   };
 
   return (
-    <AppBar position="static" style={{ backgroundColor: 'pink', color: 'blue' }}>
+    <div className="navAppBar">
       <Container maxWidth="false">
         <Toolbar disableGutters>
-          <Typography
+          {/* <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
             MariposaQL
-          </Typography>
+          </Typography> */}
+          <img id ={"logo"} src={MariposaLogo} style={{ width: '20%' }}/>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -102,23 +104,23 @@ const ResponsiveAppBar = (props: any) => {
               ))}
             </Menu>
           </Box>
-          <Typography
+          {/* <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
             MariposaQL
-          </Typography>
+          </Typography> */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               page === "URI" ? 
                      <div>
-                  <Button aria-describedby={id} type="button" onClick={() => {props.setUriBoolean(false)}} sx={{ my: 2, color: 'black', display: 'block' }}>
+                  <Button aria-describedby={id} type="button" onClick={() => {props.setUriBoolean(false)}} sx={{ my: 2, color: 'white', display: 'block' }}>
                     URI
                   </Button>
                 </div> :
-              <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'black', display: 'block' }}>
+              <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
                 {page}
               </Button>
             ))}
@@ -156,7 +158,7 @@ const ResponsiveAppBar = (props: any) => {
           </Box>
         </Toolbar>
       </Container>
-    </AppBar>
+    </div>
   );
 };
 export default ResponsiveAppBar;
