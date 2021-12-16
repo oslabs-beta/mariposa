@@ -107,11 +107,23 @@ const ResponsiveAppBar = (props: any) => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+             {pages.map((page) => (
+              page === "URI" ? 
+                     <div>
+                    <Button aria-describedby={id} type="button" onClick={() => {props.setUriBoolean(false)}} sx={{ my: 2, color: 'black', display: 'block' }}>
+                      URI
+                    </Button>
+                </div> :
+              page === "Sandbox" ?
+              <div>
+              <Button aria-describedby={id} type="button" onClick={handleSandbox} sx={{ my: 2, color: 'black', display: 'block' }}>
+                SANDBOX
+              </Button>
+              </div> :
+              <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'black', display: 'block' }}>
+                {page}
+              </Button>
+            ))}
             </Menu>
           </Box>
           {/* <Typography
