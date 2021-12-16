@@ -14,7 +14,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import LogoutIcon from '@mui/icons-material/Logout';
-import MariposaLogo from '../assets/MariposaLogo.svg';
+const MariposaLogo = require('../assets/MariposaLogo.svg');
 
 const pages = ['URI', 'Sandbox'];
 const settings = ['Logout'];
