@@ -5,7 +5,7 @@ import LandingPageContainer from './components/StaticPages/LandingPageContainer'
 import AboutUs from './components/StaticPages/AboutUs';
 import Download from './components/StaticPages/Download';
 import { MainDisplay } from './containers/MainDisplay';
-
+import MainPage from './components/MainPage'
 
 
 export const App = () => {
@@ -26,7 +26,7 @@ export const App = () => {
         />
         <Route
           exact path="/main"
-          element={<MainDisplay />}
+          element={<MainPage />}
         />
       </Routes>
     </Router>
