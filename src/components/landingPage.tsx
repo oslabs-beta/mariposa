@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
-import Graph from './graph.tsx';
-import ResponsiveAppBar from './navbar.tsx';
-import Resolvers from './Resolvers.tsx';
-import Sandbox from './sandbox.tsx';
+import Graph from './graph';
+import ResponsiveAppBar from './navbar';
+import Resolvers from './Resolvers';
+import Sandbox from './sandbox';
 
 // style={{
 //   border: "solid",

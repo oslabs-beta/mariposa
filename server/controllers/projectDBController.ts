@@ -3,15 +3,16 @@ import { Table } from '../types/DBResponseTypes';
 import rowsToTable from '../SQLConversion/SQLQueryHelpers';
 import { IResolvers } from '@graphql-tools/utils';
 import resolverMaker from '../SQLConversion/resolverMaker';
-import db from '../models/projectDB';
+import db, { PG_URI } from '../models/projectDB';
 import { resolverStringMaker } from '../SQLConversion/resolverStringMaker';
 import { typeDefMaker } from '../SQLConversion/typeDefMaker';
 
 
 export const projectDBController = {
   async updateDatabase(req: Request, res: Response, next: NextFunction) {
-    const {uri} = req.body;
-    if(uri) db.updateUri(uri);
+    const { uri } = req.body;
+    if (uri) db.updateUri(uri);
+    else db.updateUri(PG_URI);
     next();
   },
 
@@ -76,7 +77,7 @@ export const projectDBController = {
     return next();
   },
   buildSchema(req: Request, res: Response, next: NextFunction) {
-    
+
     return next();
   },
 }
