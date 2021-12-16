@@ -81,6 +81,8 @@
 		width: 100%;
 	}
 
+
+
 	#sign-in-text{
 		text-align: center;
 		// -webkit-text-stroke: 0.2vh 	#2583b6;
@@ -202,3 +204,65 @@
   opacity: 1;
 }
 
+.uri-box{
+	// display: flex;
+	// flex-direction: column;
+	// align-items: center;
+	width: 25em;
+	min-height: 1em;
+	position: absolute;
+	background: rgb(37, 2, 48);
+	// padding: 5px;
+	border-radius: 10px;
+	border: solid 2px #df29df;
+	box-shadow: 1px 3px 10px #2583b6;
+	color: rgb(230, 225, 225);
+	font-size: 2.5vh;
+	margin: 50vh;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+
+		#submitBtn{
+			margin:0;
+			font-size: 2vh;
+			margin: 1%; 
+			width: 20%;
+			display: inline-block;
+		}
+	}
+
+	.mainDisplayContainer{
+		display:flex;
+		flex-direction: column;
+		width: 100%;
+		z-index: -1;
+	}
+
+	.mainDisplayWrapper{
+		display: flex;
+		margin-top: 2vh;
+		gap: 2vh;
+		min-height: 100vh;
+	}
+
+	.treeDiv{
+		display: flex;
+		width: 70%;
+		background: rgba(255, 255, 255, 0.05);
+
+	}
+
+	.resolverDiv{
+		display: flex;
+		padding-left: 2vh;
+		width: 30%;
+		max-height: 100vh;
+		background: rgba(255, 255, 255, 0.05);
+	}
+
+	.javascript{
+		font-size: 2.0vh;
+	}
+
+	

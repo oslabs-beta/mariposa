@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import LandingPage from '../components/landingPage.tsx';
+import MainPage from '../components/MainPage.tsx';
 import EntryUri from '../components/EntryUri.tsx'
 
 
@@ -11,7 +11,7 @@ const [uriString, setUriString] = useState('')
 
 return (
   <div>
-  {(uriBoolean) ? <LandingPage setUriBoolean={setUriBoolean} uriString={uriString} setUriString={setUriString}/> : <EntryUri setUriBoolean={setUriBoolean} setUriString={setUriString}/>}
+  {(uriBoolean) ? <MainPage setUriBoolean={setUriBoolean} uriString={uriString} setUriString={setUriString}/> : <EntryUri setUriBoolean={setUriBoolean} setUriString={setUriString}/>}
   </div>
 
   )

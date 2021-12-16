@@ -30,6 +30,10 @@ body {
   box-shadow: pink;
 }
 
+.hljs{
+  background: transparent;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -150,18 +154,50 @@ button {
 }
 
 .node__root > circle {
-  fill: #df29df;
+  fill: #1976d2;
 }
 
 .node__branch > circle {
-  fill: #df29df;
+  fill: #1976d2;
 }
 
 .node__leaf > circle {
-  fill: #df29df;
-  /* Let's also make the radius of leaf nodes larger */
-  r: 40;
+  fill: #1976d2;
 }
 
 
+.navAppBar{
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.824), rgba(160, 6, 160, 0.598));
+  border-radius: 5px;
+}
+
+.enterUri{
+  h2 {
+    font-size: 29px;
+    font-weight: lighter;
+    display: inline-block;
+    font-family:'Open Sans', sans-serif;
+    margin:0;
+    margin-right: 42px;
+  }
+button {
+    margin:0;
+    font-size: 2vh;
+    margin-top: 1%; 
+    margin-left: 45%;
+    width: 10%;
+    display: inline-block;
+    vertical-align:left;
+}
+.entryUri {
+  background-color: rgb(249, 224, 228);
+  padding: 10px;
+  width: 35%;
+  border-radius: 2%;
+  box-shadow: powderblue 10px 1px;
+  text-align: center;
+  position: absolute;
+  transform: translateY(20%);
+  transform: translateX(20%);
+}
 

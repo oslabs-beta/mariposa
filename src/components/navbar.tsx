@@ -13,8 +13,8 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import Popper from '@mui/base/PopperUnstyled';
-import UseInput from './Urlsubmit';
+import LogoutIcon from '@mui/icons-material/Logout';
+import MariposaLogo from '../assets/MariposaLogo.svg';
 
 const pages = ['URI', 'Sandbox'];
 const settings = ['Logout'];
@@ -49,22 +49,34 @@ const ResponsiveAppBar = (props: any) => {
     // (props.graphiql) ? props.setGraphiql(false) : props.setGraphiql(true);
   };
 
+  const handleSandbox = () => {
+    window.open('/graphql', '_blank')
+  }
+
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
+  const handleUriDisplay = () =>{
+    if(props.uriBtnClose === true){
+     props.setHandleUriBtnClose(false)
+    }
+  }
+
   return (
-    <AppBar position="static" style={{ backgroundColor: 'pink', color: 'blue' }}>
-      <Container maxWidth="false">
+    <div className="navAppBar">
+      <Container maxWidth={false}>
         <Toolbar disableGutters>
-          <Typography
+          {/* <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
             MariposaQL
-          </Typography>
+          </Typography> */}
+          <img id ={"logo"} src={MariposaLogo} style={{ width: '20%' }}/>
+
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -95,39 +107,57 @@ const ResponsiveAppBar = (props: any) => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+             {pages.map((page) => (
+              page === "URI" ? 
+                     <div>
+                    <Button aria-describedby={id} type="button" onClick={() => {props.setUriBoolean(false)}} sx={{ my: 2, color: 'black', display: 'block' }}>
+                      URI
+                    </Button>
+                </div> :
+              page === "Sandbox" ?
+              <div>
+              <Button aria-describedby={id} type="button" onClick={handleSandbox} sx={{ my: 2, color: 'black', display: 'block' }}>
+                SANDBOX
+              </Button>
+              </div> :
+              <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'black', display: 'block' }}>
+                {page}
+              </Button>
+            ))}
             </Menu>
           </Box>
-          <Typography
+          {/* <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
             MariposaQL
-          </Typography>
+          </Typography> */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               page === "URI" ? 
                      <div>
-                  <Button aria-describedby={id} type="button" onClick={() => {props.setUriBoolean(false)}} sx={{ my: 2, color: 'black', display: 'block' }}>
-                    URI
-                  </Button>
-                </div> :
-              <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'black', display: 'block' }}>
-                {page}
-              </Button>
+                    <Button aria-describedby={id} type="button" onClick={handleUriDisplay} sx={{ my: 2, color: 'white', display: 'block' }}>
+                      URI
+                    </Button>
+                    </div> :
+              page === "Sandbox" ?
+                    <div>
+                    <Button aria-describedby={id} type="button" onClick={handleSandbox} sx={{ my: 2, color: 'white', display: 'block' }}>
+                      SANDBOX
+                    </Button>
+                    </div> :
+                    <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
+                      {page}
+                    </Button>
             ))}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <LogoutIcon></LogoutIcon>
               </IconButton>
             </Tooltip>
             <Menu
@@ -155,8 +185,8 @@ const ResponsiveAppBar = (props: any) => {
             </Menu>
           </Box>
         </Toolbar>
-      </Container>
-    </AppBar>
+        </Container>
+      </div>
   );
 };
 export default ResponsiveAppBar;
