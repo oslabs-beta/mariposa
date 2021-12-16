@@ -8,7 +8,7 @@ import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 const theme = createTheme({ palette: { mode: 'light' } });
 import Highlight from 'react-highlight';
 
-export default function Resolvers(props: any) {
+export default function Resolvers(props:any) {
 
   //state for the user defaulted to resolvers
   const [resolver, setResolver] = useState(false);

@@ -16,7 +16,7 @@ const dbController = {
       const values = [firstname, lastname, username, email, password];
       
       const result = await db.query(query, values);
-      const user = result.rows[0];
+      // const user = result.rows[0];
       //const newUser = new User(user.user_id, user.username, user.email);
       res.locals.signup = 'Successful registration';
       return next();
