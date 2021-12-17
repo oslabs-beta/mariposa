@@ -1,6 +1,6 @@
 import { PoolWrapper } from '../types/PoolWrapper';
 
-const PG_URI: string = `postgres://dqexxfpt:6D6Lf1JqByYbEhVQeJnm3zsdNop4X_cd@castor.db.elephantsql.com/dqexxfpt`;
+const PG_URI: string = `YOUR_USER_DB`;
 
 const db = new PoolWrapper(PG_URI);
 
