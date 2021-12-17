@@ -1,6 +1,4 @@
-import bcrypt from 'bcrypt'; //js?
 import { Request, Response, NextFunction } from 'express';
-import User from '../../user';
 import db from '../models/mariposaDB'
 
 const dbController = {
