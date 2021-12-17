@@ -52,10 +52,9 @@ export default function LandingPage(props: any) {
     setUriString(''); //cleans uri bar
     obtainResolvers(uriString);
     obtainTreeData(uriString);
-    console.log(text, schema, treeData)
+    
   }
 
-  console.log('latest string', uriString)
   return (
 
     <div className="mainDisplayContainer">

@@ -11,10 +11,6 @@ function LandingPage() {
   const[hideNavBar, setHideNavBar] = useState(false);
   const[changeToFormDisplay, setChangeToFormDisplay] = useState(false);
   const[formToDisplay, setFormToDisplay] = useState('login');
-  
-  console.log('hideNavBar:', hideNavBar)
-  console.log('changeToFormDisplay: ', changeToFormDisplay)
-  console.log('formToDisplay: ', formToDisplay)
 
   const handleStartNow = () => {
     setChangeToFormDisplay(true);
