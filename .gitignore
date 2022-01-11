@@ -4,3 +4,4 @@ node_modules
 g6tree.tsx
 dist
 DS_Store
+.DS_Store
