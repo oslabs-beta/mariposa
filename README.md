@@ -28,7 +28,7 @@ Input URI, visualize your data, and copy your GQL Schema!
 To run this project locally, clone the repo and then...
 
 ```bash
-  npm run build:react
+  npm run build
   npm run prod:server
 ```
 
