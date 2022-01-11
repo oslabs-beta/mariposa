@@ -67,7 +67,7 @@ form .form-inner .form-group {
   transition: 0.4s;
 }
 
-.form-inner.form-group: focus-within label {
+.form-inner.form-group focus-within label {
   color: #fe4880;
 }
 
@@ -80,7 +80,7 @@ form .form-inner .form-group input {
   transition: 0.4s;
 }
 
-form.form-inner .form-group input: focus {
+form.form-inner .form-group input focus {
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
 }
 

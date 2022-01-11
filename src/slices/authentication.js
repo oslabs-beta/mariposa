@@ -24,7 +24,7 @@ export const register = createAsyncThunk(
    ) => {
     try {
       const response = await authService.register(firstname, lastname, username, email, password);
-      console.log(response)
+      
       thunkAPI.dispatch(setMessage(response.data.message));
       return response.data; //contains our response from server 
     } catch (error) {

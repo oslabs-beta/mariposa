@@ -42,11 +42,9 @@ const [loading, setLoading] = useState(false);
   });
   
   const handleLogin = (formValue) => { // take in user's provided username and password
-    console.log(formValue);
     const {username, password} = formValue;
     // disable login button by set loading to true
     setLoading(true);
-    console.log(loading)
     dispatch(login({username, password})).unwrap().then(() => {
       setRedirect(true);
     }).catch(() => { // if login fails, enable login button again
@@ -55,7 +53,7 @@ const [loading, setLoading] = useState(false);
   };
 
   if (isLoggedIn) { 
-    console.log("we're loggedin")// return <Redirect to="/profile" />;
+    
   }
 
   const handleFormDisplay = () => setFormToDisplay('register');
