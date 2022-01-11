@@ -5,13 +5,11 @@
   "main": "./dist/main.js",
   "scripts": {
     "test": "jest",
-    "dev:electron": "NODE_ENV=production webpack --config webpack.electron.config.js --mode development && electron ./dist/main.js",
-    "dev:react": "NODE_ENV=production webpack-dev-server --config webpack.react.config.js --mode development",
-    "build:electron": "NODE_ENV=production webpack --config ./webpack.electron.config.js",
-    "build:react": "NODE_ENV=production webpack --config ./webpack.react.config.js",
-    "prod:server": "NODE_ENV=production ts-node server/server.ts",
+    "dev": "NODE_ENV=production webpack-dev-server --config webpack.config.js --mode development",
+    "build": "NODE_ENV=production webpack --config ./webpack.config.js",
     "dev:server": "NODE_ENV=development nodemon server/server.ts",
-    "start": "NODE_ENV=production npm run build && electron ./dist/main.js"
+    "prod:server": "NODE_ENV=production ts-node server/server.ts",
+    "start": "NODE_ENV=production npm run build && npm run prod:server"
   },
   "repository": {
     "type": "git",
